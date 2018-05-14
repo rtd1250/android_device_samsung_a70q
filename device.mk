@@ -85,7 +85,6 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     libqcompostprocbundle \
     libvolumelistener \
-    tinymix \
     SamsungDAP
 
 PRODUCT_COPY_FILES += \
