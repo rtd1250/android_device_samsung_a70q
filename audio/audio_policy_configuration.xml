@@ -107,10 +107,6 @@
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="8000,16000" channelMasks="AUDIO_CHANNEL_OUT_MONO"/>
                 </devicePort>
-                <devicePort tagName="Bt Sco All" role="sink" type="AUDIO_DEVICE_OUT_ALL_SCO">
-                   <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
-                            samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
-                </devicePort>
                 <devicePort tagName="Aux Device Out" type="AUDIO_DEVICE_OUT_AUX_DIGITAL" role="sink">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="44100,48000,64000,88200,96000,128000,176400,192000"
@@ -185,7 +181,11 @@
                        sources="primary-out,deep_buffer,fast,compressed_offload"/>
                 <route type="mix" sink="Wired Headphone"
                        sources="primary-out,deep_buffer,fast,compressed_offload"/>
-                <route type="mix" sink="Bt Sco All"
+                <route type="mix" sink="Bt Sco"
+                       sources="primary-out,deep_buffer,fast"/>
+                <route type="mix" sink="Bt Sco Headset"
+                       sources="primary-out,deep_buffer,fast"/>
+                <route type="mix" sink="Bt Sco Car Kit"
                        sources="primary-out,deep_buffer,fast"/>
                 <route type="mix" sink="Aux Device Out"
                        sources="primary-out,deep_buffer,fast,compressed_offload,direct_pcm"/>
