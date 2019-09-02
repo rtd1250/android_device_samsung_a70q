@@ -1,0 +1,9 @@
+
+#
+# attribute
+#
+
+############ aosp and sec_common #############
+
+# Tag for efs file 
+attribute efs_type;

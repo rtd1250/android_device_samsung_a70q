@@ -1,0 +1,34 @@
+on post-fs-data
+    # for fwpath
+    chmod 0666 /sys/module/wlan/parameters/fwpath
+
+    chown wifi root /sys/wifi/wifiver
+    chmod 0660 /sys/wifi/wifiver
+    chown wifi root /sys/wifi/softap
+    chmod 0660 /sys/wifi/softap
+
+    # for WIFI Antenna
+    write /data/vendor/conn/.wificable.info E
+    chown system root /data/vendor/conn/.wificable.info
+    chmod 0666 /data/vendor/conn/.wificable.info
+    chown wifi root /sys/wifi/wificable
+    chmod 0664 /sys/wifi/wificable
+	
+	# for WIFI TRP/TIS
+    chown wifi root /data/vendor/conn/.psm.info
+    chmod 0664 /data/vendor/conn/.psm.info
+    chown wifi root /sys/wifi/pm
+    chmod 0660 /sys/wifi/pm
+
+    # for WIFI Antenna Selection
+    chown wifi root /data/vendor/conn/.ant.info
+    chmod 0664 /data/vendor/conn/.ant.info
+
+on boot
+# for wlan FTM app
+service ftm_ptt /system/bin/ftm_ptt -d
+    user root
+    group radio system
+    disabled
+
+
