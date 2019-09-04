@@ -1,5 +1,5 @@
-cc_library_shared {
-    name: "android.hardware.audio@4.0-impl",
+cc_defaults {
+    name: "android.hardware.audio-impl_gts4lv",
     relative_install_path: "hw",
     proprietary: true,
     vendor: true,
@@ -12,10 +12,6 @@ cc_library_shared {
         "Stream.cpp",
         "StreamIn.cpp",
         "StreamOut.cpp",
-    ],
-
-    cflags: [
-        "-DAUDIO_HAL_VERSION_4_0",
     ],
 
     defaults: ["hidl_defaults"],
@@ -31,15 +27,11 @@ cc_library_shared {
         "libhidltransport",
         "liblog",
         "libutils",
-        "android.hardware.audio@4.0",
-        "android.hardware.audio.common@4.0",
-        "android.hardware.audio.common@4.0-util",
         "android.hardware.audio.common-util",
     ],
 
     header_libs: [
         "android.hardware.audio.common.util@all-versions",
-        "android.hardware.audio.core@all-versions-impl",
         "libaudioclient_headers",
         "libaudio_system_headers",
         "libhardware_headers",
@@ -49,5 +41,55 @@ cc_library_shared {
     whole_static_libs: [
         "libmedia_helper",
     ],
+}
 
+cc_library_shared {
+    name: "android.hardware.audio@2.0-impl.gts4lv",
+    defaults: ["android.hardware.audio-impl_gts4lv"],
+
+    shared_libs: [
+        "android.hardware.audio@2.0",
+        "android.hardware.audio.common@2.0",
+        "android.hardware.audio.common@2.0-util",
+    ],
+
+    cflags: [
+        "-DMAJOR_VERSION=2",
+        "-DMINOR_VERSION=0",
+        "-include common/all-versions/VersionMacro.h",
+    ]
+}
+
+cc_library_shared {
+    name: "android.hardware.audio@4.0-impl.gts4lv",
+    defaults: ["android.hardware.audio-impl_gts4lv"],
+
+    shared_libs: [
+        "android.hardware.audio@4.0",
+        "android.hardware.audio.common@4.0",
+        "android.hardware.audio.common@4.0-util",
+    ],
+
+    cflags: [
+        "-DMAJOR_VERSION=4",
+        "-DMINOR_VERSION=0",
+        "-include common/all-versions/VersionMacro.h",
+    ]
+}
+
+cc_library_shared {
+    name: "android.hardware.audio@5.0-impl.gts4lv",
+    defaults: ["android.hardware.audio-impl_gts4lv"],
+
+    shared_libs: [
+        "android.hardware.audio@5.0",
+        "android.hardware.audio.common@5.0",
+        "android.hardware.audio.common@5.0-util",
+    ],
+
+    cflags: [
+        "-DMAJOR_VERSION=5",
+        "-DMINOR_VERSION=0",
+        "-include common/all-versions/VersionMacro.h",
+    ]
 }
