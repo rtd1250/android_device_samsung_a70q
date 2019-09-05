@@ -336,6 +336,10 @@ lib/libchromaflash.so
 lib64/libseemore.so
 vendor/bin/hw/vendor.samsung.hardware.camera.provider@2.4-service
 vendor/etc/init/vendor.samsung.hardware.camera.provider@2.4-service.rc
+vendor/lib/camera.device@1.0-impl.so
+vendor/lib/camera.device@3.2-impl.so
+vendor/lib/camera.device@3.3-impl.so
+vendor/lib/camera.device@3.4-impl.so
 vendor/lib/camera/com.samsung.sensor.gc5035.so
 vendor/lib/camera/com.samsung.sensor.s5k4ha.so
 vendor/lib/camera/com.samsung.sensor.s5kgd1.so
@@ -443,6 +447,10 @@ vendor/lib/vendor.samsung.hardware.camera.device@3.2.so
 vendor/lib/vendor.samsung.hardware.camera.device@3.3.so
 vendor/lib/vendor.samsung.hardware.camera.device@3.4.so
 vendor/lib/vendor.samsung.hardware.camera.provider@2.4.so
+vendor/lib64/camera.device@1.0-impl.so
+vendor/lib64/camera.device@3.2-impl.so
+vendor/lib64/camera.device@3.3-impl.so
+vendor/lib64/camera.device@3.4-impl.so
 vendor/lib64/camera/com.samsung.sensor.gc5035.so
 vendor/lib64/camera/com.samsung.sensor.s5k4ha.so
 vendor/lib64/camera/com.samsung.sensor.s5kgd1.so
