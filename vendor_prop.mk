@@ -206,29 +206,22 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.qcomsysd.enabled=1
 
-# RMNet Data
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.data.df.dev_name=rmnet_usb0
-
 # Radio/RIL
  PRODUCT_PROPERTY_OVERRIDES += \
     use.voice.path.for.pcm.voip=true \
     vendor.voice.path.for.pcm.voip=true \
-    persist.radio.atfwd.start=false \
-    persist.radio.multisim.config=dsds \
+    persist.vendor.radio.atfwd.start=true \
     persist.vendor.radio.apm_sim_not_pwdn=1 \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.data_con_rprt=1 \
-    persist.vendor.radio.rat_on=combine \
     persist.vendor.radio.sib16_support=1 \
-    persist.vendor.radio.snapshot_enabled=1 \
-    persist.vendor.radio.snapshot_timer=5 \
-    ril.subscription.types=NV,RUIM \
     vendor.sec.rild.libpath=/vendor/lib64/libsec-ril.so \
     vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so \
     ro.carrier=unknown \
-    ro.com.android.dataroaming=true \
-    ro.telephony.default_network=22,22 \
+    ro.telephony.default_network=9,9 \
+    persist.radio.multisim.stackid=0,1 \
+    persist.radio.latest-modeltype0=2 \
+    persist.radio.latest-modeltype1=2 \
     telephony.lteOnCdmaDevice=1 \
     keyguard.no_require_sim=true \
     DEVICE_PROVISIONED=1

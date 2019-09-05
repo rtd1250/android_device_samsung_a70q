@@ -72,13 +72,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.radio.bar_fake_gcell=1 \
-    persist.vendor.radio.data_con_rprt=1 \
-    persist.vendor.radio.data_ltd_sys_ind=1 \
-    persist.vendor.radio.force_on_dc=true \
-    persist.vendor.radio.ignore_dom_time=10 \
-    ro.telephony.default_network=22,22 \
-    persist.vendor.radio.data_con_rprt=1
+    persist.radio.multisim.config=dsds
 
 # SSR
 PRODUCT_PROPERTY_OVERRIDES += \
