@@ -215,6 +215,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.data_con_rprt=1 \
     persist.vendor.radio.sib16_support=1 \
+    persist.radio.multisim.config=dsds \
     vendor.sec.rild.libpath=/vendor/lib64/libsec-ril.so \
     vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so \
     ro.carrier=unknown \

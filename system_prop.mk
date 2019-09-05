@@ -70,10 +70,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.dbg.vt_avail_ovr=1  \
     persist.dbg.wfc_avail_ovr=1
 
-# RIL
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.radio.multisim.config=dsds
-
 # SSR
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.ssr.enable_ramdumps=0 \
