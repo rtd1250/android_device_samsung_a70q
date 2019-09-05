@@ -954,13 +954,9 @@ vendor/lib64/libhexagon_nn_stub.so
 # NFC
 vendor/bin/hw/nxp.android.hardware.nfc@1.1-service
 vendor/etc/init/nxp.android.hardware.nfc@1.1-service.rc
-vendor/etc/permissions/android.hardware.nfc.hcef.xml
-vendor/etc/permissions/android.hardware.nfc.hce.xml
-vendor/etc/permissions/android.hardware.nfc.xml
-vendor/etc/permissions/com.android.nfc_extras.xml
+vendor/etc/permissions/com.nxp.mifare.xml
 vendor/firmware/nfc/libpn553_fw.so
 vendor/lib64/nfc_nci_nxp.so
-vendor/lib64/vendor.nxp.nxpnfc@1.0.so
 vendor/lib64/vendor.nxp.nxpnfc@1.1.so
 
 # Perf
