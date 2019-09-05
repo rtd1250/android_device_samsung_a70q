@@ -285,7 +285,6 @@ PRODUCT_PACKAGES += \
     init.qcom.sensors.sh \
     init.qcom.sh \
     init.qcom.usb.sh \
-    init.qti.fm.sh \
     init.qti.qseecomd.sh \
     fstab.qcom \
     init.carrier.rc \
@@ -293,7 +292,6 @@ PRODUCT_PACKAGES += \
     init.msm.usb.configfs.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
-    init.qti.fm.rc \
     init.target.rc \
     init.vendor.rilchip.rc \
     init.vendor.rilcommon.rc \

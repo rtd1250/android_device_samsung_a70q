@@ -629,13 +629,20 @@ vendor/lib64/libqfp_sensortest.so
 vendor/lib64/libsynaFpSensorTestNwd.so
 
 # FM
-vendor/bin/ftmdaemon
+lib/fm_helium.so
+lib/libfm-hci.so
+-lib/vendor.qti.hardware.fm@1.0.so
 lib64/fm_helium.so
 lib64/libfm-hci.so
 -lib64/vendor.qti.hardware.fm@1.0.so
+vendor/lib/ftm_fm_lib.so
+vendor/lib/hw/vendor.qti.hardware.fm@1.0-impl.so
+vendor/lib/vendor.qti.hardware.fm@1.0.so
+vendor/lib/vendor.qti.hardware.fm@1.0_vendor.so
 vendor/lib64/ftm_fm_lib.so
 vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.fm@1.0.so
+vendor/lib64/vendor.qti.hardware.fm@1.0_vendor.so
 
 # Gatekeeper
 vendor/lib64/hw/gatekeeper.mdfpp.so
