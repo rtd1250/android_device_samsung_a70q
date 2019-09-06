@@ -2135,10 +2135,10 @@
     </path>
 
     <path name="spkr-vi-feedback">
-        <ctl name="WSA_AIF_VI Mixer WSA_SPKR_VI_1" value="1" /> 
-        <ctl name="WSA_CDC_DMA_0 TX Format" value="PACKED_16B" /> 
-        <ctl name="VI_FEED_TX Channels" value="One" /> 
-        <ctl name="WSA_RX_0_VI_FB_LCH_MUX" value="WSA_CDC_DMA_TX_0" /> 
+        <ctl name="WSA_AIF_VI Mixer WSA_SPKR_VI_1" value="1" />
+        <ctl name="WSA_CDC_DMA_0 TX Format" value="PACKED_16B" />
+        <ctl name="VI_FEED_TX Channels" value="One" />
+        <ctl name="WSA_RX_0_VI_FB_LCH_MUX" value="WSA_CDC_DMA_TX_0" />
     </path>
 
     <path name="spkr-vi-record">
@@ -2251,7 +2251,7 @@
         <ctl name="TX_CDC_DMA_TX_3 Channels" value="One" />
         <ctl name="TX_AIF1_CAP Mixer DEC0" value="1" />
         <ctl name="ADC2_MIXER Switch" value="1" />
-        <ctl name="ADC2 MUX" value="INP2" />   
+        <ctl name="ADC2 MUX" value="INP2" />
     </path>
 
     <path name="main-sub-mic">
@@ -2327,6 +2327,10 @@
         <ctl name="RX_RX1 HPH Digital Volume" value="73" />
     </path>
 
+    <path name="headphones">
+        <path name="headset" />
+    </path>
+
     <path name="asrc-mode">
     </path>
 
@@ -2355,7 +2359,7 @@
     </path>
 
     <path name="speaker-and-bt-sco">
-        <path name="spk" /> 
+        <path name="spk" />
     </path>
 
     <path name="speaker-and-bt-sco-wb">
@@ -2598,13 +2602,13 @@
     <path name="bargein-aec-usb-headset-mic">
     </path>
 
-    <path name="karaoke-stereo-mic"> 
+    <path name="karaoke-stereo-mic">
         <path name="sub-main-mic" />
         <ctl name="TX_DEC0 Volume" value="84" />
         <ctl name="TX_DEC1 Volume" value="84" />
         <ctl name="ADC1 Volume" value="0" />
         <ctl name="ADC2 Volume" value="0" />
-    </path> 
+    </path>
     <!-- end of recognition Scenario -->
 
     <!-- call Scenario -->
