@@ -328,11 +328,8 @@ PRODUCT_COPY_FILES += \
 
 # Sensor
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-impl.a70q \
     android.hardware.sensors@1.0-service
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/sensors/com.samsung.permission.SSENSOR.xml:system/etc/permissions/com.samsung.permission.SSENSOR.xml
 
 # Sensor Configuration
 PRODUCT_COPY_FILES += \
