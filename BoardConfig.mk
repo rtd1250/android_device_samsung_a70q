@@ -252,6 +252,11 @@ VENDOR_SECURITY_PATCH := 2018-08-05
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 include device/qcom/sepolicy/sepolicy.mk
 
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /system/vendor/lib64/libsec-ril.so|libshims_ril.so \
+	/system/vendor/lib64/libsec-ril-dsds.so|libshims_ril.so
+
 # Soong Namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH)
