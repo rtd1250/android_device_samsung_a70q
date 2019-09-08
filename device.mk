@@ -71,7 +71,6 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl \
-    audio.primary.sm6150 \
     android.hardware.audio@2.0-service \
     android.hardware.audio@2.0-impl \
     android.hardware.audio.effect@2.0-impl \

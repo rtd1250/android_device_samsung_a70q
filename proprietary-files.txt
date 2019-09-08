@@ -38,6 +38,7 @@ vendor/lib64/com.qualcomm.qti.ant@1.0.so
 # Audio
 etc/permissions/audiosphere.xml
 framework/audiosphere.jar
+vendor/lib/hw/audio.primary.sm6150.so
 vendor/lib/libSamsungPostProcessConvertor.so
 vendor/lib/lib_SamsungRec_07001.so
 vendor/lib/lib_SoundAlive_SRC384_ver320.so

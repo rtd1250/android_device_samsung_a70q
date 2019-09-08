@@ -2327,10 +2327,6 @@
         <ctl name="RX_RX1 HPH Digital Volume" value="73" />
     </path>
 
-    <path name="headphones">
-        <path name="headset" />
-    </path>
-
     <path name="asrc-mode">
     </path>
 
