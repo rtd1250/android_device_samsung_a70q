@@ -314,7 +314,7 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    android.hardware.radio@1.2 \
+    vendor.samsung.hardware.radio@1.2.vendor \
     android.hardware.radio.config@1.0 \
     libjson \
     librmnetctl \

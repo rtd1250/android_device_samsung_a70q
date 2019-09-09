@@ -1088,7 +1088,6 @@ vendor/lib/libsec-ril.so
 vendor/lib/vendor.samsung.hardware.radio.channel@1.0.so
 vendor/lib/vendor.samsung.hardware.radio.secbridge@1.0.so
 vendor/lib/vendor.samsung.hardware.radio.sechook@1.0.so
-vendor/lib/vendor.samsung.hardware.radio@1.2.so
 vendor/lib/libxml.so
 vendor/lib64/libconfigdb.so
 vendor/lib64/libdsi_netctrl.so
@@ -1113,7 +1112,6 @@ vendor/lib64/vendor.samsung.hardware.radio.channel@1.0.so
 vendor/lib64/vendor.samsung.hardware.radio.configsvc@1.0_vendor.so
 vendor/lib64/vendor.samsung.hardware.radio.secbridge@1.0.so
 vendor/lib64/vendor.samsung.hardware.radio.sechook@1.0.so
-vendor/lib64/vendor.samsung.hardware.radio@1.2.so
 vendor/lib64/libxml.so
 
 # Samsung - Misc
