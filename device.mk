@@ -17,7 +17,6 @@ PRODUCT_ENFORCE_RRO_TARGETS := \
     framework-res
 
 # Properties
--include $(LOCAL_PATH)/system_prop.mk
 -include $(LOCAL_PATH)/vendor_prop.mk
 
 # Device uses high-density artwork where available

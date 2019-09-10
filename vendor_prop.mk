@@ -1,7 +1,3 @@
-# Activity Manager/Trim
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.fw.use_trim_settings=true
-
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1 \
@@ -17,7 +13,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.ssr=false \
     ro.vendor.audio.sdk.ssr=false \
     tunnel.audio.encode=true \
-    qcom.hw.aac.encoder=true
+    qcom.hw.aac.encoder=true \
+	ro.config.vc_call_vol_steps=7
 
 # AudioFlinger client heap size
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -27,6 +24,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.bluetooth.disableabsvol=true \
     persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac \
+	persist.vendor.btstack.enable.splita2dp=true \
+    persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac \
     ro.bluetooth.emb_wp_mode=true \
     ro.bluetooth.wipower=true \
     vendor.bluetooth.soc=cherokee \
@@ -40,10 +39,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     camera.disable_zsl_mode=1 \
     vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.android.camera"
 
-# Charger
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.chg.max_volt_mv=9000
-
 # CnE
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.cne.feature=1 \
@@ -51,7 +46,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Crypto
  PRODUCT_PROPERTY_OVERRIDES += \
-    ro.crypto.allow_encrypt_override=true \
+    ro.crypto.allow_ncrypt_override=true \
     ro.crypto.volume.filenames_mode=aes-256-cts
 
 # Dalvik VM
@@ -88,11 +83,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
 
-# Enable Color Invert
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.df.extcolor.proc=0 \
-    ro.vendor.df.effect.conflict=1
-
 # Enable stm-events
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.coresight.config=stm-events
@@ -122,8 +112,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # GPS/GNSS
 PRODUCT_PROPERTY_OVERRIDES += \
-    sys.qca1530=detect \
-    persist.backup.ntpServer=0.pool.ntp.org
+    sys.qca1530=detect
+
+# IMS
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.dbg.volte_avail_ovr=1 \
+    persist.dbg.vt_avail_ovr=1  \
+    persist.dbg.wfc_avail_ovr=1
 
 # IO CGroup
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -146,18 +141,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.mm.enable.qcom_parser=63963135 \
     media.stagefright.enable-fma2dp=true \
     audio.offload.video=true \
-    media.settings.xml=/vendor/etc/media_profiles_V1_0.xml
-
-# Memory Optimisations
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.qti.sys.fw.bservice_enable=true \
-    ro.am.reschedule_service=true
+    media.settings.xml=/vendor/etc/media_profiles_V1_0.xml \
+	persist.mm.enable.prefetch=true
 
 # Misc
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.audio.game.effect=true \
-    persist.sys.job_delay=true \
-    persist.vendor.qg.log_level=1 \
     sys.vendor.shutdown.waittime=500 # ro.kernel.qemu.gles=0
 
 # NetFlix
@@ -168,18 +156,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.nfc_nci=nqx.default
 
-# Paper Mode
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.paper_mode_max_level=255
-
 # Perf Stack
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
-    vendor.perf.dolphin.enable=false \
-    vendor.perf.gestureflingboost.enable=true \
-    vendor.perf.workloadclassifier.enable=true \
-    persist.vendor.qti.games.gt.prof=1 \
-    ro.vendor.qti.config.zram=true
+    vendor.perf.gestureflingboost.enable=true
 
 # Qualcomm System Daemon
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -197,31 +177,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.multisim.config=dsds \
     vendor.sec.rild.libpath=/vendor/lib64/libsec-ril.so \
     vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so \
-    ro.carrier=unknown \
     ro.telephony.default_network=9,9 \
     persist.radio.multisim.stackid=0,1 \
     persist.radio.latest-modeltype0=2 \
     persist.radio.latest-modeltype1=2 \
     telephony.lteOnCdmaDevice=1 \
     keyguard.no_require_sim=true \
+	persist.vendor.data.mode=concurrent \
+    ro.vendor.use_data_netmgrd=false \
     DEVICE_PROVISIONED=1
 
-# SSR
+# SDCard
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.ssr.restart_level=ALL_ENABLE
-
-# Simulate sdcard on /data/media
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.fuse_sdcard=true
-
-# Thermal
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.thermal.data.path="/data/vendor/thermal/"
+    ro.sys.sdcardfs=true
 
 # VoWIFI
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.data.iwlan.enable=true
-
-# XLAT
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.net.doxlat=true
