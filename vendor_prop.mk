@@ -124,6 +124,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.iocgrp.config=1
 
+# Keymaster
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.keystore=mdfpp
+
 # Light
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.lights=qcom
