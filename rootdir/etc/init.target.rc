@@ -196,6 +196,22 @@ on fs
 	setprop ro.product.model ${ro.boot.product.model}
 
 on post-fs
+    # super slow motion - FRC
+	mkdir /data/vendor/mediacodec 0700 mediacodec mediacodec
+    mkdir /data/vendor/mediacodec/fruc_files 0700 mediacodec mediacodec
+    mkdir /data/vendor/mediacodec/fruc_assets 0700 mediacodec mediacodec
+    copy /system/media/fruc_kernels.sm6150.bin /data/vendor/mediacodec/fruc_assets/fruc_kernels.sm6150.bin
+    chown mediacodec mediacodec /data/vendor/mediacodec/fruc_assets/fruc_kernels.sm6150.bin
+
+    # snap gpu kernel
+    mkdir /data/vendor/snap 0755 cameraserver cameraserver
+    copy /vendor/etc/snap_gpu_kernel_32.bin /data/vendor/snap/snap_gpu_kernel_32.bin
+    copy /vendor/etc/snap_gpu_kernel_64.bin /data/vendor/snap/snap_gpu_kernel_64.bin
+    chown cameraserver cameraserver /data/vendor/snap/snap_gpu_kernel_32.bin
+    chown cameraserver cameraserver /data/vendor/snap/snap_gpu_kernel_64.bin
+    chmod 0755 /data/vendor/snap/snap_gpu_kernel_32.bin
+    chmod 0755 /data/vendor/snap/snap_gpu_kernel_64.bin
+
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
     write /dev/ipa 1
@@ -917,6 +933,10 @@ on boot
     # HMT relay mode
     chown radio system /sys/devices/virtual/relay_on
     chown radio system /sys/devices/virtual/data_on
+
+    # Fingerprint
+    chown system system /sys/class/lcd/panel/finger_mask_mode
+    chown system system /sys/class/lcd/panel/mask_brightness
 
 #    chown system system /sys/kernel/hbtp/display_pwr
 #    chown system system /sys/kernel/qvr_external_sensor/fd
