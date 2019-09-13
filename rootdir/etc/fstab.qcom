@@ -55,5 +55,5 @@
 /product/lost+found                                     /product/priv-app  none    bind                                                 nofail
 
 # VOLD :: fstab_non_AB_variant.qti
-/devices/platform/soc/8804000.sdhci/mmc_host*                           auto                vfat    defaults        voldmanaged=sdcard:auto
+/devices/platform/soc/8804000.sdhci/mmc_host*                           auto                auto    defaults        voldmanaged=sdcard:auto
 /devices/platform/soc/a600000.ssusb/a600000.dwc3/xhci-hcd.0.auto*       auto                auto    defaults        voldmanaged=usb:auto
