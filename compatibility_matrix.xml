@@ -55,18 +55,4 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
-        <name>vendor.samsung.frameworks.ucm.wifi</name>
-        <version>1.0</version>
-        <interface>
-            <name>IUCMKeystore</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <vendor-ndk>
-        <version>28</version>
-    </vendor-ndk>
-    <system-sdk>
-        <version>28</version>
-    </system-sdk>
 </compatibility-matrix>
