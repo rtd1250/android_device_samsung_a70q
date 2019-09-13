@@ -117,9 +117,11 @@ static void power_hint(struct power_module* module, power_hint_t hint, void* dat
 void set_interactive(struct power_module* module __unused, int on) {
     if (!on) {
         /* Send Display OFF hint to perf HAL */
+        sysfs_write("/sys/class/sec/tsp/input/enabled", "0");
         perf_hint_enable(VENDOR_HINT_DISPLAY_OFF, 0);
     } else {
         /* Send Display ON hint to perf HAL */
+        sysfs_write("/sys/class/sec/tsp/input/enabled", "1");
         perf_hint_enable(VENDOR_HINT_DISPLAY_ON, 0);
     }
 
@@ -129,7 +131,7 @@ void set_interactive(struct power_module* module __unused, int on) {
 void set_feature(struct power_module* module __unused, feature_t feature, int state __unused) {
     switch (feature) {
         case POWER_FEATURE_DOUBLE_TAP_TO_WAKE:
-            sysfs_write("/proc/tp_gesture", state ? "1" : "0");
+            sysfs_write("/sys/class/sec/tsp/cmd", state ? "aot_enable,1" : "aot_enable,0");
             break;
         default:
             break;
