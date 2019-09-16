@@ -36,6 +36,7 @@
 /dev/block/bootdevice/by-name/boot                      /boot                    emmc    defaults                                             recoveryonly
 /dev/block/bootdevice/by-name/recovery                  /recovery                emmc    defaults                                             recoveryonly
 /dev/block/bootdevice/by-name/system                    /                        ext4    ro,barrier=1,discard                                 wait,recoveryonly
+/dev/block/bootdevice/by-name/product                   /product                 ext4    ro,barrier=1                                         wait,recoveryonly
 /dev/block/bootdevice/by-name/vendor                    /vendor                  ext4    ro,barrier=1,discard                                 wait,recoveryonly
 /dev/block/bootdevice/by-name/cache                     /cache                   ext4    nosuid,noatime,nodev,barrier=1                       wait
 /dev/block/bootdevice/by-name/userdata                  /data                    ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic latemount,wait,check,fileencryption=ice,quota,reservedsize=128M
@@ -50,9 +51,6 @@
 # and fails if it does not find it.
 /dev/block/bootdevice/by-name/misc                      /misc              emmc    defaults                                             defaults
 #/dev/block/zram0                                        none               swap    defaults                                             zramsize=1073741824
-
-/product/lost+found                                     /product/app       none    bind                                                 nofail
-/product/lost+found                                     /product/priv-app  none    bind                                                 nofail
 
 # VOLD :: fstab_non_AB_variant.qti
 /devices/platform/soc/8804000.sdhci/mmc_host*                           auto                auto    defaults        voldmanaged=sdcard:auto
