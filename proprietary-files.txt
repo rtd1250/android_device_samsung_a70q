@@ -321,6 +321,7 @@ vendor/lib64/soundfx/libqcreverb.so
 vendor/lib64/soundfx/libqcvirt.so
 
 # Bluetooth
+lib64/libaptX_encoder.so
 vendor/bin/hci_qcomm_init
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
