@@ -120,7 +120,6 @@
         <item>bluetooth,7,7,0,-1,true</item>
         <item>ethernet,9,9,2,-1,true</item>
         <item>mobile_fota,10,0,2,60000,true</item>
-        <item>mobile_ims,11,0,1,-1,true</item>
         <item>mobile_cbs,12,0,2,60000,true</item>
         <item>wifi_p2p,13,1,0,-1,true</item>
         <item>mobile_ia,14,0,2,-1,true</item>
@@ -280,29 +279,6 @@
         <item>A_GLONASS_POS_PROTOCOL_SELECT=0</item>
         <item>GPS_LOCK=0</item>
     </string-array>
-
-    <!-- Flag specifying whether VoLTE is available on device -->
-    <bool name="config_device_volte_available">true</bool>
-
-    <!-- Flag specifying whether VoLTE should be available for carrier: independent of
-         carrier provisioning. If false: hard disabled. If true: then depends on carrier
-         provisioning, availability etc -->
-    <bool name="config_carrier_volte_available">true</bool>
-
-    <!-- Flag specifying whether WFC over IMS is available on device -->
-    <bool name="config_device_vt_available">true</bool>
-    <bool name="config_device_wfc_ims_available">true</bool>
-
-    <!-- Flag specifying whether WFC over IMS should be available for carrier: independent of
-         carrier provisioning. If false: hard disabled. If true: then depends on carrier
-         provisioning, availability etc -->
-    <bool name="config_carrier_wfc_ims_available">true</bool>
-
-    <!-- ImsService package name to bind to by default, if config_dynamic_bind_ims is true -->
-    <string name="config_ims_package">org.codeaurora.ims</string>
-
-    <!-- Flag specifying whether or not IMS will use the ImsResolver dynamically -->
-    <bool name="config_dynamic_bind_ims">true</bool>
 
     <!-- Config determines whether to update phone object when voice registration
          state changes. Voice radio tech change will always trigger an update of

@@ -39,11 +39,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     camera.disable_zsl_mode=1 \
     vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.android.camera"
 
-# CnE
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.cne.feature=1 \
-    persist.vendor.cne.feature=1
-
 # Crypto
  PRODUCT_PROPERTY_OVERRIDES += \
     ro.crypto.allow_ncrypt_override=true \
@@ -113,12 +108,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # GPS/GNSS
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.qca1530=detect
-
-# IMS
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.dbg.volte_avail_ovr=1 \
-    persist.dbg.vt_avail_ovr=1  \
-    persist.dbg.wfc_avail_ovr=1
 
 # IO CGroup
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -194,7 +183,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # SDCard
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sys.sdcardfs=true
-
-# VoWIFI
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.data.iwlan.enable=true

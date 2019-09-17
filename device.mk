@@ -127,12 +127,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Snap
 
-# CNE
-PRODUCT_PACKAGES += \
-    cneapiclient \
-    com.quicinc.cne \
-    services-ext
-
 # Display/Graphics
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.2-impl \
@@ -198,10 +192,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
     android.hidl.base@1.0.vendor
-
-# IMS
-PRODUCT_PACKAGES += \
-    ims-ext-common
 
 # IPACM
 PRODUCT_PACKAGES += \
