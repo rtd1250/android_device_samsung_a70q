@@ -187,6 +187,9 @@ BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := false
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_a70q
+
 # Keymaster
 TARGET_KEYMASTER_VARIANT := samsung
 

@@ -19,7 +19,7 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 PRODUCT_NAME := lineage_a70q
 PRODUCT_DEVICE := a70q
 PRODUCT_BRAND := samsung
-PRODUCT_MODEL := SM-A705FN
+PRODUCT_MODEL := SM-A705
 PRODUCT_MANUFACTURER := samsung
 
 BUILD_FINGERPRINT := "samsung/a70qxx/a70q:9/PPR1.180610.011/A705FNXXU3ASG6:user/release-keys"
