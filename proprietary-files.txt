@@ -331,6 +331,7 @@ vendor/lib/hw/android.hardware.bluetooth@1.0-impl-qti.so
 vendor/lib/com.qualcomm.qti.bluetooth_audio@1.0.so
 vendor/lib/vendor.samsung.hardware.bluetooth@1.0.so
 vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so
+vendor/lib64/libbtnv.so
 vendor/lib64/vendor.samsung.hardware.bluetooth@1.0.so
 
 # Camera
@@ -883,6 +884,13 @@ vendor/lib64/libgcs-osal.so
 vendor/lib64/libgcs.so
 vendor/lib64/liblistensoundmodel2.so
 
+# Machine Learning
+vendor/etc/lm/AdaptLaunchFeature.xml
+vendor/lib64/liblearningmodule.so
+vendor/lib64/libmeters-ns.so
+vendor/lib64/libmeters.so
+vendor/lib64/libreffeature.so
+
 # Media
 lib64/libmmosal.so
 lib64/vendor.qti.hardware.vpp@1.1.so
@@ -962,17 +970,21 @@ vendor/firmware/nfc/libpn553_fw.so
 vendor/lib64/nfc_nci_nxp.so
 vendor/lib64/vendor.nxp.nxpnfc@1.1.so
 
-# Perf
+# Power
+vendor/bin/hw/vendor.samsung.hardware.miscpower@1.0-service
+vendor/etc/init/vendor.samsung.hardware.miscpower@1.0-service.rc
+vendor/etc/powerhint.xml
+vendor/lib64/vendor.samsung.hardware.miscpower@1.0.so
+
+# Power - Perf
 vendor/bin/hw/vendor.qti.hardware.perf@1.0-service
 vendor/etc/init/vendor.qti.hardware.perf@1.0-service.rc
-vendor/etc/lm/AdaptLaunchFeature.xml
 vendor/etc/lm/AppClassifierFeature.xml
 vendor/etc/lm/GameOptimizationFeature.xml
 vendor/etc/perf/commonresourceconfigs.xml
 vendor/etc/perf/perfboostsconfig.xml
 vendor/etc/perf/targetconfig.xml
 vendor/etc/perf/targetresourceconfigs.xml
-vendor/etc/powerhint.xml
 vendor/lib/libperfgluelayer.so
 vendor/lib/libqti-perfd-client.so
 vendor/lib/libqti-perfd.so
@@ -982,9 +994,6 @@ vendor/lib/vendor.qti.hardware.perf@1.0.so
 vendor/lib64/libadaptlaunch.so
 vendor/lib64/libappclassifier.so
 vendor/lib64/libgameoptfeature.so
-vendor/lib64/liblearningmodule.so
-vendor/lib64/libmeters-ns.so
-vendor/lib64/libmeters.so
 vendor/lib64/libperfgluelayer.so
 vendor/lib64/libqti-perfd-client.so
 vendor/lib64/libqti-perfd.so
@@ -994,6 +1003,7 @@ vendor/lib64/vendor.qti.hardware.perf@1.0.so
 
 # Peripheral manager
 vendor/bin/pm-proxy
+vendor/bin/pm_proxy_helper
 vendor/bin/pm-service
 vendor/lib/libperipheral_client.so
 vendor/lib64/libperipheral_client.so
