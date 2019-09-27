@@ -57,7 +57,7 @@ on init
     write /sys/fs/cgroup/memory/bg/memory.move_charge_at_immigrate 1
     chown root system /sys/fs/cgroup/memory/bg/tasks
     chmod 0660 /sys/fs/cgroup/memory/bg/tasks
-	
+
     # Change backlog queue size
     write /proc/sys/net/core/netdev_max_backlog 100000
 
@@ -87,6 +87,10 @@ on init
     chmod 0660 /sys/class/lcd/panel1/hmt_bright
     chown system system /sys/class/mdnie/mdnie1/hmt_color_temperature
     chmod 0660 /sys/class/mdnie/mdnie1/hmt_color_temperature
+
+    # mDNIe
+    chown system system /sys/class/mdnie/mdnie/mode
+    chown system system /sys/class/mdnie/mdnie/mode_max
 
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
