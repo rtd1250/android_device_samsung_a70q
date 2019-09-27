@@ -1,0 +1,11 @@
+allow healthd app_efs_file:dir rw_file_perms;
+allow healthd app_efs_file:file create_file_perms;
+
+allow healthd battery_efs_file:dir create_dir_perms;
+allow healthd battery_efs_file:file create_file_perms;
+
+allow healthd sysfs_battery_supply:file w_file_perms;
+allow healthd sysfs_batteryinfo:file w_file_perms;
+
+r_dir_file(healthd, efs_file)
+r_dir_file(healthd, sec_poc_file)

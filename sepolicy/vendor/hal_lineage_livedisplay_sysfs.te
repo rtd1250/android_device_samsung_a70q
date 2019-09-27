@@ -1,0 +1,8 @@
+allow hal_lineage_livedisplay_sysfs display_vendor_data_file:dir rw_dir_perms;
+allow hal_lineage_livedisplay_sysfs display_vendor_data_file:file create_file_perms;
+
+allow hal_lineage_livedisplay_sysfs sysfs_lcd_writable:dir search;
+allow hal_lineage_livedisplay_sysfs sysfs_lcd_writable:file rw_file_perms;
+
+allow hal_lineage_livedisplay_sysfs sysfs_mdnie_writable:dir search;
+allow hal_lineage_livedisplay_sysfs sysfs_mdnie_writable:file rw_file_perms;

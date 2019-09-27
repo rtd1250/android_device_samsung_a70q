@@ -1,0 +1,6 @@
+# HwBinder IPC from client to server, and callbacks
+binder_call(hal_proca_client, hal_proca_server)
+binder_call(hal_proca_server, hal_proca_client)
+
+add_hwservice(hal_proca_server, hal_proca_hwservice)
+allow hal_proca_client hal_proca_hwservice:hwservice_manager find;

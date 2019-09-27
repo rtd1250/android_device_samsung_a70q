@@ -1,0 +1,14 @@
+type hal_skpm_default, domain;
+hal_server_domain(hal_skpm_default, hal_skpm)
+
+type hal_skpm_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_skpm_default)
+
+vndbinder_use(hal_skpm_default)
+
+binder_call(hal_skpm_default, system_server)
+
+allow hal_skpm_default mnt_vendor_file:dir r_dir_perms;
+
+allow hal_skpm_default sec_efs_file:dir create_dir_perms;
+allow hal_skpm_default sec_efs_file:file create_file_perms;

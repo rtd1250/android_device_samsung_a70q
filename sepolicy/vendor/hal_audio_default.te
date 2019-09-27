@@ -1,0 +1,13 @@
+allow hal_audio_default hal_bluetooth_a2dp_hwservice:hwservice_manager { add find };
+
+allow hal_audio_default sysfs_audio_writable:file r_file_perms;
+
+allow hal_audio_default sec_efs_file:dir create_dir_perms;
+allow hal_audio_default sec_efs_file:file create_file_perms;
+
+allow hal_audio_default vendor_audio_data_file:dir create_dir_perms;
+
+allow hal_audio_default vendor_audiopcm_data_file:dir create_dir_perms;
+allow hal_audio_default vendor_audiopcm_data_file:file create_file_perms;
+
+allow hal_audio_default vendor_log_file:dir r_dir_perms;

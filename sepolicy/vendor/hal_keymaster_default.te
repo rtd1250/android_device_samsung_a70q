@@ -1,0 +1,23 @@
+allow hal_keymaster_default mnt_vendor_file:dir r_dir_perms;
+
+allow hal_keymaster_default firmware_file:file r_file_perms;
+
+allow hal_keymaster_default efs_file:dir r_dir_perms;
+allow hal_keymaster_default efs_file:file r_file_perms;
+allow hal_keymaster_default efs_file:lnk_file r_file_perms;
+
+allow hal_keymaster_default prov_efs_file:dir create_dir_perms;
+allow hal_keymaster_default prov_efs_file:file create_file_perms;
+
+allow hal_keymaster_default sec_poc_file:dir r_dir_perms;
+allow hal_keymaster_default sec_poc_file:file r_file_perms;
+allow hal_keymaster_default sec_poc_file:lnk_file r_file_perms;
+
+allow hal_keymaster_default tee_device:chr_file rw_file_perms;
+allow hal_keymaster_default tz_device:chr_file rw_file_perms;
+
+get_prop(hal_keymaster_default, compact_dump_prop)
+get_prop(hal_keymaster_default, tzdaemon_prop)
+get_prop(hal_keymaster_default, vendor_tztsdaemon_prop)
+set_prop(hal_keymaster_default, ctl_start_prop)
+set_prop(hal_keymaster_default, dumpstate_options_prop)

@@ -1,0 +1,9 @@
+binder_call(hal_gnss_qti, hal_gnss_default)
+
+allow hal_gnss_qti location_data_file:dir rw_dir_perms;
+allow hal_gnss_qti location_data_file:file rw_file_perms;
+
+allow hal_gnss_qti vendor_data_file:dir rw_dir_perms;
+
+allow hal_gnss_qti vendor_gps_file:dir rw_dir_perms;
+allow hal_gnss_qti vendor_gps_file:file create_file_perms;

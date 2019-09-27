@@ -1,0 +1,21 @@
+allow hal_fingerprint_default fp_sensor_device:chr_file rw_file_perms;
+allow hal_fingerprint_default tee_device:chr_file rw_file_perms;
+
+allow hal_fingerprint_default firmware_file:file r_file_perms;
+
+allow hal_fingerprint_default efs_file:file r_file_perms;
+
+allow hal_fingerprint_default sec_poc_file:file r_file_perms;
+
+allow hal_fingerprint_default sec_efs_file:dir create_dir_perms;
+allow hal_fingerprint_default sec_efs_file:file create_file_perms;
+
+allow hal_fingerprint_default sysfs_fpc:dir r_dir_perms;
+allow hal_fingerprint_default sysfs_fpc:file r_file_perms;
+allow hal_fingerprint_default sysfs_fpc:lnk_file r_file_perms;
+
+allow hal_fingerprint_default biometrics_vendor_data_file:dir create_dir_perms;
+allow hal_fingerprint_default biometrics_vendor_data_file:file create_file_perms;
+
+allow hal_fingerprint_default vendor_data_file:dir create_dir_perms;
+allow hal_fingerprint_default vendor_data_file:file create_file_perms;

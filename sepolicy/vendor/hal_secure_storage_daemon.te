@@ -1,0 +1,17 @@
+# HwBinder IPC from client to server, and callbacks
+binder_call(hal_secure_storage_daemon_client, hal_secure_storage_daemon_server)
+binder_call(hal_secure_storage_daemon_server, hal_secure_storage_daemon_client)
+
+add_hwservice(hal_secure_storage_daemon_server, hal_secure_storage_daemon_hwservice)
+allow hal_secure_storage_daemon_client hal_secure_storage_daemon_hwservice:hwservice_manager find;
+
+allow hal_secure_storage_daemon hal_allocator:fd use;
+
+allow hal_secure_storage_daemon secure_storage_device:dir create_dir_perms;
+allow hal_secure_storage_daemon secure_storage_device:file create_file_perms;
+
+allow hal_secure_storage_daemon secure_storage_vendor_data_file:dir create_dir_perms;
+allow hal_secure_storage_daemon secure_storage_vendor_data_file:file create_file_perms;
+
+allow hal_secure_storage_daemon system_data_file:dir getattr;
+allow hal_secure_storage_daemon vendor_data_file:dir rw_file_perms;

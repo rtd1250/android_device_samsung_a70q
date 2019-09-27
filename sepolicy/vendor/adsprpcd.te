@@ -1,0 +1,6 @@
+allow adsprpcd mnt_vendor_file:dir create_dir_perms;
+allow adsprpcd mnt_vendor_file:file create_file_perms;
+
+allow adsprpcd sysfs_sensors:dir r_dir_perms;
+allow adsprpcd sysfs_sensors:file r_file_perms;
+allow adsprpcd sysfs_sensors:lnk_file r_file_perms;

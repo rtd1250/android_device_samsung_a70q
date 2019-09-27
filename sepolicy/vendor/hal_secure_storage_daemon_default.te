@@ -1,0 +1,12 @@
+type hal_secure_storage_daemon_default, domain;
+hal_server_domain(hal_secure_storage_daemon_default, hal_secure_storage_daemon)
+
+type hal_secure_storage_daemon_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_secure_storage_daemon_default)
+
+binder_call(hal_secure_storage_daemon_default, bluetooth)
+binder_call(hal_secure_storage_daemon_default, system_app)
+binder_call(hal_secure_storage_daemon_default, system_server)
+
+allow hal_secure_storage_daemon_default ion_device:chr_file rw_file_perms;
+allow hal_secure_storage_daemon_default tee_device:chr_file rw_file_perms;

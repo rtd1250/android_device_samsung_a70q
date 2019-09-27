@@ -1,0 +1,32 @@
+type macloader, domain;
+type macloader_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(macloader)
+
+allow macloader self:capability { chown fowner fsetid net_admin net_raw sys_module };
+allow macloader self:udp_socket { ioctl create };
+
+allow macloader efs_file:dir search;
+allow macloader mnt_vendor_file:dir r_dir_perms;
+allow macloader sec_poc_file:dir search;
+
+allow macloader wifi_efs_file:dir create_dir_perms;
+allow macloader wifi_efs_file:file create_file_perms;
+
+allow macloader vendor_convergence_data_file:dir create_dir_perms;
+allow macloader vendor_convergence_data_file:file create_file_perms;
+
+allow macloader kernel:key search;
+allow macloader kernel:system module_request;
+
+allow macloader kmsg_device:chr_file rw_file_perms;
+
+allow macloader system_file:system module_load;
+
+allow macloader vendor_shell_exec:file rx_file_perms;
+
+allow macloader sysfs:file { read write open };
+allow macloader sysfs_net:dir r_dir_perms;
+allow macloader sysfs_wlan_fwpath:file w_file_perms;
+
+get_prop(macloader, sec_cnss_diag_prop)

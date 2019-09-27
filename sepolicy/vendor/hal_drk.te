@@ -1,0 +1,6 @@
+# HwBinder IPC from client to server, and callbacks
+binder_call(hal_drk_client, hal_drk_server)
+binder_call(hal_drk_server, hal_drk_client)
+
+add_hwservice(hal_drk_server, hal_drk_hwservice)
+allow hal_drk_client hal_drk_hwservice:hwservice_manager find;

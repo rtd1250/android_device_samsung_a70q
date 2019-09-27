@@ -1,0 +1,27 @@
+type wvkprov, domain;
+type wvkprov_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(wvkprov)
+
+hal_client_domain(wvkprov, hal_wvkprov)
+
+allow wvkprov hal_display_config_hwservice:hwservice_manager find;
+
+allow wvkprov ion_device:chr_file rw_file_perms;
+allow wvkprov tee_device:chr_file rw_file_perms;
+
+allow wvkprov sysfs_scsi_host:dir r_dir_perms;
+allow wvkprov sysfs_scsi_host:file r_file_perms;
+allow wvkprov sysfs_scsi_host:lnk_file r_file_perms;
+
+allow wvkprov cpk_efs_file:dir r_dir_perms;
+allow wvkprov cpk_efs_file:file r_file_perms;
+allow wvkprov cpk_efs_file:lnk_file r_file_perms;
+
+allow wvkprov efs_file:dir create_dir_perms;
+allow wvkprov efs_file:file create_file_perms;
+
+allow wvkprov sec_poc_file:dir create_dir_perms;
+allow wvkprov sec_poc_file:file create_file_perms;
+
+get_prop(wvkprov, bssl_post_prop)

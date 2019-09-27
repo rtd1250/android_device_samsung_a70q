@@ -1,0 +1,16 @@
+allow hal_sensors_default input_device:dir r_dir_perms;
+allow hal_sensors_default input_device:chr_file rw_file_perms;
+
+allow hal_sensors_default sysfs_sensors:dir r_dir_perms;
+allow hal_sensors_default sysfs_sensors:file rw_file_perms;
+
+allow hal_sensors_default mnt_vendor_file:dir rw_dir_perms;
+allow hal_sensors_default mnt_vendor_file:file create_file_perms;
+
+allow hal_sensors_default app_efs_file:dir create_dir_perms;
+allow hal_sensors_default app_efs_file:file create_file_perms;
+
+allow hal_sensors_default sec_poc_file:dir r_dir_perms;
+
+r_dir_file(hal_sensors_default, efs_file)
+r_dir_file(hal_sensors_default, sec_poc_file)

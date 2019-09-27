@@ -1,0 +1,45 @@
+hwbinder_use(tee)
+vndbinder_use(tee)
+
+binder_call(tee, appdomain)
+binder_call(tee, hal_graphics_allocator_default)
+binder_call(tee, hal_graphics_composer_default)
+
+allow tee self:netlink_generic_socket create_socket_perms_no_ioctl;
+allow tee self:netlink_socket create_socket_perms_no_ioctl;
+
+allow tee hal_graphics_mapper_hwservice:hwservice_manager find;
+
+allow tee graphics_device:blk_file rw_file_perms;
+allow tee kmsg_device:blk_file rw_file_perms;
+allow tee properties_device:blk_file rw_file_perms;
+
+allow tee persist_file:lnk_file r_file_perms;
+
+allow tee proc:file r_file_perms;
+
+allow tee proc_stat:file r_file_perms;
+
+allow tee proc_sysrq:file w_file_perms;
+
+allow tee rootfs:dir r_dir_perms;
+allow tee rootfs:file r_file_perms;
+allow tee rootfs:lnk_file r_file_perms;
+
+allow tee efs_file:dir create_dir_perms;
+allow tee efs_file:file create_file_perms;
+
+allow tee prov_efs_file:dir create_dir_perms;
+allow tee prov_efs_file:file create_file_perms;
+
+allow tee sec_poc_file:dir create_dir_perms;
+allow tee sec_poc_file:file create_file_perms;
+
+allow tee vaultkeeper_efs_file:dir rw_dir_perms;
+allow tee vaultkeeper_efs_file:file rw_file_perms;
+
+allow tee vendor_data_file:dir create_dir_perms;
+allow tee vendor_data_file:file create_file_perms;
+
+get_prop(tee, hwservicemanager_prop)
+set_prop(tee, vendor_qseecomd_prop)

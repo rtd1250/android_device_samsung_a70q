@@ -1,0 +1,26 @@
+type hal_drk_default, domain;
+hal_server_domain(hal_drk_default, hal_drk)
+
+type hal_drk_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_drk_default)
+
+binder_call(keystore, hal_drk_default)
+
+allow hal_drk_default ion_device:chr_file rw_file_perms;
+allow hal_drk_default tee_device:chr_file rw_file_perms;
+
+allow hal_drk_default mnt_vendor_file:dir rw_dir_perms;
+
+allow hal_drk_default efs_file:dir rw_dir_perms;
+
+allow hal_drk_default prov_efs_file:dir create_dir_perms;
+allow hal_drk_default prov_efs_file:file create_file_perms;
+
+allow hal_drk_default sec_efs_file:dir rw_dir_perms;
+allow hal_drk_default sec_efs_file:file rw_file_perms;
+
+allow hal_drk_default vendor_log_file:dir create_dir_perms;
+allow hal_drk_default vendor_log_file:file create_file_perms;
+
+get_prop(hal_drk_default, spcomlib_prop)
+get_prop(hal_drk_default, vendor_security_patch_level_prop)

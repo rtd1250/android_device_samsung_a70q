@@ -1,0 +1,6 @@
+# HwBinder IPC from client to server, and callbacks
+binder_call(hal_sem_client, hal_sem_server)
+binder_call(hal_sem_server, hal_sem_client)
+
+add_hwservice(hal_sem_server, hal_sem_hwservice)
+allow hal_sem_client hal_sem_hwservice:hwservice_manager find;

@@ -1,0 +1,19 @@
+type hal_proca_default, domain;
+hal_server_domain(hal_proca_default, hal_proca)
+
+type hal_proca_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_proca_default)
+
+binder_call(hal_proca_default, priv_app)
+
+allow hal_proca_default ion_device:chr_file rw_file_perms;
+allow hal_proca_default tee_device:chr_file rw_file_perms;
+
+allow hal_proca_default pa_daemon_device:dir create_dir_perms;
+allow hal_proca_default pa_daemon_device:file create_file_perms;
+
+allow hal_proca_default dumpstate:fd use;
+
+allow hal_proca_default rootfs:file r_file_perms;
+
+r_dir_file(hal_proca_default, oemfs)

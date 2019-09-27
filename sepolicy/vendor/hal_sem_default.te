@@ -1,0 +1,10 @@
+type hal_sem_default, domain;
+hal_server_domain(hal_sem_default, hal_sem)
+
+type hal_sem_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_sem_default)
+
+allow hal_sem_default mnt_vendor_file:dir r_dir_perms;
+
+allow hal_sem_default sec_efs_file:dir create_dir_perms;
+allow hal_sem_default sec_efs_file:file create_file_perms;

@@ -1,0 +1,6 @@
+# HwBinder IPC from client to server, and callbacks
+binder_call(hal_skpm_client, hal_skpm_server)
+binder_call(hal_skpm_server, hal_skpm_client)
+
+add_hwservice(hal_skpm_server, hal_skpm_hwservice)
+allow hal_skpm_client hal_skpm_hwservice:hwservice_manager find;

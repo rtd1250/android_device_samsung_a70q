@@ -1,0 +1,10 @@
+allow hal_bluetooth_qti efs_file:dir r_dir_perms;
+
+allow hal_bluetooth_qti bluetooth_efs_file:dir rw_dir_perms;
+allow hal_bluetooth_qti bluetooth_efs_file:file create_file_perms;
+
+allow hal_bluetooth_qti diag_device:chr_file rw_file_perms;
+
+r_dir_file(hal_bluetooth_qti, vendor_convergence_data_file)
+
+get_prop(hal_bluetooth_qti, vendor_factory_prop)
