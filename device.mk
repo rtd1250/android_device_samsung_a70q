@@ -157,7 +157,7 @@ PRODUCT_PACKAGES += \
 # Fingerprint feature
 PRODUCT_PACKAGES += \
     vendor.samsung.hardware.biometrics.fingerprint@2.1-service.a70q \
-    lineage.biometrics.fingerprint.inscreen@1.0-service.a70q
+    vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.a70q
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \

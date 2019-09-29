@@ -1,4 +1,4 @@
-service vendor.fingerprint-inscreen-1-0 /vendor/bin/hw/lineage.biometrics.fingerprint.inscreen@1.0-service.a70q
+service vendor.fingerprint-inscreen-1-0 /vendor/bin/hw/vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.a70q
     interface vendor.lineage.biometrics.fingerprint.inscreen@1.0::IFingerprintInscreen default
     class hal
     user system
