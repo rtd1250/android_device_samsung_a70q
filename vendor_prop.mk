@@ -170,13 +170,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.multisim.config=dsds \
     vendor.sec.rild.libpath=/vendor/lib64/libsec-ril.so \
     vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so \
+    ro.vendor.sec.radio.def_network=9 \
     ro.telephony.default_network=9,9 \
     persist.radio.multisim.stackid=0,1 \
     persist.radio.latest-modeltype0=2 \
     persist.radio.latest-modeltype1=2 \
     telephony.lteOnCdmaDevice=1 \
     keyguard.no_require_sim=true \
-	persist.vendor.data.mode=concurrent \
+    persist.vendor.data.mode=concurrent \
     ro.vendor.use_data_netmgrd=false \
     DEVICE_PROVISIONED=1
 
