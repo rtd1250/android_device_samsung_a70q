@@ -1,4 +1,13 @@
+allow hal_perf_default init:dir search;
+allow hal_perf_default init:file { open read getattr };
+
+allow hal_perf_default kernel:dir search;
+allow hal_perf_default kernel:file { getattr open read };
+
 allow hal_perf_default self:capability kill;
+
+allow hal_perf_default sysfs_batteryinfo:dir search;
+allow hal_perf_default sysfs_batteryinfo:file { open read getattr };
 
 allow hal_perf_default proc_sched:file rw_file_perms;
 

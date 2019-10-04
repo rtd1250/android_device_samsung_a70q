@@ -1,0 +1,2 @@
+allow hal_lineage_touch_default sysfs_tsp:dir search;
+allow hal_lineage_touch_default sysfs_tsp:file { open write getattr read };

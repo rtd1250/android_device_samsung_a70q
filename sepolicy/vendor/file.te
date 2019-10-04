@@ -39,7 +39,10 @@ type sysfs_camera_writable, fs_type, sysfs_type;
 type sysfs_fpc, fs_type, sysfs_type;
 type sysfs_lcd_writable, fs_type, sysfs_type;
 type sysfs_mdnie_writable, fs_type, sysfs_type;
+type sysfs_ss_writable, fs_type, sysfs_type;
 type sysfs_tsp, fs_type, sysfs_type;
 
 # vendor
 type keylayout_file, file_type, vendor_file_type;
+
+type cache_pdp_file, file_type;

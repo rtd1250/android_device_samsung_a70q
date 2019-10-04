@@ -5,5 +5,9 @@ allow hal_power_default sysfs_devices_system_cpu:file rw_file_perms;
 allow hal_power_default sysfs_batteryinfo:dir r_dir_perms;
 allow hal_power_default sysfs_batteryinfo:file rw_file_perms;
 
+allow hal_power_default sysfs_ss_writable:dir search;
+allow hal_power_default sysfs_ss_writable:file { open read write };
+
 allow hal_power_default sysfs_tsp:dir r_dir_perms;
 allow hal_power_default sysfs_tsp:file rw_file_perms;
+allow hal_power_default sysfs_tsp:lnk_file read;

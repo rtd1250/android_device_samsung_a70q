@@ -1,0 +1,2 @@
+allow hvdcp sysfs_batteryinfo:dir search;
+allow hvdcp sysfs_batteryinfo:file { getattr open read write };

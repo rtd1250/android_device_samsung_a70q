@@ -14,24 +14,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.audio.sdk.ssr=false \
     tunnel.audio.encode=true \
     qcom.hw.aac.encoder=true \
-	ro.config.vc_call_vol_steps=7
+    ro.config.vc_call_vol_steps=7
 
 # AudioFlinger client heap size
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.af.client_heap_size_kbyte=7168
-
-# Bluetooth
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.bluetooth.disableabsvol=true \
-    persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac \
-	persist.vendor.btstack.enable.splita2dp=true \
-    persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac \
-    ro.bluetooth.emb_wp_mode=true \
-    ro.bluetooth.wipower=true \
-    vendor.bluetooth.soc=cherokee \
-    vendor.qcom.bluetooth.soc=cherokee \
-    persist.vendor.btstack.avrcp-playstatus.blacklist=true \
-    bt.max.hfpclient.connections=1
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -41,7 +28,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Crypto
  PRODUCT_PROPERTY_OVERRIDES += \
-    ro.crypto.allow_ncrypt_override=true \
+    ro.crypto.allow_encrypt_override=true \
     ro.crypto.volume.filenames_mode=aes-256-cts
 
 # Dalvik VM
@@ -123,27 +110,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
-    media.aac_51_output_enabled=true \
-    media.stagefright.enable-aac=true \
-    media.stagefright.enable-http=true \
-    media.stagefright.enable-player=true \
-    media.stagefright.enable-qcp=true \
-    media.stagefright.enable-scan=true \
-    mm.enable.smoothstreaming=true \
-    mmp.enable.3g2=true \
-    vendor.mm.enable.qcom_parser=63963135 \
-    media.stagefright.enable-fma2dp=true \
-    audio.offload.video=true \
-    media.settings.xml=/vendor/etc/media_profiles_V1_0.xml \
-	persist.mm.enable.prefetch=true
+    audio.offload.video=true
 
 # Misc
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.vendor.shutdown.waittime=500 # ro.kernel.qemu.gles=0
-
-# NetFlix
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.netflix.bsp_rev=Q6150-17263-1
 
 # NFC
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -160,7 +131,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Radio/RIL
  PRODUCT_PROPERTY_OVERRIDES += \
-    use.voice.path.for.pcm.voip=true \
     vendor.voice.path.for.pcm.voip=true \
     persist.vendor.radio.atfwd.start=true \
     persist.vendor.radio.apm_sim_not_pwdn=1 \
@@ -172,15 +142,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so \
     ro.vendor.sec.radio.def_network=9 \
     ro.telephony.default_network=9,9 \
-    persist.radio.multisim.stackid=0,1 \
-    persist.radio.latest-modeltype0=2 \
-    persist.radio.latest-modeltype1=2 \
     telephony.lteOnCdmaDevice=1 \
     keyguard.no_require_sim=true \
     persist.vendor.data.mode=concurrent \
-    ro.vendor.use_data_netmgrd=false \
-    DEVICE_PROVISIONED=1
-
-# SDCard
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true
+    ro.vendor.use_data_netmgrd=false

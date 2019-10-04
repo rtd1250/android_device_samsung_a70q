@@ -1,0 +1,16 @@
+allow rild app_efs_file:dir search;
+allow rild app_efs_file:file { open read getattr };
+
+allow rild drb_device:chr_file { getattr ioctl open read write };
+
+allow rild imei_efs_file:dir { add_name search write };
+allow rild imei_efs_file:file { create read write open setattr getattr };
+
+allow rild mnt_vendor_file:dir search;
+
+allow rild proc_net:file write;
+
+allow rild proc_qtaguid_stat:file read;
+
+allow rild prov_efs_file:dir search;
+allow rild prov_efs_file:file { read getattr open };

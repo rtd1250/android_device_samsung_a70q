@@ -1,3 +1,8 @@
 allow kernel block_device:dir search;
 
 allow kernel debug_block_device:blk_file rw_file_perms;
+
+allow kernel self:capability kill;
+
+allow kernel sysfs_ss_writable:dir search;
+allow kernel sysfs_ss_writable:file { open read };

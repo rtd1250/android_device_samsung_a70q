@@ -1,0 +1,10 @@
+allow time_daemon rild:dir search;
+allow time_daemon rild:file { open read };
+
+allow time_daemon tee:dir search;
+allow time_daemon tee:file { open read };
+
+allow time_daemon timeservice_app:dir search;
+allow time_daemon timeservice_app:file read;
+
+get_prop(time_daemon, debug_level_prop)

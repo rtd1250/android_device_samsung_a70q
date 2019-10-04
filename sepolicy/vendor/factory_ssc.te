@@ -1,0 +1,14 @@
+type factory_ssc, domain;
+type factory_ssc_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(factory_ssc)
+
+allow factory_ssc app_efs_file:dir search;
+allow factory_ssc app_efs_file:file { open read };
+
+allow factory_ssc efs_file:dir search;
+
+allow factory_ssc self:netlink_socket { bind create write read };
+allow factory_ssc self:qipcrtr_socket { create getattr write read setopt };
+
+set_prop(factory_ssc, vendor_sensor_prop)

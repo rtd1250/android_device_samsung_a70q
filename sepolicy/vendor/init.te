@@ -1,1 +1,5 @@
+allow init efs_file:dir mounton;
 allow init omr_file:dir mounton;
+allow init self:qipcrtr_socket create;
+allow init socket_device:sock_file { create setattr unlink };
+allow init sysfs_tsp:file write;
