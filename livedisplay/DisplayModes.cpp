@@ -37,7 +37,7 @@ const std::map<int32_t, std::string> DisplayModes::kModeMap = {
     // clang-format on
 };
 
-DisplayModes::DisplayModes() : mDefaultModeId(0) {
+DisplayModes::DisplayModes() : mDefaultModeId(4) {
     std::ifstream defaultFile(kDefaultPath);
     int value;
 
