@@ -1062,7 +1062,6 @@ etc/permissions/qcrilhook.xml
 framework/embmslibrary.jar
 framework/qcrilhook.jar
 vendor/bin/ATFWD-daemon
-vendor/bin/hw/rild
 vendor/bin/hw/vendor.samsung.hardware.radio.configsvc@1.0-service
 vendor/bin/netmgrd
 vendor/bin/qrtr-cfg
