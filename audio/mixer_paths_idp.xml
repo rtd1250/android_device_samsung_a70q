@@ -2327,7 +2327,17 @@
         <ctl name="RX_RX1 HPH Digital Volume" value="73" />
     </path>
 
+    <path name="headphones">
+        <path name="headset" />
+    </path>
+
     <path name="asrc-mode">
+    </path>
+
+    <path name="bt-sco-headset">
+    </path>
+
+    <path name="bt-sco-mic">
     </path>
 
     <path name="hph-highquality-mode">
@@ -2423,6 +2433,10 @@
         <ctl name="ADC2 Volume" value="0" />
     </path>
 
+    <path name="headset-mic">
+        <path name="rec-headset-mic" />
+    </path>
+
     <path name="rec-headset-main-mic">
         <path name="ear-main-mic" />
         <ctl name="TX_DEC0 Volume" value="92" />
@@ -2471,6 +2485,10 @@
         <ctl name="TX_DEC1 Volume" value="92" />
         <ctl name="ADC1 Volume" value="0" />
         <ctl name="ADC2 Volume" value="0" />
+    </path>
+
+    <path name="camcorder-mic">
+        <path name="camcorder-stereo-mic" />
     </path>
 
     <path name="echo-main-mic">
@@ -2615,6 +2633,10 @@
         <ctl name="EAR PA Gain" value="G_6_DB" />
     </path>
 
+    <path name="voice-handset">
+        <path name="call-handset" />
+    </path>
+
     <path name="call-handset-hac">
         <path name="rcv" />
         <ctl name="RX_RX0 Digital Volume" value="84" />
@@ -2625,6 +2647,10 @@
         <path name="spk" />
     </path>
 
+    <path name="voice-speaker">
+        <path name="call-speaker" />
+    </path>
+
     <path name="call-dex-speaker">
         <path name="spk" />
     </path>
@@ -2633,6 +2659,10 @@
         <path name="voice-ear" />
         <ctl name="RX_RX0 HPH Digital Volume" value="81" />
         <ctl name="RX_RX1 HPH Digital Volume" value="81" />
+    </path>
+
+    <path name="voice-headphones">
+        <path name="call-headset" />
     </path>
 
     <path name="call-usb-headset">
@@ -2647,12 +2677,20 @@
         <ctl name="ADC2 Volume" value="0" />
     </path>
 
+    <path name="handset-mic">
+        <path name="rec-main-mic" />
+    </path>
+
     <path name="call-speaker-mic">
         <path name="sub-main-mic" />
         <ctl name="TX_DEC0 Volume" value="96" />
         <ctl name="TX_DEC1 Volume" value="90" />
         <ctl name="ADC1 Volume" value="0" />
         <ctl name="ADC2 Volume" value="0" />
+    </path>
+
+    <path name="voice-speaker-mic">
+        <path name="call-speaker-mic" />
     </path>
 
     <path name="call-headphone-mic">
@@ -2665,6 +2703,10 @@
         <path name="ear-mic" />
         <ctl name="TX_DEC0 Volume" value="96" />
         <ctl name="ADC2 Volume" value="0" />
+    </path>
+
+    <path name="voice-headset-mic">
+        <path name="call-speaker-mic" />
     </path>
 
     <path name="call-usb-headphone-mic">

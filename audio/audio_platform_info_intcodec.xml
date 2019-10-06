@@ -69,7 +69,7 @@
     <config_params>
         <!-- In the below value string, the value indicates default mono -->
         <!-- speaker. It can be set to either left or right              -->
-        <param key="mono_speaker" value="right"/>
+        <param key="mono_speaker" value="left"/>
         <param key="spkr_1_tz_name" value="wsatz.13"/>
         <param key="spkr_2_tz_name" value="wsatz.14"/>
         <param key="true_32_bit" value="true"/>
@@ -415,6 +415,7 @@
         <device name="SND_DEVICE_IN_CAPTURE_VI_FEEDBACK" interface="WSA_CDC_DMA_TX_0"/>
         <device name="SND_DEVICE_IN_CAMCORDER_MIC" interface="TX_CDC_DMA_TX_3"/>
 
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" backend="speaker"/>
     </backend_names>
 
 <!-- below values are for ref purpose to OEM, doesn't contain actual hardware info on MTP -->

@@ -46,6 +46,9 @@
         <device name="SND_DEVICE_IN_USB_HEADSET_HEX_MIC_AEC" acdb_id="162"/>
         <device name="SND_DEVICE_IN_UNPROCESSED_USB_HEADSET_HEX_MIC" acdb_id="162"/>
         <device name="SND_DEVICE_IN_VOCE_RECOG_USB_HEADSET_HEX_MIC" acdb_id="162"/>
+
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" acdb_id="15"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_2" acdb_id="15"/>
     </acdb_ids>
 
     <module_ids>
@@ -109,7 +112,7 @@
         <param key="spkr_2_tz_name" value="wsatz.14"/>
         <!-- In the below value string, the value indicates default mono -->
         <!-- speaker. It can be set to either left or right              -->
-        <param key="mono_speaker" value="right"/>
+        <param key="mono_speaker" value="left"/>
         <!-- In the below value string, first parameter indicates size -->
         <!-- followed by perf lock options                             -->
         <param key="perf_lock_opts" value="4, 0x40400000, 0x1, 0x40C00000, 0x1"/>
@@ -519,4 +522,3 @@
         </input_snd_device>
     </snd_devices>
 </audio_platform_info>
-
