@@ -1,1 +1,4 @@
 allow system_app fs_bpf:dir search;
+
+allow system_app sysfs_tsp:dir search;
+allow system_app sysfs_tsp:file { getattr open write };
