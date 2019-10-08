@@ -2637,6 +2637,10 @@
         <path name="call-handset" />
     </path>
 
+    <path name="echo-reference-voip handset">
+        <path name="call-handset" />
+    </path>
+
     <path name="call-handset-hac">
         <path name="rcv" />
         <ctl name="RX_RX0 Digital Volume" value="84" />
@@ -2678,6 +2682,10 @@
     </path>
 
     <path name="handset-mic">
+        <path name="rec-main-mic" />
+    </path>
+
+    <path name="speaker-mic">
         <path name="rec-main-mic" />
     </path>
 
