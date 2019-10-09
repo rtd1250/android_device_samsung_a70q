@@ -49,6 +49,8 @@
 
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER" acdb_id="15"/>
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER_2" acdb_id="15"/>
+        <device name="SND_DEVICE_IN_SPEAKER_MIC" acdb_id="58"/>
+        <device name="SND_DEVICE_IN_VOICE_SPEAKER_MIC" acdb_id="58"/>
     </acdb_ids>
 
     <module_ids>
