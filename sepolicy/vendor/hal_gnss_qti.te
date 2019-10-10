@@ -9,3 +9,5 @@ allow hal_gnss_qti vendor_data_file:dir rw_dir_perms;
 
 allow hal_gnss_qti vendor_gps_file:dir rw_dir_perms;
 allow hal_gnss_qti vendor_gps_file:file create_file_perms;
+
+get_prop(hal_gnss_qti, csc_prop)

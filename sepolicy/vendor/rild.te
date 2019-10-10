@@ -14,3 +14,5 @@ allow rild proc_qtaguid_stat:file { getattr open read };
 
 allow rild prov_efs_file:dir search;
 allow rild prov_efs_file:file { read getattr open };
+
+get_prop(rild, csc_prop)

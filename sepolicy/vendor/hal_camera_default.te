@@ -9,6 +9,7 @@ allow hal_camera_default sysfs_sensors:file r_file_perms;
 r_dir_file(hal_camera_default, efs_file)
 r_dir_file(hal_camera_default, sec_poc_file)
 
+get_prop(hal_camera_default, csc_prop)
 get_prop(hal_camera_default, debug_level_prop)
 get_prop(hal_camera_default, graphics_vulkan_prop)
 get_prop(hal_camera_default, vendor_factory_prop)
