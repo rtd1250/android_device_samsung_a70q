@@ -22,6 +22,7 @@ persist.camera.                        u:object_r:camera_prop:s0
 persist.graphics.vulkan.disable        u:object_r:graphics_vulkan_prop:s0
 persist.hvdcp_opti                     u:object_r:hvdcp_opti_prop:s0
 persist.pps                            u:object_r:hvdcp_opti_prop:s0
+persist.ril.                           u:object_r:radio_prop:s0
 persist.sbl_log_                       u:object_r:sbl_log_prop:s0
 persist.std_pd                         u:object_r:hvdcp_opti_prop:s0
 persist.sys.bt.driver.version          u:object_r:vendor_bluetooth_prop:s0
@@ -47,6 +48,8 @@ ro.boot.force_upload                   u:object_r:boot_force_upload_prop:s0
 ro.build.characteristics               u:object_r:exported2_default_prop:s0
 ro.camera.res.fmq.size                 u:object_r:sec_camera_prop:s0
 ro.camera.req.fmq.size                 u:object_r:sec_camera_prop:s0
+ro.csc.omcnw_code                      u:object_r:csc_prop:s0
+ro.csc.omcnw_code2                     u:object_r:csc_prop:s0
 ro.csc.sales_code                      u:object_r:csc_prop:s0
 ro.csc.spotify.music.partnerid         u:object_r:csc_prop:s0
 ro.csc.spotify.music.referrerid        u:object_r:csc_prop:s0
@@ -55,6 +58,7 @@ ro.factory.factory_binary              u:object_r:vendor_factory_prop:s0
 ro.gpu.available_frequencies           u:object_r:freq_prop:s0
 ro.netflix.channel                     u:object_r:csc_prop:s0
 ro.qc.sdk.audio.                       u:object_r:audio_prop:s0
+ro.simbased.changetype                 u:object_r:csc_prop:s0
 ro.vendor.gpu.available_frequencies    u:object_r:freq_prop:s0
 service.camera.                        u:object_r:sec_camera_prop:s0
 tunnel.audio.                          u:object_r:audio_prop:s0
