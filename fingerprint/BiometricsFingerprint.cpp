@@ -192,12 +192,7 @@ Return<RequestStatus> SecBiometricsFingerprint::remove(uint32_t gid, uint32_t fi
 Return<RequestStatus> SecBiometricsFingerprint::setActiveGroup(uint32_t gid,
                                                             const hidl_string&) {
     std::string storePath = "/data/vendor/biometrics/fp/User_" + std::to_string(gid);
-
-    if (access(storePath.c_str(), W_OK)) {
-        return RequestStatus::SYS_EINVAL;
-    }
     LOG(ERROR) << "setActiveGroup " << gid << " " << storePath;
-
     return ErrorFilter(ss_fingerprint_set_active_group(gid, storePath.c_str()));
 }
 
