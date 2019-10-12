@@ -200,8 +200,8 @@
             </routes>
         </module>
 
-        <!-- A2dp Audio HAL -->
-        <xi:include href="a2dp_audio_policy_configuration.xml"/>
+        <!-- A2DP Input Audio HAL -->
+        <xi:include href="a2dp_in_audio_policy_configuration.xml"/>
 
         <!-- Usb Audio HAL -->
         <xi:include href="usb_audio_policy_configuration.xml"/>
@@ -214,6 +214,10 @@
 
         <!-- hidden sound Audio HAL -->
         <!--<xi:include href="playback_record_audio_policy_configuration.xml"/>-->
+
+        <!-- Bluetooth Audio HAL -->
+        <xi:include href="bluetooth_audio_policy_configuration.xml"/>
+
     </modules>
 
     <!-- Volume section -->
