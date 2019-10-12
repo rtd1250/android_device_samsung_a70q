@@ -60,8 +60,13 @@
 /dev/tzic                      u:object_r:tz_device:s0
 
 # EFS files
-/efs/FactoryApp(/.*)?                          u:object_r:app_efs_file:s0
+/efs/Battery(/.*)?                             u:object_r:battery_efs_file:s0
 /efs/biometrics(/.*)?                          u:object_r:sec_efs_file:s0
+/efs/carrier(/.*)?                             u:object_r:carrier_efs_file:s0
+/efs/FactoryApp(/.*)?                          u:object_r:app_efs_file:s0
+/efs/richtek(/.*)?                             u:object_r:sec_efs_file:s0
+/efs/sec_efs(/.*)?                             u:object_r:sec_efs_file:s0
+/efs/tas25xx(/.*)?                             u:object_r:sec_efs_file:s0
 /mnt/vendor/efs(/.*)?                          u:object_r:efs_file:s0
 /mnt/vendor/efs/\.drm(/.*)?                    u:object_r:drm_efs_file:s0
 /mnt/vendor/efs/\.nv_core\.bak(.*)             u:object_r:nv_core_efs_file:s0
@@ -167,11 +172,10 @@
 /sys/devices/virtual/sensors/ssc_core(/.*)?                     u:object_r:sysfs_sensors:s0
 /sys/module/qpnp_power_on/parameters(/.*)?                      u:object_r:sysfs_ss_writable:s0
 
+/sys/devices/platform/soc/884000\.i2c/i2c-1/1-0050/input(/.*)?                                                                       u:object_r:sysfs_ss_writable:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm6150@0:qcom,pm6150_rtc/rtc(/.*)?              u:object_r:sysfs_rtc:s0
 /sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-01/c440000\.qcom,spmi:qcom,pm6150@1:qcom,vibrator@5300/leds/vibrator(/.*)? u:object_r:sysfs_leds:s0
-/sys/devices/platform/soc/884000\.i2c/i2c-1/1-0050/input(/.*)?          u:object_r:sysfs_ss_writable:s0
-/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm6150@0:qcom,pm6150_rtc/rtc(/.*)? u:object_r:sysfs_rtc:s0
-
-/sys/devices/platform/soc/soc:qcom,cam-req-mgr/video4linux/video[0-33]/name(/.*)? u:object_r:sysfs_graphics:s0
+/sys/devices/platform/soc/soc:qcom,cam-req-mgr/video4linux/video[0-33]/name(/.*)?                                                    u:object_r:sysfs_graphics:s0
 
 # Vendor files
 /vendor/lib(/.*)?              u:object_r:same_process_hal_file:s0
