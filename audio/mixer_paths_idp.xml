@@ -2434,6 +2434,10 @@
         <ctl name="ADC1 Volume" value="0" />
     </path>
 
+    <path name="voice-rec-mic">
+        <path name="rec-main-mic" />
+    </path>
+
     <path name="rec-sub-mic">
         <path name="sub-mic" />
         <ctl name="TX_DEC0 Volume" value="98" />
