@@ -37,7 +37,7 @@ vendor/lib64/com.qualcomm.qti.ant@1.0.so
 
 # Audio
 etc/permissions/audiosphere.xml
-framework/audiosphere.jar
+framework/audiosphere.jar|4450751aad4c268c686fe9bc93da595e14c009d9
 vendor/lib/libSamsungPostProcessConvertor.so
 vendor/lib/lib_SamsungRec_07001.so
 vendor/lib/lib_SoundAlive_SRC384_ver320.so
@@ -1058,8 +1058,8 @@ vendor/lib64/libqmiservices.so
 # Radio
 etc/permissions/embms.xml
 etc/permissions/qcrilhook.xml
-framework/embmslibrary.jar
-framework/qcrilhook.jar
+framework/embmslibrary.jar|980832af89ed59120b7362ddb56d3120bb6b2239
+framework/qcrilhook.jar|6304669bf24599d1ae45fe7d9b13b5ba58273bd1
 vendor/bin/ATFWD-daemon
 vendor/bin/hw/vendor.samsung.hardware.radio.configsvc@1.0-service
 vendor/bin/netmgrd
@@ -1217,7 +1217,7 @@ vendor/lib64/hw/thermal.sm6150.so
 vendor/lib64/libthermalclient.so
 
 # Time
--vendor/app/TimeService/TimeService.apk
+-vendor/app/TimeService/TimeService.apk|01a3ee878296b7981c4428d2b573fe668e13254b
 vendor/bin/time_daemon
 vendor/lib/libtime_genoff.so
 vendor/lib64/libtime_genoff.so
