@@ -1085,7 +1085,7 @@ vendor/lib/libpdnotifier.so
 vendor/lib/libqcmaputils.so
 vendor/lib/libqrtr.so
 vendor/lib/libqsocket.so
-vendor/lib/libril.so
+-vendor/lib/libril.so
 vendor/lib/libsec-ril-dsds.so
 vendor/lib/libsec-ril.so
 vendor/lib/vendor.samsung.hardware.radio.channel@1.0.so
@@ -1106,7 +1106,7 @@ vendor/lib64/libpdnotifier.so
 vendor/lib64/libqcmaputils.so
 vendor/lib64/libqrtr.so
 vendor/lib64/libqsocket.so
-vendor/lib64/libril.so
+-vendor/lib64/libril.so
 vendor/lib64/libsec-ril-dsds.so
 vendor/lib64/libsec-ril.so
 vendor/lib64/vendor.qti.hardware.data.connection@1.0.so
