@@ -1,6 +1,6 @@
 hidl_package_root {
     name: "vendor.samsung.hardware",
-    path: "device/samsung/a70q/hidl/interfaces",
+    use_current: true,
 }
 
 cc_library_shared {
