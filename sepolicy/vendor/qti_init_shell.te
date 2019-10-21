@@ -6,8 +6,6 @@ allow qti_init_shell mnt_vendor_file:dir create_dir_perms;
 allow qti_init_shell proc_default_smp_affinity:file { open write };
 allow qti_init_shell proc_sched:file { open write };
 
-allow qti_init_shell sensors_persist_file:dir create_dir_perms;
-
 allow qti_init_shell sysfs_devfreq:file setattr;
 
 allow qti_init_shell sysfs_msm_power:file setattr;

@@ -1,5 +1,3 @@
-genfscon debugfs /kgsl/proc u:object_r:qti_debugfs:s0
-
 genfscon proc /irq/default_smp_affinity u:object_r:proc_default_smp_affinity:s0
 genfscon proc /memsize u:object_r:proc_meminfo:s0
 genfscon proc /schedstat u:object_r:proc_sched:s0
@@ -12,7 +10,6 @@ genfscon proc /sys/kernel/sched_sync_hint_enable u:object_r:proc_sched:s0
 genfscon proc /sys/kernel/sched_upmigrate u:object_r:proc_sched:s0
 genfscon proc /sys/vm/swappiness u:object_r:proc_swappiness:s0
 
-genfscon sysfs /class/rfkill/rfkill0/state u:object_r:sysfs_bluetooth_writable:s0
 genfscon sysfs /devices/platform/soc/aae0000.qcom,venus/subsys1/name u:object_r:sysfs_ssr:s0
 genfscon sysfs /devices/virtual/lcd/panel u:object_r:sysfs_lcd_writable:s0
 genfscon sysfs /devices/virtual/sensors/ssc_core/ssc_hw_rev u:object_r:sysfs_sensors:s0
