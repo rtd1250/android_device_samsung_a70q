@@ -43,7 +43,7 @@ function blob_fixup() {
 }
 
 # Default to sanitizing the vendor folder before extraction
-CLEAN_VENDOR=false
+CLEAN_VENDOR=true
 SECTION=
 KANG=
 
