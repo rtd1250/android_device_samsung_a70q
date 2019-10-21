@@ -329,7 +329,7 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2 \
     libprotobuf-cpp-full \
-    libshims_ril
+    libtrafficcontrol-spoofer
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
