@@ -36,7 +36,8 @@ sp<::vendor::samsung::hardware::radio::V1_2::IRadio> Radio::getSecIRadio() {
 // Methods from ::android::hardware::radio::V1_0::IRadio follow.
 Return<void> Radio::setResponseFunctions(const sp<::android::hardware::radio::V1_0::IRadioResponse>& radioResponse, const sp<::android::hardware::radio::V1_0::IRadioIndication>& radioIndication) {
     sp<::vendor::samsung::hardware::radio::V1_2::IRadioResponse> secRadioResponse =
-            new SecRadioResponse(::android::hardware::radio::V1_2::IRadioResponse::castFrom(radioResponse)
+            new SecRadioResponse(interfaceName == RIL1_SERVICE_NAME ? 1 : 2,
+                    ::android::hardware::radio::V1_2::IRadioResponse::castFrom(radioResponse)
                     .withDefault(nullptr));
     sp<::vendor::samsung::hardware::radio::V1_2::IRadioIndication> secRadioIndication =
             new SecRadioIndication(::android::hardware::radio::V1_2::IRadioIndication::castFrom(radioIndication)

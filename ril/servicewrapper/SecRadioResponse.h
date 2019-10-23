@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <android/hardware/audio/5.0/IDevicesFactory.h>
+#include <android/hardware/audio/5.0/IPrimaryDevice.h>
 #include <vendor/samsung/hardware/radio/1.2/IRadioResponse.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
@@ -27,6 +29,18 @@ namespace radio {
 namespace V1_2 {
 namespace implementation {
 
+#define AUDIO_PARAMETER_KEY_VSID                "vsid"
+#define AUDIO_PARAMETER_KEY_CALL_STATE          "call_state"
+
+#define VOICEMMODE1_VSID         0x11C05000
+#define VOICEMMODE2_VSID         0x11DC5000
+
+#define BASE_CALL_STATE     1
+#define CALL_INACTIVE       (BASE_CALL_STATE)
+#define CALL_ACTIVE         (BASE_CALL_STATE + 1)
+#define CALL_HOLD           (BASE_CALL_STATE + 2)
+#define CALL_LOCAL_HOLD     (BASE_CALL_STATE + 3)
+
 using ::android::hardware::hidl_array;
 using ::android::hardware::hidl_memory;
 using ::android::hardware::hidl_string;
@@ -37,9 +51,16 @@ using ::android::sp;
 
 struct SecRadioResponse : public IRadioResponse {
 
+    int simSlot;
     sp<::android::hardware::radio::V1_2::IRadioResponse> radioResponse;
+    std::mutex audioDeviceMutex;
+    sp<::android::hardware::audio::V5_0::IPrimaryDevice> audioDevice;
+    std::mutex callOnHoldMutex;
+    bool callOnHold;
 
-    SecRadioResponse(const sp<::android::hardware::radio::V1_2::IRadioResponse>& radioResponse);
+    SecRadioResponse(int simSlot, const sp<::android::hardware::radio::V1_2::IRadioResponse>& radioResponse);
+
+    sp<::android::hardware::audio::V5_0::IPrimaryDevice> getAudioDevice();
 
     // Methods from ::android::hardware::radio::V1_0::IRadioResponse follow.
     Return<void> getIccCardStatusResponse(const ::android::hardware::radio::V1_0::RadioResponseInfo& info, const ::android::hardware::radio::V1_0::CardStatus& cardStatus) override;
