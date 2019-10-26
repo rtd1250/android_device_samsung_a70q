@@ -16,7 +16,6 @@
 
 #pragma once
 
-#include <android/hardware/audio/5.0/IDevicesFactory.h>
 #include <android/hardware/audio/5.0/IPrimaryDevice.h>
 #include <vendor/samsung/hardware/radio/1.2/IRadioResponse.h>
 #include <hidl/MQDescriptor.h>
@@ -52,15 +51,13 @@ using ::android::sp;
 struct SecRadioResponse : public IRadioResponse {
 
     int simSlot;
-    sp<::android::hardware::radio::V1_2::IRadioResponse> radioResponse;
-    std::mutex audioDeviceMutex;
     sp<::android::hardware::audio::V5_0::IPrimaryDevice> audioDevice;
+    sp<::android::hardware::radio::V1_2::IRadioResponse> radioResponse;
     std::mutex callOnHoldMutex;
     bool callOnHold;
 
-    SecRadioResponse(int simSlot, const sp<::android::hardware::radio::V1_2::IRadioResponse>& radioResponse);
-
-    sp<::android::hardware::audio::V5_0::IPrimaryDevice> getAudioDevice();
+    SecRadioResponse(int simSlot, const sp<::android::hardware::audio::V5_0::IPrimaryDevice>& audioDevice,
+            const sp<::android::hardware::radio::V1_2::IRadioResponse>& radioResponse);
 
     // Methods from ::android::hardware::radio::V1_0::IRadioResponse follow.
     Return<void> getIccCardStatusResponse(const ::android::hardware::radio::V1_0::RadioResponseInfo& info, const ::android::hardware::radio::V1_0::CardStatus& cardStatus) override;

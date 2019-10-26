@@ -33,10 +33,21 @@ sp<::vendor::samsung::hardware::radio::V1_2::IRadio> Radio::getSecIRadio() {
     return secIRadio;
 }
 
+sp<::android::hardware::audio::V5_0::IPrimaryDevice> Radio::getAudioDevice() {
+    std::lock_guard<std::mutex> lock(audioDeviceMutex);
+    if (!audioDevice) {
+        ::android::hardware::audio::V5_0::IDevicesFactory::getService()->openPrimaryDevice(
+                [&](::android::hardware::audio::V5_0::Result, const sp<::android::hardware::audio::V5_0::IPrimaryDevice>& result) {
+                    audioDevice = result;
+                });
+    }
+    return audioDevice;
+}
+
 // Methods from ::android::hardware::radio::V1_0::IRadio follow.
 Return<void> Radio::setResponseFunctions(const sp<::android::hardware::radio::V1_0::IRadioResponse>& radioResponse, const sp<::android::hardware::radio::V1_0::IRadioIndication>& radioIndication) {
     sp<::vendor::samsung::hardware::radio::V1_2::IRadioResponse> secRadioResponse =
-            new SecRadioResponse(interfaceName == RIL1_SERVICE_NAME ? 1 : 2,
+            new SecRadioResponse(interfaceName == RIL1_SERVICE_NAME ? 1 : 2, getAudioDevice(),
                     ::android::hardware::radio::V1_2::IRadioResponse::castFrom(radioResponse)
                     .withDefault(nullptr));
     sp<::vendor::samsung::hardware::radio::V1_2::IRadioIndication> secRadioIndication =
@@ -755,7 +766,6 @@ Return<void> Radio::deactivateDataCall_1_2(int32_t serial, int32_t cid, ::androi
     return Void();
 }
 
-
 // Methods from ::android::hardware::radio::V1_3::IRadio follow.
 Return<void> Radio::setSystemSelectionChannels(int32_t, bool, const hidl_vec<::android::hardware::radio::V1_1::RadioAccessSpecifier>&) {
     return Void();
@@ -770,7 +780,7 @@ Return<void> Radio::getModemStackStatus(int32_t) {
 }
 
 }  // namespace implementation
-}  // namespace V1_4
+}  // namespace V1_3
 }  // namespace radio
 }  // namespace hardware
 }  // namespace android

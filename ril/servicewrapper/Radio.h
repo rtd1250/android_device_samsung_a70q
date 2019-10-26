@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <android/hardware/audio/5.0/IDevicesFactory.h>
+#include <android/hardware/audio/5.0/IPrimaryDevice.h>
 #include <android/hardware/radio/1.3/IRadio.h>
 #include <vendor/samsung/hardware/radio/1.2/IRadio.h>
 #include <hidl/MQDescriptor.h>
@@ -47,10 +49,13 @@ struct Radio : public IRadio {
     std::string interfaceName;
     std::mutex secIRadioMutex;
     sp<::vendor::samsung::hardware::radio::V1_2::IRadio> secIRadio;
+    std::mutex audioDeviceMutex;
+    sp<::android::hardware::audio::V5_0::IPrimaryDevice> audioDevice;
 
     Radio(const std::string& interfaceName);
 
     sp<::vendor::samsung::hardware::radio::V1_2::IRadio> getSecIRadio();
+    sp<::android::hardware::audio::V5_0::IPrimaryDevice> getAudioDevice();
 
     // Methods from ::android::hardware::radio::V1_0::IRadio follow.
     Return<void> setResponseFunctions(const sp<::android::hardware::radio::V1_0::IRadioResponse>& radioResponse, const sp<::android::hardware::radio::V1_0::IRadioIndication>& radioIndication) override;
@@ -208,7 +213,7 @@ struct Radio : public IRadio {
 };
 
 }  // namespace implementation
-}  // namespace V1_4
+}  // namespace V1_3
 }  // namespace radio
 }  // namespace hardware
 }  // namespace android
