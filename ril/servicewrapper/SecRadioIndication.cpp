@@ -296,10 +296,14 @@ Return<void> SecRadioIndication::currentSignalStrength_1_2(::android::hardware::
     return Void();
 }
 
-
 // Methods from ::vendor::samsung::hardware::radio::V1_2::IRadioIndication follow.
 Return<void> SecRadioIndication::secCurrentSignalStrength(::android::hardware::radio::V1_0::RadioIndicationType type, const ::vendor::samsung::hardware::radio::V1_2::SecSignalStrength& signalStrength) {
-    radioIndication->currentSignalStrength_1_2(type, signalStrength.base);
+    ::android::hardware::radio::V1_2::SignalStrength newSignalStrength = signalStrength.base;
+    if (signalStrength.base.lte.signalStrength == 99) {
+        // Set lte signal to invalid
+        newSignalStrength.lte.timingAdvance = std::numeric_limits<int>::max();
+    }
+    radioIndication->currentSignalStrength_1_2(type, newSignalStrength);
     return Void();
 }
 
