@@ -26,7 +26,7 @@ def IncrementalOTA_InstallEnd(info):
   OTA_InstallEnd(info)
 
 def AddBootloaderAssertion(info):
-  cmd = 'assert(getprop("ro.boot.rp") == "3" || abort("ERROR: This package requires bootloeader from version 3 or newer. Please upgrade bootloader and retry!"););'
+  cmd = 'assert(getprop("ro.boot.rp") == "4" || abort("ERROR: This package requires bootloader with version 4 or newer. Please upgrade your firmware and retry!"););'
   info.script.AppendExtra(cmd)
 
 def AddImage(info, basename, dest):
