@@ -596,7 +596,7 @@ vendor/lib/libsdmcore.so|631a42d9b557dbf5f974251f590e099f0d2bae93
 vendor/lib/libsdmutils.so|3967f13048406442ae05b9a61fff7a949d4bc2ad
 vendor/lib/libsdm-colormgr-algo.so|48689a441aad372e676a06e39fd08d739a037126
 vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl-qti-display.so|8a17f08cf3f524b2020f07fe6ef4392617293532
-vendor/lib64/hw/gralloc.sm6150.so|5a8adfe871d12af89d2105e7708c59d3882c283f
+vendor/lib64/hw/gralloc.sm6150.so|1b6e073a0f956e1706459d52b6ceb7dd3c80d8ad
 vendor/lib64/hw/hwcomposer.sm6150.so|af465397c8c6e2a90e98ce354365241bfd10bb5b
 vendor/lib64/hw/memtrack.sm6150.so|7d2d9755bfc7579eededc498d0b48407d30aa1df
 vendor/lib64/libdisplaydebug.so|de0532983fff34579853d101f4e5916766e042f2
@@ -1237,7 +1237,7 @@ vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 vendor/lib64/vendor.qti.voiceprint@1.0.so
 
 # USB
-vendor/bin/hw/android.hardware.usb@1.1-service.wahoo
+vendor/bin/hw/android.hardware.usb@1.1-service.wahoo|8af0d2d837c81d9685634880ee1588ce4e59866c
 vendor/etc/init/android.hardware.usb@1.1-service.wahoo.rc
 
 # Wifi
