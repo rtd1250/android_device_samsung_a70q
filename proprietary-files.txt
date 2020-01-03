@@ -1191,7 +1191,7 @@ vendor/lib64/hw/thermal.sm6150.so
 vendor/lib64/libthermalclient.so
 
 # Time
--vendor/app/TimeService/TimeService.apk|01a3ee878296b7981c4428d2b573fe668e13254b
+-vendor/app/TimeService/TimeService.apk;:timeservice_app_cert
 vendor/bin/time_daemon
 vendor/lib/libtime_genoff.so
 vendor/lib64/libtime_genoff.so
