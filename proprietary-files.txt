@@ -1237,7 +1237,7 @@ vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 vendor/lib64/vendor.qti.voiceprint@1.0.so
 
 # USB
-vendor/bin/hw/android.hardware.usb@1.1-service.wahoo|8af0d2d837c81d9685634880ee1588ce4e59866c
+vendor/bin/hw/android.hardware.usb@1.1-service.wahoo
 vendor/etc/init/android.hardware.usb@1.1-service.wahoo.rc
 
 # Wifi
