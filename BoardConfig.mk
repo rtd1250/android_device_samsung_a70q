@@ -25,6 +25,9 @@ TARGET_2ND_CPU_VARIANT := generic
 
 TARGET_USES_64_BIT_BINDER := true
 
+# Assertions
+TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
+
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
 
@@ -230,6 +233,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 BOARD_ROOT_EXTRA_FOLDERS := efs omr
 
 # Releasetools
+TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_a70q
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # RenderScript
