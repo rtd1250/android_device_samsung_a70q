@@ -57,6 +57,7 @@ class FingerprintInscreen : public IFingerprintInscreen {
     sp<ISecBiometricsFingerprint> mSecBiometricsFingerprintService;
     std::mutex mCallbackLock;
     sp<IFingerprintInscreenCallback> mCallback;
+    std::string mPreviousBrightness;
 
     static void requestResult(int retval, const hidl_vec<int8_t>& outBuf);
 };
