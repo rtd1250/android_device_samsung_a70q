@@ -2678,6 +2678,10 @@
         <ctl name="RX_RX1 HPH Digital Volume" value="81" />
     </path>
 
+    <path name="voice-headset">
+        <path name="call-headset" />
+    </path>
+
     <path name="voice-headphones">
         <path name="call-headset" />
     </path>
@@ -2703,7 +2707,7 @@
     </path>
 
     <path name="handset-mic">
-        <path name="rec-main-mic" />
+        <path name="call-handset-mic" />
     </path>
 
     <path name="voice-speaker-mic">
