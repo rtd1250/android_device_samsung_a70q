@@ -98,6 +98,7 @@ Return<void> FingerprintInscreen::onRelease() {
     set(TSP_CMD_PATH, "fod_enable,0");
     if (!mPreviousBrightness.empty()) {
         set(BRIGHTNESS_PATH, mPreviousBrightness);
+        mPreviousBrightness = "";
     }
     return Void();
 }
@@ -110,6 +111,7 @@ Return<void> FingerprintInscreen::onHideFODView() {
     set(TSP_CMD_PATH, "fod_enable,0");
     if (!mPreviousBrightness.empty()) {
         set(BRIGHTNESS_PATH, mPreviousBrightness);
+        mPreviousBrightness = "";
     }
     return Void();
 }
