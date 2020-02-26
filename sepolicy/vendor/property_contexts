@@ -50,6 +50,7 @@ ro.netflix.channel                     u:object_r:csc_prop:s0
 ro.qc.sdk.audio.                       u:object_r:audio_prop:s0
 ro.simbased.changetype                 u:object_r:csc_prop:s0
 ro.vendor.gpu.available_frequencies    u:object_r:freq_prop:s0
+ro.fastbootd.available                 u:object_r:exported_default_prop:s0
 service.camera.                        u:object_r:sec_camera_prop:s0
 tunnel.audio.                          u:object_r:audio_prop:s0
 vendor.bluetooth_fw_ver                u:object_r:vendor_bluetooth_prop:s0

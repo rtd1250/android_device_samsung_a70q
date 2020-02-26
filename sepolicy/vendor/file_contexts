@@ -4,6 +4,7 @@
 /dev/block/platform/soc/1d84000\.ufshc/by-name/config        u:object_r:frp_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/debug         u:object_r:debug_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/dsp           u:object_r:dsp_block_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/dtbo          u:object_r:boot_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/efs           u:object_r:efsblk_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/fsc           u:object_r:vendor_modem_efs_partition_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/fsg           u:object_r:vendor_modem_efs_partition_device:s0
@@ -17,6 +18,8 @@
 /dev/block/platform/soc/1d84000\.ufshc/by-name/ssd           u:object_r:ssdblk_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/steady        u:object_r:steady_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/userdata      u:object_r:userdata_block_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/vbmeta        u:object_r:boot_block_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/vendor        u:object_r:system_block_device:s0
 
 /dev/block/platform/.+/by-name/(cache|CACHE)?		u:object_r:cache_block_device:s0
 /cache/pdp_bkup(/.*)?		u:object_r:cache_pdp_file:s0
