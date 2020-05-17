@@ -19,4 +19,10 @@
 
     <!-- Whether device has a notch -->
     <bool name="config_haveNotch">true</bool>
+	
+	<string-array name="config_restartActionsList">
+        <item>restart</item>
+        <item>restart_recovery</item>
+        <item>restart_download</item>
+    </string-array>
 </resources>
