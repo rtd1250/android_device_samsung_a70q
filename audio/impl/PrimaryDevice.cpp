@@ -31,7 +31,11 @@ namespace implementation {
 
 PrimaryDevice::PrimaryDevice(audio_hw_device_t* device) : mDevice(new Device(device)) {}
 
-PrimaryDevice::~PrimaryDevice() {}
+PrimaryDevice::~PrimaryDevice() {
+    // Do not call mDevice->close here. If there are any unclosed streams,
+    // they only hold IDevice instance, not IPrimaryDevice, thus IPrimaryDevice
+    // "part" of a device can be destroyed before the streams.
+}
 
 // Methods from ::android::hardware::audio::CPP_VERSION::IDevice follow.
 Return<Result> PrimaryDevice::initCheck() {
@@ -160,6 +164,26 @@ Return<Result> PrimaryDevice::setConnectedState(const DeviceAddress& address, bo
     return mDevice->setConnectedState(address, connected);
 }
 #endif
+#if MAJOR_VERSION >= 6
+Return<Result> PrimaryDevice::close() {
+    return mDevice->close();
+}
+
+Return<Result> PrimaryDevice::addDeviceEffect(AudioPortHandle device, uint64_t effectId) {
+    return mDevice->addDeviceEffect(device, effectId);
+}
+
+Return<Result> PrimaryDevice::removeDeviceEffect(AudioPortHandle device, uint64_t effectId) {
+    return mDevice->removeDeviceEffect(device, effectId);
+}
+
+Return<void> PrimaryDevice::updateAudioPatch(int32_t previousPatch,
+                                             const hidl_vec<AudioPortConfig>& sources,
+                                             const hidl_vec<AudioPortConfig>& sinks,
+                                             updateAudioPatch_cb _hidl_cb) {
+    return mDevice->updateAudioPatch(previousPatch, sources, sinks, _hidl_cb);
+}
+#endif
 
 // Methods from ::android::hardware::audio::CPP_VERSION::IPrimaryDevice follow.
 Return<Result> PrimaryDevice::setVoiceVolume(float volume) {
@@ -179,6 +203,9 @@ Return<Result> PrimaryDevice::setMode(AudioMode mode) {
         case AudioMode::RINGTONE:
         case AudioMode::IN_CALL:
         case AudioMode::IN_COMMUNICATION:
+#if MAJOR_VERSION >= 6
+        case AudioMode::CALL_SCREEN:
+#endif
             break;  // Valid values
         default:
             return Result::INVALID_ARGUMENTS;
