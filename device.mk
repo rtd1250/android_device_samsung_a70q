@@ -337,7 +337,8 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2 \
     libprotobuf-cpp-full \
-    libtrafficcontrol-spoofer
+    libtrafficcontrol-spoofer \
+	libcutils_shim
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
