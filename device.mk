@@ -178,9 +178,6 @@ PRODUCT_PACKAGES += \
 #     qcom.fmradio \
 #     qcom.fmradio.xml
 
-# PRODUCT_BOOT_JARS += \
-#     qcom.fmradio
-
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
