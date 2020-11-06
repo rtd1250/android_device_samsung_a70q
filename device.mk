@@ -341,7 +341,7 @@ PRODUCT_COPY_FILES += \
 
 # Sensor
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl.a70q \
+    android.hardware.sensors@1.0-impl.samsung \
     android.hardware.sensors@1.0-service
 
 # Sensor Configuration
