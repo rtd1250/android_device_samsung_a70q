@@ -196,6 +196,16 @@ Return<Result> PrimaryDevice::setVoiceVolume(float volume) {
 }
 
 Return<Result> PrimaryDevice::setMode(AudioMode mode) {
+    // On regular QCOM devices, these parameters are set by QtiTelephonyService,
+    // which basically listens to vendor.qti.hardware.radio.am callbacks.
+    // The hardcoded vsid value here is decimal VOICEMMODE1_VSID which one can find
+    // in {QC_AUDIO_HAL}/hal/voice_extn/voice_extn.c. The current code doesn't
+    // handle VOICEMMODE2_VSID, but since we don't have any MSIM variants it's totally fine.
+    // Audio param call_state 2 corresponds to CALL_ACTIVE and 1 to CALL_INACTIVE respectively,
+    // both of which can be found in {QC_AUDIO_HAL}/hal/voice.h.
+    mDevice->halSetParameters(mode == AudioMode::IN_CALL ? "call_state=2;vsid=297816064"
+                                                         : "call_state=1;vsid=297816064");
+
     // INVALID, CURRENT, CNT, MAX are reserved for internal use.
     // TODO: remove the values from the HIDL interface
     switch (mode) {

@@ -1,5 +1,5 @@
 cc_defaults {
-    name: "android.hardware.audio-impl_gts4lv",
+    name: "android.hardware.audio-impl_a70q",
     relative_install_path: "hw",
     proprietary: true,
     vendor: true,
@@ -45,8 +45,8 @@ cc_defaults {
 }
 
 cc_library_shared {
-    name: "android.hardware.audio@2.0-impl.gts4lv",
-    defaults: ["android.hardware.audio-impl_gts4lv"],
+    name: "android.hardware.audio@2.0-impl.a70q",
+    defaults: ["android.hardware.audio-impl_a70q"],
     shared_libs: [
         "android.hardware.audio@2.0",
         "android.hardware.audio.common@2.0",
@@ -60,8 +60,8 @@ cc_library_shared {
 }
 
 cc_library_shared {
-    name: "android.hardware.audio@4.0-impl.gts4lv",
-    defaults: ["android.hardware.audio-impl_gts4lv"],
+    name: "android.hardware.audio@4.0-impl.a70q",
+    defaults: ["android.hardware.audio-impl_a70q"],
 
     shared_libs: [
         "android.hardware.audio@4.0",
@@ -76,8 +76,8 @@ cc_library_shared {
 }
 
 cc_library_shared {
-    name: "android.hardware.audio@5.0-impl.gts4lv",
-    defaults: ["android.hardware.audio-impl_gts4lv"],
+    name: "android.hardware.audio@5.0-impl.a70q",
+    defaults: ["android.hardware.audio-impl_a70q"],
     shared_libs: [
         "android.hardware.audio@5.0",
         "android.hardware.audio.common@5.0",
@@ -91,8 +91,8 @@ cc_library_shared {
 }
 
 cc_library_shared {
-    name: "android.hardware.audio@6.0-impl.gts4lv",
-    defaults: ["android.hardware.audio-impl_gts4lv"],
+    name: "android.hardware.audio@6.0-impl.a70q",
+    defaults: ["android.hardware.audio-impl_a70q"],
     shared_libs: [
         "android.hardware.audio@6.0",
         "android.hardware.audio.common@6.0",

@@ -131,6 +131,8 @@ struct Device : public IDevice, public ParametersUtil {
     void closeOutputStream(audio_stream_out_t* stream);
     audio_hw_device_t* device() const { return mDevice; }
 
+    int halSetParameters(const char* keysAndValues) override;
+
   private:
     bool mIsClosed;
     audio_hw_device_t* mDevice;
@@ -145,7 +147,6 @@ struct Device : public IDevice, public ParametersUtil {
 
     // Methods from ParametersUtil.
     char* halGetParameters(const char* keys) override;
-    int halSetParameters(const char* keysAndValues) override;
 
     uint32_t version() const { return mDevice->common.version; }
 };
