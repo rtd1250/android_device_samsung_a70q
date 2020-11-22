@@ -15,7 +15,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     tunnel.audio.encode=true \
     qcom.hw.aac.encoder=true \
     ro.config.vc_call_vol_steps=7 \
-    vendor.audio.feature.fm.enable=true
+    vendor.audio.feature.fm.enable=true \
+	vendor.audio.feature.multi_voice_session.enable=true
 
 # AudioFlinger client heap size
 PRODUCT_PROPERTY_OVERRIDES += \
