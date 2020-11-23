@@ -140,6 +140,9 @@ PRODUCT_PACKAGES += \
     camera.device@3.4-impl \
     camera.device@3.5-impl
 
+PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.5-legacy
+
 # Display/Graphics
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.3-impl \
