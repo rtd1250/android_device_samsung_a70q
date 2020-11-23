@@ -266,7 +266,8 @@ PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
     vendor.nxp.nxpese@1.0:64 \
-    vendor.nxp.nxpnfc@1.0:64
+    vendor.nxp.nxpnfc@1.0:64 \
+    vendor.nxp.nxpnfc@1.1:64
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
