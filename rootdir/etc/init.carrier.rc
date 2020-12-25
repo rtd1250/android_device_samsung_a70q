@@ -113,10 +113,10 @@ on post-fs-data
     chmod 0664 /dev/cpuset/olaf/cpus
 
 # Samsung Pay
-    mkdir /efs/pfw_data 0760 vendor_spay vendor_spay
+    mkdir /efs/pfw_data 0760 system system
 
 # MST/NFC Switch
-    chown vendor_spay system /dev/mst_ctrl
+    chown system system /dev/mst_ctrl
     chmod 0660 /dev/mst_ctrl
 
 on post-fs
