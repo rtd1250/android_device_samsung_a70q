@@ -8,9 +8,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_SHARED_LIBRARIES := \
     libutils \
-    libhidlbase  \
-    libhidltransport \
-    libhwbinder
+    libhidlbase
 
 LOCAL_C_INCLUDES := hardware/ril/include
 LOCAL_EXPORT_C_INCLUDE_DIRS := hardware/ril/include
