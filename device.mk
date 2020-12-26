@@ -315,7 +315,7 @@ PRODUCT_PACKAGES += \
     init.vendor.rilcommon.rc \
     ueventd.qcom.rc \
     wifi_qcom.rc \
-    wifi.rc
+    wifi_a70q.rc
 
 # RCS
 PRODUCT_PACKAGES += \
