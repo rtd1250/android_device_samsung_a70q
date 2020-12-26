@@ -1,4 +1,0 @@
-service vendor.radio-1-3 /vendor/bin/hw/android.hardware.radio@1.3-radio-service.a70q
-    class hal
-    user system
-    group system
