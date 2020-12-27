@@ -1,1 +1,1 @@
-allow thermal-engine sysfs_batteryinfo:dir search;
+allow vendor_thermal-engine sysfs_batteryinfo:dir search;

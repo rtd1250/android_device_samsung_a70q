@@ -5,14 +5,14 @@ init_daemon_domain(wvkprov)
 
 hal_client_domain(wvkprov, hal_wvkprov)
 
-allow wvkprov hal_display_config_hwservice:hwservice_manager find;
+allow wvkprov vendor_hal_display_config_hwservice:hwservice_manager find;
 
 allow wvkprov ion_device:chr_file rw_file_perms;
 allow wvkprov tee_device:chr_file rw_file_perms;
 
-allow wvkprov sysfs_scsi_host:dir r_dir_perms;
-allow wvkprov sysfs_scsi_host:file r_file_perms;
-allow wvkprov sysfs_scsi_host:lnk_file r_file_perms;
+allow wvkprov vendor_sysfs_scsi_host:dir r_dir_perms;
+allow wvkprov vendor_sysfs_scsi_host:file r_file_perms;
+allow wvkprov vendor_sysfs_scsi_host:lnk_file r_file_perms;
 
 allow wvkprov cpk_efs_file:dir r_dir_perms;
 allow wvkprov cpk_efs_file:file r_file_perms;

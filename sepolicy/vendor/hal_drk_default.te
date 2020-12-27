@@ -22,5 +22,5 @@ allow hal_drk_default sec_efs_file:file rw_file_perms;
 allow hal_drk_default vendor_log_file:dir create_dir_perms;
 allow hal_drk_default vendor_log_file:file create_file_perms;
 
-get_prop(hal_drk_default, spcomlib_prop)
+get_prop(hal_drk_default, vendor_spcomlib_prop)
 get_prop(hal_drk_default, vendor_security_patch_level_prop)

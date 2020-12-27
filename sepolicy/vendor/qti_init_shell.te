@@ -1,14 +1,14 @@
-allow qti_init_shell configfs:dir { add_name write };
-allow qti_init_shell configfs:file create;
+allow vendor_qti_init_shell configfs:dir { add_name write };
+allow vendor_qti_init_shell configfs:file create;
 
-allow qti_init_shell mnt_vendor_file:dir create_dir_perms;
+allow vendor_qti_init_shell mnt_vendor_file:dir create_dir_perms;
 
-allow qti_init_shell proc_default_smp_affinity:file { open write };
-allow qti_init_shell proc_sched:file { open write };
+allow vendor_qti_init_shell proc_default_smp_affinity:file { open write };
+allow vendor_qti_init_shell proc_sched:file { open write };
 
-allow qti_init_shell sysfs_devfreq:file setattr;
+allow vendor_qti_init_shell vendor_sysfs_devfreq:file setattr;
 
-allow qti_init_shell sysfs_msm_power:file setattr;
+allow vendor_qti_init_shell vendor_sysfs_msm_power:file setattr;
 
-set_prop(qti_init_shell, ctl_default_prop)
-set_prop(qti_init_shell, vendor_chre_prop)
+set_prop(vendor_qti_init_shell, ctl_default_prop)
+set_prop(vendor_qti_init_shell, vendor_chre_prop)

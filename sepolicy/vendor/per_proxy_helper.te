@@ -5,4 +5,4 @@ init_daemon_domain(per_proxy_helper)
 
 allow per_proxy_helper firmware_file:file r_file_perms;
 
-allow per_proxy_helper ssr_device:chr_file r_file_perms;
+allow per_proxy_helper vendor_ssr_device:chr_file r_file_perms;

@@ -14,7 +14,7 @@ allow tee graphics_device:blk_file rw_file_perms;
 allow tee kmsg_device:blk_file rw_file_perms;
 allow tee properties_device:blk_file rw_file_perms;
 
-allow tee persist_file:lnk_file r_file_perms;
+allow tee vendor_persist_file:lnk_file r_file_perms;
 
 allow tee proc:file r_file_perms;
 

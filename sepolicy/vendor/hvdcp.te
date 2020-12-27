@@ -1,2 +1,2 @@
-allow hvdcp sysfs_batteryinfo:dir search;
-allow hvdcp sysfs_batteryinfo:file { getattr open read write };
+allow vendor_hvdcp sysfs_batteryinfo:dir search;
+allow vendor_hvdcp sysfs_batteryinfo:file { getattr open read write };
