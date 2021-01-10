@@ -16,7 +16,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     qcom.hw.aac.encoder=true \
     ro.config.vc_call_vol_steps=7 \
     vendor.audio.feature.fm.enable=true \
-	vendor.audio.feature.multi_voice_session.enable=true
+    vendor.audio.feature.multi_voice_session.enable=true \
+    vendor.audio.feature.usb_offload.enable=true
 
 # AudioFlinger client heap size
 PRODUCT_PROPERTY_OVERRIDES += \
