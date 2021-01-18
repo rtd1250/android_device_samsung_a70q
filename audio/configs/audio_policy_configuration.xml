@@ -16,7 +16,7 @@
             <defaultOutputDevice>Speaker</defaultOutputDevice>
 
             <mixPorts>
-                <mixPort name="primary-out" role="source" flags="AUDIO_OUTPUT_FLAG_PRIMARY">
+                <mixPort name="primary-out" role="source" flags="AUDIO_OUTPUT_FLAG_PRIMARY|AUDIO_OUTPUT_FLAG_DEEP_BUFFER">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
