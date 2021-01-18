@@ -23,6 +23,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.af.client_heap_size_kbyte=7168
 
+# Bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bluetooth.library_name=libbluetooth_qti.so
+
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.aux.packagelist="org.codeaurora.snapcam,com.android.camera,com.android.lightboxtest" \
