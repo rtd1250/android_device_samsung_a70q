@@ -85,7 +85,7 @@ firmware_directories /vendor/firmware_mnt/image/ /vendor/firmware-modem/image/
 #permissions for pta
 /dev/pta                  0660   system     system
 
-/dev/radio0               0640   system     system
+/dev/radio0               0644   system     system
 /dev/rfcomm0              0660   bluetooth  bluetooth
 /dev/ttyUSB0              0660   bluetooth  bluetooth
 /dev/ttyHS8               0660   root       radio
