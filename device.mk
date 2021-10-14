@@ -440,8 +440,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     hostapd \
+    libwifi-hal \
     libwifi-hal-qcom \
     libwpa_client \
+    WifiOverlay \
+    TetheringConfigOverlay \
+    wpa_cli \
     wpa_supplicant \
     wpa_supplicant.conf \
     vendor.qti.hardware.wifi.hostapd@1.0.vendor \
