@@ -104,11 +104,7 @@ Return<Status> Vibrator::setAmplitude(uint8_t amplitude) {
     }
     LOG(DEBUG) << "setting intensity: " << intensity;
 
-    if (mhasTimedOutIntensity) {
-        return writeNode(VIBRATOR_INTENSITY_PATH, intensity);
-    }
-
-    return Status::OK;
+    return writeNode(VIBRATOR_TIMEOUT_PATH, intensity);
 }
 
 Return<void> Vibrator::perform(V1_0::Effect effect, EffectStrength strength, perform_cb _hidl_cb) {
@@ -195,6 +191,13 @@ Status Vibrator::activate(uint32_t timeoutMs) {
     if (!mIsTimedOutVibriator) {
         return Status::UNSUPPORTED_OPERATION;
     }
+
+    /* We mostly get values that are 20ms and lower, but
+        that's not enough to be actually noticeable. Set it to
+        40ms if timeoutMs is less than that. */
+     if (timeoutMs < INTENSITY_MIN) {
+         timeoutMs = INTENSITY_MIN;
+     }
 
     return writeNode(VIBRATOR_TIMEOUT_PATH, timeoutMs);
 }
