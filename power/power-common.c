@@ -118,9 +118,11 @@ void set_interactive(int on) {
     static int display_hint_sent;
 
     if (!on) {
+    sysfs_write("/sys/class/sec/tsp/input/enabled", "0");
         /* Send Display OFF hint to perf HAL */
         perf_hint_enable(VENDOR_HINT_DISPLAY_OFF, 0);
     } else {
+    sysfs_write("/sys/class/sec/tsp/input/enabled", "1");
         /* Send Display ON hint to perf HAL */
         perf_hint_enable(VENDOR_HINT_DISPLAY_ON, 0);
     }
