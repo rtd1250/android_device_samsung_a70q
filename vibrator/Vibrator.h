@@ -1,94 +1,75 @@
 /*
- * Copyright (C) 2020 The LineageOS Project
+ * Copyright (C) 2022 The LineageOS Project
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * SPDX-License-Identifier: Apache-2.0
  */
 
-#ifndef ANDROID_HARDWARE_VIBRATOR_V1_3_VIBRATOR_H
-#define ANDROID_HARDWARE_VIBRATOR_V1_3_VIBRATOR_H
+#pragma once
 
-#include <android/hardware/vibrator/1.3/IVibrator.h>
-#include <hidl/Status.h>
-
-#include <fstream>
+#include <aidl/android/hardware/vibrator/BnVibrator.h>
 
 #define INTENSITY_MIN 40
 #define INTENSITY_MAX 10000
 #define INTENSITY_DEFAULT INTENSITY_MAX
 
-#define CLICK_TIMING_MS 20
-
 #define VIBRATOR_TIMEOUT_PATH "/sys/class/timed_output/vibrator/enable"
 #define VIBRATOR_INTENSITY_PATH "/sys/class/timed_output/vibrator/intensity"
 
+using ::aidl::android::hardware::vibrator::IVibratorCallback;
+using ::aidl::android::hardware::vibrator::Braking;
+using ::aidl::android::hardware::vibrator::Effect;
+using ::aidl::android::hardware::vibrator::EffectStrength;
+using ::aidl::android::hardware::vibrator::CompositeEffect;
+using ::aidl::android::hardware::vibrator::CompositePrimitive;
+using ::aidl::android::hardware::vibrator::PrimitivePwle;
+
+namespace aidl {
 namespace android {
 namespace hardware {
 namespace vibrator {
-namespace V1_3 {
-namespace implementation {
 
-using android::hardware::vibrator::V1_0::EffectStrength;
-using android::hardware::vibrator::V1_0::Status;
-
-class Vibrator : public IVibrator {
-  public:
+class Vibrator : public BnVibrator {
+public:
     Vibrator();
+    ndk::ScopedAStatus getCapabilities(int32_t* _aidl_return) override;
+    ndk::ScopedAStatus off() override;
+    ndk::ScopedAStatus on(int32_t timeoutMs, const std::shared_ptr<IVibratorCallback>& callback) override;
+    ndk::ScopedAStatus perform(Effect effect, EffectStrength strength, const std::shared_ptr<IVibratorCallback>& callback, int32_t* _aidl_return) override;
+    ndk::ScopedAStatus getSupportedEffects(std::vector<Effect>* _aidl_return) override;
+    ndk::ScopedAStatus setAmplitude(float amplitude) override;
+    ndk::ScopedAStatus setExternalControl(bool enabled) override;
+    ndk::ScopedAStatus getCompositionDelayMax(int32_t* _aidl_return) override;
+    ndk::ScopedAStatus getCompositionSizeMax(int32_t* _aidl_return) override;
+    ndk::ScopedAStatus getSupportedPrimitives(std::vector<CompositePrimitive>* _aidl_return) override;
+    ndk::ScopedAStatus getPrimitiveDuration(CompositePrimitive primitive, int32_t* _aidl_return) override;
+    ndk::ScopedAStatus compose(const std::vector<CompositeEffect>& composite, const std::shared_ptr<IVibratorCallback>& callback) override;
+    ndk::ScopedAStatus getSupportedAlwaysOnEffects(std::vector<Effect>* _aidl_return) override;
+    ndk::ScopedAStatus alwaysOnEnable(int32_t id, Effect effect, EffectStrength strength) override;
+    ndk::ScopedAStatus alwaysOnDisable(int32_t id) override;
+    ndk::ScopedAStatus getResonantFrequency(float* _aidl_return) override;
+    ndk::ScopedAStatus getQFactor(float* _aidl_return) override;
+    ndk::ScopedAStatus getFrequencyResolution(float* _aidl_return) override;
+    ndk::ScopedAStatus getFrequencyMinimum(float* _aidl_return) override;
+    ndk::ScopedAStatus getBandwidthAmplitudeMap(std::vector<float>* _aidl_return) override;
+    ndk::ScopedAStatus getPwlePrimitiveDurationMax(int32_t* _aidl_return) override;
+    ndk::ScopedAStatus getPwleCompositionSizeMax(int32_t* _aidl_return) override;
+    ndk::ScopedAStatus getSupportedBraking(std::vector<Braking>* _aidl_return) override;
+    ndk::ScopedAStatus composePwle(const std::vector<PrimitivePwle>& composite, const std::shared_ptr<IVibratorCallback>& callback) override;
 
-    // Methods from ::android::hardware::vibrator::V1_0::IVibrator follow.
-    Return<Status> on(uint32_t timeoutMs) override;
-    Return<Status> off() override;
-    Return<bool> supportsAmplitudeControl() override;
-    Return<Status> setAmplitude(uint8_t amplitude) override;
-    Return<void> perform(V1_0::Effect effect, EffectStrength strength,
-                         perform_cb _hidl_cb) override;
-
-    // Methods from ::android::hardware::vibrator::V1_1::IVibrator follow.
-    Return<void> perform_1_1(V1_1::Effect_1_1 effect, EffectStrength strength,
-                             perform_cb _hidl_cb) override;
-
-    // Methods from ::android::hardware::vibrator::V1_2::IVibrator follow.
-    Return<void> perform_1_2(V1_2::Effect effect, EffectStrength strength,
-                             perform_cb _hidl_cb) override;
-
-    // Methods from ::android::hardware::vibrator::V1_3::IVibrator follow.
-    Return<bool> supportsExternalControl() override;
-    Return<Status> setExternalControl(bool enabled) override;
-    Return<void> perform_1_3(Effect effect, EffectStrength strength, perform_cb _hidl_cb) override;
-
-  private:
-    Return<void> perform(Effect effect, EffectStrength strength, perform_cb _hidl_cb);
-    template <typename T>
-    Return<void> perform(T effect, EffectStrength strength, perform_cb _hidl_cb);
-    Status enable(bool enabled);
-    Status activate(uint32_t ms);
-
-    static uint32_t effectToMs(Effect effect, Status* status);
-    static uint8_t strengthToAmplitude(EffectStrength strength, Status* status);
+private:
+    ndk::ScopedAStatus activate(uint32_t ms);
+    static uint32_t effectToMs(Effect effect, ndk::ScopedAStatus* status);
+    static uint8_t strengthToAmplitude(EffectStrength strength, ndk::ScopedAStatus* status);
 
     bool mEnabled{false};
-    uint8_t mAmplitude{UINT8_MAX};
     bool mExternalControl{false};
     std::mutex mMutex;
-    timer_t mTimer{nullptr};
 
-    bool mIsTimedOutVibriator;
-    bool mhasTimedOutIntensity;
+    bool mIsTimedOutVibrator;
+    bool mHasTimedOutIntensity;
 };
 
-}  // namespace implementation
-}  // namespace V1_3
-}  // namespace vibrator
-}  // namespace hardware
-}  // namespace android
-
-#endif  // ANDROID_HARDWARE_VIBRATOR_V1_3_VIBRATOR_H
+} // namespace vibrator
+} // namespace hardware
+} // namespace android
+} // namespace aidl

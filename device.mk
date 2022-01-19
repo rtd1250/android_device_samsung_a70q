@@ -425,7 +425,7 @@ PRODUCT_PACKAGES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.3-service.a70q
+    android.hardware.vibrator-service.a70q
 
 # VNDK
 PRODUCT_COPY_FILES += \
