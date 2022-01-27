@@ -29,7 +29,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bluetooth.library_name=libbluetooth_qti.so
+    ro.bluetooth.library_name=libbluetooth.so
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
