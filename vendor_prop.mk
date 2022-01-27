@@ -70,7 +70,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.enable_default_color_mode=1 \
     vendor.display.dataspace_saturation_matrix=1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0 \
     ro.sf.lcd_density=420 \
-    ro.opengles.version=196610
+    ro.opengles.version=196610 \
+    ro.hardware.vulkan=adreno \
+    ro.hardware.egl=adreno \
+    ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.sm6150.api30
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
