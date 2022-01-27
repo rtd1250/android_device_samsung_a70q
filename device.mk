@@ -166,7 +166,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service \
-    android.hardware.drm@1.3-service.clearkey
+    android.hardware.drm@1.3-service.clearkey \
+    android.hardware.drm@1.3-service.widevine
 
 # Fingerprint feature
 PRODUCT_PACKAGES += \
@@ -189,6 +190,14 @@ PRODUCT_PACKAGES += \
     qcom.fmradio
 
 # GPS
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@2.1.vendor \
+    android.hardware.gnss@2.1-impl-qti:64 \
+    android.hardware.gnss@2.1-service-qti \
+    libbatching \
+    libgeofencing \
+    libgnss
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/apdr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/apdr.conf \
     $(LOCAL_PATH)/configs/gps/flp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/flp.conf \
@@ -196,11 +205,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
     $(LOCAL_PATH)/configs/gps/lowi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/lowi.conf \
     $(LOCAL_PATH)/configs/gps/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf
-
-# Health
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-impl \
-    android.hardware.health@2.0-service
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -338,7 +342,7 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.3-radio-service.samsung \
-    vendor.samsung.hardware.radio@1.2.vendor \
+    vendor.samsung.hardware.radio@2.1.vendor \
     android.hardware.radio.config@1.0 \
     libjson \
     librmnetctl \
@@ -352,10 +356,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
     $(LOCAL_PATH)/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
 
-# Sensor
+# Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl.samsung \
-    android.hardware.sensors@1.0-service
+    android.hardware.sensors@2.0-service.multihal
 
 # Sensor Configuration
 PRODUCT_COPY_FILES += \
