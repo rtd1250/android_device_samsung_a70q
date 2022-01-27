@@ -4,7 +4,6 @@ type secure_storage_vendor_data_file, data_file_type, file_type;
 type vendor_audiopcm_data_file, data_file_type, file_type;
 type vendor_convergence_data_file, data_file_type, file_type;
 type vendor_gps_file, data_file_type, file_type;
-type vendor_log_file, data_file_type, file_type;
 
 # efs
 type app_efs_file, file_type, mlstrustedobject;
