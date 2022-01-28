@@ -1325,7 +1325,7 @@ service vendor.wifilearner /system/vendor/bin/wifilearner
     group wifi
     oneshot
 
-service vendor.audio-hal-2-0 /vendor/bin/hw/android.hardware.audio@2.0-service
+service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     override
     class hal
     user audioserver
