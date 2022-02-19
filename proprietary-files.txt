@@ -1250,7 +1250,6 @@ vendor/etc/sensors/config/talos_lsm6dsm_0.json
 vendor/etc/sensors/config/talos_power_0.json
 vendor/etc/sensors/config/talos_stk3x3x_0.json
 vendor/etc/sensors/config/talos_tcs3407_0.json
-vendor/etc/sensors/hals.conf
 vendor/etc/sensors/sns_reg_config
 vendor/lib/libsensorlistener.so
 vendor/lib/libsensorndkbridge.so
