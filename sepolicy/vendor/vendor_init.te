@@ -11,7 +11,7 @@ allow vendor_init tmpfs:dir { add_name write };
 set_prop(vendor_init, audio_prop)
 set_prop(vendor_init, config_prop)
 set_prop(vendor_init, csc_prop)
-set_prop(vendor_init, ffs_prop)
+set_prop(vendor_init, ffs_config_prop)
 set_prop(vendor_init, vendor_freq_prop)
 set_prop(vendor_init, persist_debug_prop)
 set_prop(vendor_init, ina_status_prop)
