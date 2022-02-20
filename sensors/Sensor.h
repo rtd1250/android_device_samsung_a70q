@@ -115,6 +115,17 @@ class SysfsPollingOneShotSensor : public OneShotSensor {
     int mPollFd;
 };
 
+const std::string kTsUdfpsPressedPath = "/sys/class/sec/tsp/input/fod_pressed";
+
+class UdfpsSensor : public SysfsPollingOneShotSensor {
+  public:
+    UdfpsSensor(int32_t sensorHandle, ISensorsEventCallback* callback)
+        : SysfsPollingOneShotSensor(
+              sensorHandle, callback, kTsUdfpsPressedPath,
+              "UDFPS Sensor", "org.lineageos.sensor.udfps",
+              static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) + 2)) {}
+};
+
 }  // namespace implementation
 }  // namespace subhal
 }  // namespace V2_1
