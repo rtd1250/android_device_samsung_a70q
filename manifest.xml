@@ -256,6 +256,16 @@
         <fqname>@1.1::IRadioConfig/default</fqname>
     </hal>
     <hal format="hidl">
+        <name>android.hardware.radio.deprecated</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IOemHook</name>
+            <instance>slot1</instance>
+            <instance>slot2</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>android.hardware.renderscript</name>
         <transport arch="32+64">passthrough</transport>
         <version>1.0</version>
@@ -299,6 +309,21 @@
             <instance>default</instance>
         </interface>
         <fqname>@1.0::IOffloadControl/default</fqname>
+    </hal>
+    <hal override="true" format="hidl">
+        <name>android.hardware.thermal</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::IThermal/default</fqname>
+        <fqname>@2.0::IThermal/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.samsung.hardware.thermal</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ISehThermal</name>
+            <instance>default</instance>
+        </interface>
     </hal>
     <hal format="hidl">
         <name>android.hardware.usb</name>
