@@ -1,7 +1,7 @@
 # Bluetooth
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.bluetooth.disableabsvol=true \
-    persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac \
+    persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac \
     persist.vendor.btstack.enable.splita2dp=true \
     persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac \
     ro.bluetooth.emb_wp_mode=true \
