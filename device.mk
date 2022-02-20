@@ -131,7 +131,14 @@ PRODUCT_PACKAGES += \
     Snap
 
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.5-legacy
+    android.frameworks.cameraservice.common@2.0.vendor \
+    android.frameworks.cameraservice.device@2.0.vendor \
+    android.frameworks.cameraservice.service@2.1.vendor \
+    android.frameworks.cameraservice.service@2.0.vendor \
+    android.hardware.camera.provider@2.6-service \
+    android.hardware.camera.provider@2.6.vendor \
+    android.hardware.camera.device@3.6.vendor \
+    vendor.qti.hardware.camera.device@1.0.vendor
 
 # Display/Graphics
 PRODUCT_PACKAGES += \
@@ -182,7 +189,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint feature
 PRODUCT_PACKAGES += \
-    vendor.samsung.hardware.biometrics.fingerprint@2.1-service.a70q \
+vendor.samsung.hardware.biometrics.fingerprint@2.1-service.a70q \
     vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.a70q
 
 PRODUCT_COPY_FILES += \
@@ -427,7 +434,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
-    
+
 # VNDK-SP
 PRODUCT_PACKAGES += \
     vndk_package
