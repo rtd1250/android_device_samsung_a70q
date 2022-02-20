@@ -1,6 +1,0 @@
-allow hal_lineage_fod_default sysfs_lcd_writable:dir search;
-allow hal_lineage_fod_default sysfs_lcd_writable:file { getattr open write };
-allow hal_lineage_fod_default sysfs_tsp:dir search;
-allow hal_lineage_fod_default sysfs_tsp:file { getattr open write };
-
-binder_call(hal_lineage_fod_default, hal_fingerprint_default)

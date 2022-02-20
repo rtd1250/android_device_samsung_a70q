@@ -19,7 +19,7 @@
         </interface>
         <fqname>@5.0::IEffectsFactory/default</fqname>
     </hal>
-    <hal format="hidl">
+    <!--<hal format="hidl">
         <name>android.hardware.biometrics.fingerprint</name>
         <transport>hwbinder</transport>
         <version>2.1</version>
@@ -28,7 +28,7 @@
             <instance>default</instance>
         </interface>
         <fqname>@2.1::IBiometricsFingerprint/default</fqname>
-    </hal>
+    </hal>-->
     <hal format="hidl">
         <name>android.hardware.bluetooth</name>
         <transport>hwbinder</transport>
@@ -411,7 +411,7 @@
         <name>vendor.qti.data.factory</name>
         <transport>hwbinder</transport>
     </hal>
-    <hal format="hidl">
+    <!--<hal format="hidl">
         <name>vendor.lineage.biometrics.fingerprint.inscreen</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -419,7 +419,7 @@
             <name>IFingerprintInscreen</name>
             <instance>default</instance>
         </interface>
-    </hal>
+    </hal>-->
     <hal format="hidl">
         <name>vendor.lineage.livedisplay</name>
         <transport>hwbinder</transport>
@@ -698,7 +698,7 @@
         </interface>
         <fqname>@3.0::ISehSecureStorage/default</fqname>
     </hal>
-    <hal format="hidl">
+    <!--<hal format="hidl">
         <name>vendor.samsung.hardware.biometrics.fingerprint</name>
         <transport>hwbinder</transport>
         <version>2.1</version>
@@ -707,7 +707,7 @@
             <instance>default</instance>
         </interface>
         <fqname>@2.1::ISecBiometricsFingerprint/default</fqname>
-    </hal>
+    </hal>-->
     <hal format="hidl">
         <name>vendor.samsung.hardware.bluetooth</name>
         <transport>hwbinder</transport>

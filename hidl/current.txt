@@ -1,1 +1,0 @@
-1f5976a447ca1567f904b7b86e9155c0ae47bce424182f0347a992f54ce7df59 vendor.samsung.hardware.biometrics.fingerprint@2.1::ISecBiometricsFingerprint
