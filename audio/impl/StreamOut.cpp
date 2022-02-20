@@ -26,8 +26,11 @@
 
 #include <memory>
 
+#include <HidlUtils.h>
 #include <android/log.h>
+#include <audio_utils/Metadata.h>
 #include <hardware/audio.h>
+#include <util/CoreUtils.h>
 #include <utils/Trace.h>
 
 namespace android {
@@ -35,6 +38,8 @@ namespace hardware {
 namespace audio {
 namespace CPP_VERSION {
 namespace implementation {
+
+using ::android::hardware::audio::common::CPP_VERSION::implementation::HidlUtils;
 
 namespace {
 
@@ -142,7 +147,7 @@ bool WriteThread::threadLoop() {
 StreamOut::StreamOut(const sp<Device>& device, audio_stream_out_t* stream)
     : mDevice(device),
       mStream(stream),
-      mStreamCommon(new Stream(&stream->common)),
+      mStreamCommon(new Stream(false /*isInput*/, &stream->common)),
       mStreamMmap(new StreamMmap<audio_stream_out_t>(stream)),
       mEfGroup(nullptr),
       mStopWriteThread(false) {}
@@ -159,7 +164,7 @@ StreamOut::~StreamOut() {
         status_t status = EventFlag::deleteEventFlag(&mEfGroup);
         ALOGE_IF(status, "write MQ event flag deletion error: %s", strerror(-status));
     }
-    mCallback.clear();
+    mCallback = nullptr;
 #if MAJOR_VERSION <= 5
     mDevice->closeOutputStream(mStream);
     // Closing the output stream in the HAL waits for the callback to finish,
@@ -182,6 +187,7 @@ Return<uint64_t> StreamOut::getBufferSize() {
     return mStreamCommon->getBufferSize();
 }
 
+#if MAJOR_VERSION <= 6
 Return<uint32_t> StreamOut::getSampleRate() {
     return mStreamCommon->getSampleRate();
 }
@@ -227,6 +233,18 @@ Return<void> StreamOut::getSupportedFormats(getSupportedFormats_cb _hidl_cb) {
 Return<Result> StreamOut::setFormat(AudioFormat format) {
     return mStreamCommon->setFormat(format);
 }
+
+#else
+
+Return<void> StreamOut::getSupportedProfiles(getSupportedProfiles_cb _hidl_cb) {
+    return mStreamCommon->getSupportedProfiles(_hidl_cb);
+}
+
+Return<Result> StreamOut::setAudioProperties(const AudioConfigBaseOptional& config) {
+    return mStreamCommon->setAudioProperties(config);
+}
+
+#endif  // MAJOR_VERSION <= 6
 
 Return<void> StreamOut::getAudioProperties(getAudioProperties_cb _hidl_cb) {
     return mStreamCommon->getAudioProperties(_hidl_cb);
@@ -327,7 +345,11 @@ Return<Result> StreamOut::setVolume(float left, float right) {
 Return<void> StreamOut::prepareForWriting(uint32_t frameSize, uint32_t framesCount,
                                           prepareForWriting_cb _hidl_cb) {
     status_t status;
+#if MAJOR_VERSION <= 6
     ThreadInfo threadInfo = {0, 0};
+#else
+    int32_t threadInfo = 0;
+#endif
 
     // Wrap the _hidl_cb to return an error
     auto sendError = [&threadInfo, &_hidl_cb](Result result) {
@@ -377,8 +399,8 @@ Return<void> StreamOut::prepareForWriting(uint32_t frameSize, uint32_t framesCou
 
     // Create and launch the thread.
     auto tempWriteThread =
-        std::make_unique<WriteThread>(&mStopWriteThread, mStream, tempCommandMQ.get(),
-                                      tempDataMQ.get(), tempStatusMQ.get(), tempElfGroup.get());
+            sp<WriteThread>::make(&mStopWriteThread, mStream, tempCommandMQ.get(), tempDataMQ.get(),
+                                  tempStatusMQ.get(), tempElfGroup.get());
     if (!tempWriteThread->init()) {
         ALOGW("failed to start writer thread: %s", strerror(-status));
         sendError(Result::INVALID_ARGUMENTS);
@@ -394,10 +416,14 @@ Return<void> StreamOut::prepareForWriting(uint32_t frameSize, uint32_t framesCou
     mCommandMQ = std::move(tempCommandMQ);
     mDataMQ = std::move(tempDataMQ);
     mStatusMQ = std::move(tempStatusMQ);
-    mWriteThread = tempWriteThread.release();
+    mWriteThread = tempWriteThread;
     mEfGroup = tempElfGroup.release();
+#if MAJOR_VERSION <= 6
     threadInfo.pid = getpid();
     threadInfo.tid = mWriteThread->getTid();
+#else
+    threadInfo = mWriteThread->getTid();
+#endif
     _hidl_cb(Result::OK, *mCommandMQ->getDesc(), *mDataMQ->getDesc(), *mStatusMQ->getDesc(),
              threadInfo);
     return Void();
@@ -437,7 +463,7 @@ Return<Result> StreamOut::setCallback(const sp<IStreamOutCallback>& callback) {
 
 Return<Result> StreamOut::clearCallback() {
     if (mStream->set_callback == NULL) return Result::NOT_SUPPORTED;
-    mCallback.clear();
+    mCallback = nullptr;
     return Result::OK;
 }
 
@@ -452,7 +478,7 @@ int StreamOut::asyncCallback(stream_callback_event_t event, void*, void* cookie)
     // It's correct to hold an sp<> to callback because the reference
     // in the StreamOut instance can be cleared in the meantime. There is
     // no difference on which thread to run IStreamOutCallback's destructor.
-    sp<IStreamOutCallback> callback = self->mCallback;
+    sp<IStreamOutCallback> callback = self->mCallback.load();
     if (callback.get() == nullptr) return 0;
     ALOGV("asyncCallback() event %d", event);
     Return<void> result;
@@ -496,11 +522,11 @@ Return<bool> StreamOut::supportsDrain() {
 }
 
 Return<Result> StreamOut::drain(AudioDrain type) {
+    audio_drain_type_t halDrainType =
+            type == AudioDrain::EARLY_NOTIFY ? AUDIO_DRAIN_EARLY_NOTIFY : AUDIO_DRAIN_ALL;
     return mStream->drain != NULL
-                   ? Stream::analyzeStatus(
-                             "drain",
-                             mStream->drain(mStream, static_cast<audio_drain_type_t>(type)),
-                             {ENOSYS} /*ignore*/)
+                   ? Stream::analyzeStatus("drain", mStream->drain(mStream, halDrainType),
+                                           {ENOSYS} /*ignore*/)
                    : Result::NOT_SUPPORTED;
 }
 
@@ -561,26 +587,75 @@ Return<void> StreamOut::debug(const hidl_handle& fd, const hidl_vec<hidl_string>
 }
 
 #if MAJOR_VERSION >= 4
-Return<void> StreamOut::updateSourceMetadata(const SourceMetadata& sourceMetadata) {
-    if (mStream->update_source_metadata == nullptr) {
-        return Void();  // not supported by the HAL
+Result StreamOut::doUpdateSourceMetadata(const SourceMetadata& sourceMetadata) {
+    std::vector<playback_track_metadata_t> halTracks;
+#if MAJOR_VERSION <= 6
+    (void)CoreUtils::sourceMetadataToHal(sourceMetadata, &halTracks);
+#else
+    // Validate whether a conversion to V7 is possible. This is needed
+    // to have a consistent behavior of the HAL regardless of the API
+    // version of the legacy HAL (and also to be consistent with openOutputStream).
+    std::vector<playback_track_metadata_v7> halTracksV7;
+    if (status_t status = CoreUtils::sourceMetadataToHalV7(
+                sourceMetadata, false /*ignoreNonVendorTags*/, &halTracksV7);
+        status == NO_ERROR) {
+        halTracks.reserve(halTracksV7.size());
+        for (auto metadata_v7 : halTracksV7) {
+            halTracks.push_back(std::move(metadata_v7.base));
+        }
+    } else {
+        return Stream::analyzeStatus("sourceMetadataToHal", status);
     }
-    std::vector<playback_track_metadata> halTracks;
-    halTracks.reserve(sourceMetadata.tracks.size());
-    for (auto& metadata : sourceMetadata.tracks) {
-        halTracks.push_back({
-            .usage = static_cast<audio_usage_t>(metadata.usage),
-            .content_type = static_cast<audio_content_type_t>(metadata.contentType),
-            .gain = metadata.gain,
-        });
-    }
+#endif  // MAJOR_VERSION <= 6
     const source_metadata_t halMetadata = {
         .track_count = halTracks.size(),
         .tracks = halTracks.data(),
     };
     mStream->update_source_metadata(mStream, &halMetadata);
+    return Result::OK;
+}
+
+#if MAJOR_VERSION >= 7
+Result StreamOut::doUpdateSourceMetadataV7(const SourceMetadata& sourceMetadata) {
+    std::vector<playback_track_metadata_v7> halTracks;
+    if (status_t status = CoreUtils::sourceMetadataToHalV7(
+                sourceMetadata, false /*ignoreNonVendorTags*/, &halTracks);
+        status != NO_ERROR) {
+        return Stream::analyzeStatus("sourceMetadataToHal", status);
+    }
+    const source_metadata_v7_t halMetadata = {
+            .track_count = halTracks.size(),
+            .tracks = halTracks.data(),
+    };
+    mStream->update_source_metadata_v7(mStream, &halMetadata);
+    return Result::OK;
+}
+#endif  //  MAJOR_VERSION >= 7
+
+#if MAJOR_VERSION <= 6
+Return<void> StreamOut::updateSourceMetadata(const SourceMetadata& sourceMetadata) {
+    if (mStream->update_source_metadata == nullptr) {
+        return Void();  // not supported by the HAL
+    }
+    (void)doUpdateSourceMetadata(sourceMetadata);
     return Void();
 }
+#elif MAJOR_VERSION >= 7
+Return<Result> StreamOut::updateSourceMetadata(const SourceMetadata& sourceMetadata) {
+    if (mDevice->version() < AUDIO_DEVICE_API_VERSION_3_2) {
+        if (mStream->update_source_metadata == nullptr) {
+            return Result::NOT_SUPPORTED;
+        }
+        return doUpdateSourceMetadata(sourceMetadata);
+    } else {
+        if (mStream->update_source_metadata_v7 == nullptr) {
+            return Result::NOT_SUPPORTED;
+        }
+        return doUpdateSourceMetadataV7(sourceMetadata);
+    }
+}
+#endif
+
 Return<Result> StreamOut::selectPresentation(int32_t /*presentationId*/, int32_t /*programId*/) {
     return Result::NOT_SUPPORTED;  // TODO: propagate to legacy
 }
@@ -588,32 +663,65 @@ Return<Result> StreamOut::selectPresentation(int32_t /*presentationId*/, int32_t
 
 #if MAJOR_VERSION >= 6
 Return<void> StreamOut::getDualMonoMode(getDualMonoMode_cb _hidl_cb) {
-    _hidl_cb(Result::NOT_SUPPORTED, DualMonoMode::OFF);
+    audio_dual_mono_mode_t mode = AUDIO_DUAL_MONO_MODE_OFF;
+    Result retval = mStream->get_dual_mono_mode != nullptr
+                            ? Stream::analyzeStatus("get_dual_mono_mode",
+                                                    mStream->get_dual_mono_mode(mStream, &mode))
+                            : Result::NOT_SUPPORTED;
+    _hidl_cb(retval, DualMonoMode(mode));
     return Void();
 }
 
-Return<Result> StreamOut::setDualMonoMode(DualMonoMode /*mode*/) {
-    return Result::NOT_SUPPORTED;
+Return<Result> StreamOut::setDualMonoMode(DualMonoMode mode) {
+    return mStream->set_dual_mono_mode != nullptr
+                   ? Stream::analyzeStatus(
+                             "set_dual_mono_mode",
+                             mStream->set_dual_mono_mode(mStream,
+                                                         static_cast<audio_dual_mono_mode_t>(mode)))
+                   : Result::NOT_SUPPORTED;
 }
 
 Return<void> StreamOut::getAudioDescriptionMixLevel(getAudioDescriptionMixLevel_cb _hidl_cb) {
-    _hidl_cb(Result::NOT_SUPPORTED, -std::numeric_limits<float>::infinity());
+    float leveldB = -std::numeric_limits<float>::infinity();
+    Result retval = mStream->get_audio_description_mix_level != nullptr
+                            ? Stream::analyzeStatus(
+                                      "get_audio_description_mix_level",
+                                      mStream->get_audio_description_mix_level(mStream, &leveldB))
+                            : Result::NOT_SUPPORTED;
+    _hidl_cb(retval, leveldB);
     return Void();
 }
 
-Return<Result> StreamOut::setAudioDescriptionMixLevel(float /*leveldB*/) {
-    return Result::NOT_SUPPORTED;
+Return<Result> StreamOut::setAudioDescriptionMixLevel(float leveldB) {
+    return mStream->set_audio_description_mix_level != nullptr
+                   ? Stream::analyzeStatus(
+                             "set_audio_description_mix_level",
+                             mStream->set_audio_description_mix_level(mStream, leveldB))
+                   : Result::NOT_SUPPORTED;
 }
 
 Return<void> StreamOut::getPlaybackRateParameters(getPlaybackRateParameters_cb _hidl_cb) {
-    _hidl_cb(Result::NOT_SUPPORTED,
-             // Same as AUDIO_PLAYBACK_RATE_INITIALIZER
-             PlaybackRate{1.0f, 1.0f, TimestretchMode::DEFAULT, TimestretchFallbackMode::FAIL});
+    audio_playback_rate_t rate = AUDIO_PLAYBACK_RATE_INITIALIZER;
+    Result retval =
+            mStream->get_playback_rate_parameters != nullptr
+                    ? Stream::analyzeStatus("get_playback_rate_parameters",
+                                            mStream->get_playback_rate_parameters(mStream, &rate))
+                    : Result::NOT_SUPPORTED;
+    _hidl_cb(retval,
+             PlaybackRate{rate.mSpeed, rate.mPitch, static_cast<TimestretchMode>(rate.mStretchMode),
+                          static_cast<TimestretchFallbackMode>(rate.mFallbackMode)});
     return Void();
 }
 
-Return<Result> StreamOut::setPlaybackRateParameters(const PlaybackRate& /*playbackRate*/) {
-    return Result::NOT_SUPPORTED;
+Return<Result> StreamOut::setPlaybackRateParameters(const PlaybackRate& playbackRate) {
+    audio_playback_rate_t rate = {
+            playbackRate.speed, playbackRate.pitch,
+            static_cast<audio_timestretch_stretch_mode_t>(playbackRate.timestretchMode),
+            static_cast<audio_timestretch_fallback_mode_t>(playbackRate.fallbackMode)};
+    return mStream->set_playback_rate_parameters != nullptr
+                   ? Stream::analyzeStatus("set_playback_rate_parameters",
+                                           mStream->set_playback_rate_parameters(mStream, &rate))
+                   : Result::NOT_SUPPORTED;
 }
 
 Return<Result> StreamOut::setEventCallback(const sp<IStreamOutEventCallback>& callback) {
@@ -628,14 +736,18 @@ Return<Result> StreamOut::setEventCallback(const sp<IStreamOutEventCallback>& ca
 // static
 int StreamOut::asyncEventCallback(stream_event_callback_type_t event, void* param, void* cookie) {
     StreamOut* self = reinterpret_cast<StreamOut*>(cookie);
-    sp<IStreamOutEventCallback> eventCallback = self->mEventCallback;
+    sp<IStreamOutEventCallback> eventCallback = self->mEventCallback.load();
     if (eventCallback.get() == nullptr) return 0;
     ALOGV("%s event %d", __func__, event);
     Return<void> result;
     switch (event) {
         case STREAM_EVENT_CBK_TYPE_CODEC_FORMAT_CHANGED: {
             hidl_vec<uint8_t> audioMetadata;
-            audioMetadata.setToExternal((uint8_t*)param, strlen((char*)param));
+            // void* param is the byte string buffer from byte_string_from_audio_metadata().
+            // As the byte string buffer may have embedded zeroes, we cannot use strlen()
+            // but instead use audio_utils::metadata::dataByteStringLen().
+            audioMetadata.setToExternal((uint8_t*)param, audio_utils::metadata::dataByteStringLen(
+                                                                 (const uint8_t*)param));
             result = eventCallback->onCodecFormatChanged(audioMetadata);
         } break;
         default:

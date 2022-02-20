@@ -29,6 +29,7 @@
 #include <fmq/MessageQueue.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
+#include <mediautils/Synchronization.h>
 #include <utils/Thread.h>
 
 namespace android {
@@ -56,6 +57,7 @@ struct StreamOut : public IStreamOut {
     Return<uint64_t> getFrameSize() override;
     Return<uint64_t> getFrameCount() override;
     Return<uint64_t> getBufferSize() override;
+#if MAJOR_VERSION <= 6
     Return<uint32_t> getSampleRate() override;
 #if MAJOR_VERSION == 2
     Return<void> getSupportedSampleRates(getSupportedSampleRates_cb _hidl_cb) override;
@@ -69,6 +71,10 @@ struct StreamOut : public IStreamOut {
     Return<AudioFormat> getFormat() override;
     Return<void> getSupportedFormats(getSupportedFormats_cb _hidl_cb) override;
     Return<Result> setFormat(AudioFormat format) override;
+#else
+    Return<void> getSupportedProfiles(getSupportedProfiles_cb _hidl_cb) override;
+    Return<Result> setAudioProperties(const AudioConfigBaseOptional& config) override;
+#endif  // MAJOR_VERSION <= 6
     Return<void> getAudioProperties(getAudioProperties_cb _hidl_cb) override;
     Return<Result> addEffect(uint64_t effectId) override;
     Return<Result> removeEffect(uint64_t effectId) override;
@@ -118,9 +124,13 @@ struct StreamOut : public IStreamOut {
     Return<void> createMmapBuffer(int32_t minSizeFrames, createMmapBuffer_cb _hidl_cb) override;
     Return<void> getMmapPosition(getMmapPosition_cb _hidl_cb) override;
 #if MAJOR_VERSION >= 4
-    Return<void> updateSourceMetadata(const SourceMetadata& sourceMetadata) override;
     Return<Result> selectPresentation(int32_t presentationId, int32_t programId) override;
+#if MAJOR_VERSION <= 6
+    Return<void> updateSourceMetadata(const SourceMetadata& sourceMetadata) override;
+#else
+    Return<Result> updateSourceMetadata(const SourceMetadata& sourceMetadata) override;
 #endif
+#endif  // MAJOR_VERSION >= 4
 #if MAJOR_VERSION >= 6
     Return<void> getDualMonoMode(getDualMonoMode_cb _hidl_cb) override;
     Return<Result> setDualMonoMode(DualMonoMode mode) override;
@@ -138,13 +148,20 @@ struct StreamOut : public IStreamOut {
 #endif
 
   private:
+#if MAJOR_VERSION >= 4
+    Result doUpdateSourceMetadata(const SourceMetadata& sourceMetadata);
+#if MAJOR_VERSION >= 7
+    Result doUpdateSourceMetadataV7(const SourceMetadata& sourceMetadata);
+#endif
+#endif  // MAJOR_VERSION >= 4
+
     const sp<Device> mDevice;
     audio_stream_out_t* mStream;
     const sp<Stream> mStreamCommon;
     const sp<StreamMmap<audio_stream_out_t>> mStreamMmap;
-    sp<IStreamOutCallback> mCallback;  // Callback for non-blocking write and drain
+    mediautils::atomic_sp<IStreamOutCallback> mCallback;  // for non-blocking write and drain
 #if MAJOR_VERSION >= 6
-    sp<IStreamOutEventCallback> mEventCallback;
+    mediautils::atomic_sp<IStreamOutEventCallback> mEventCallback;
 #endif
     std::unique_ptr<CommandMQ> mCommandMQ;
     std::unique_ptr<DataMQ> mDataMQ;
