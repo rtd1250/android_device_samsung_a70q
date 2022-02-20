@@ -36,13 +36,9 @@ source "${HELPER}"
 
 function blob_fixup() {
     case "${1}" in
-    vendor/lib/libgps.utils.so|vendor/lib64/libgps.utils.so)
-        patchelf --replace-needed "libcutils.so" "libprocessgroup.so" "${2}"
-        ;;
-    vendor/lib64/libsec-ril.so|vendor/lib64/libsec-ril-dsds.so)
-        patchelf --add-needed "libtrafficcontrol-spoofer.so" "${2}"
-        sed -i 's|_ZN14TrafficControl15connectToServerEb|_ZN14TrafficControl15connectToServeeEb|g' "${2}"
-        ;;
+        vendor/lib64/hw/android.hardware.health@2.0-impl-2.1-samsung.so)
+            "${PATCHELF}" --replace-needed "libutils.so" "libutils-v30.so" "${2}"
+            ;;
     esac
 }
 
