@@ -20,7 +20,7 @@ cc_library_static {
         "recovery_updater.cpp",
     ],
     include_dirs: [
-        "system/core/base/include",
+        "system/libbase/include",
 		"bootable/recovery",
 	    "bootable/recovery/edify/include",
 	    "bootable/recovery/otautil/include"
