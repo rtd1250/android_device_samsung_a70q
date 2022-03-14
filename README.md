@@ -1,5 +1,5 @@
 # android_device_samsung_a70q
-Samsung Galaxy A70 device tree for LineageOS 19.0
+Samsung Galaxy A70 device tree for LineageOS 19.1
 
 Based on the work: https://github.com/MacTavishAO/android_device_samsung_a70q
 
