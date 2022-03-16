@@ -678,9 +678,7 @@ vendor/etc/init/android.hardware.health@2.1-service-samsung.rc
 -vendor/etc/vintf/manifest/android.hardware.health@2.1-samsung.xml
 vendor/lib/hw/android.hardware.health@2.0-impl-2.1-samsung.so
 vendor/lib/vendor.samsung.hardware.health@2.0.so
-vendor/lib/libsystem_health_mon.so
 vendor/lib64/hw/android.hardware.health@2.0-impl-2.1-samsung.so
-vendor/lib64/libsystem_health_mon.so
 vendor/lib64/vendor.samsung.hardware.health@2.0.so
 
 # Firmware
@@ -927,6 +925,8 @@ vendor/etc/init/android.hardware.gnss@2.1-service-qti.rc
 vendor/lib/hw/android.hardware.gnss@2.1-impl-qti.so
 #vendor/lib/hw/vendor.qti.gnss@3.0-impl.so
 vendor/lib/hw/vendor.samsung.hardware.gnss@2.0-impl-sec.so
+vendor/lib/libcdfw_remote_api.so
+vendor/lib/libcdfw.so
 vendor/lib/libdataitems.so
 vendor/lib/libfloatingfeature.so
 vendor/lib/libgarden.so
@@ -960,6 +960,8 @@ vendor/lib/vendor.samsung.hardware.gnss@2.0.so
 vendor/lib64/hw/android.hardware.gnss@2.1-impl-qti.so
 #vendor/lib64/hw/vendor.qti.gnss@3.0-impl.so
 vendor/lib64/hw/vendor.samsung.hardware.gnss@2.0-impl-sec.so
+vendor/lib64/libcdfw_remote_api.so
+vendor/lib64/libcdfw.so
 vendor/lib64/libdataitems.so
 vendor/lib64/libfloatingfeature.so
 vendor/lib64/libgarden.so
@@ -975,6 +977,7 @@ vendor/lib64/liblocation_api.so
 vendor/lib64/liblocationservice_glue.so
 vendor/lib64/liblocationservice.so
 vendor/lib64/libloc_core.so
+vendor/lib64/libloc_socket.so
 vendor/lib64/liblowi_client.so
 #vendor/lib64/liblowi_wifihal.so
 vendor/lib64/libqdma_file_agent.so
@@ -1235,7 +1238,8 @@ vendor/lib64/libqmi_encdec.so
 vendor/lib64/libqmiservices.so
 
 # Radio
--vendor/bin/ATFWD-daemon
+vendor/bin/hw/rild
+vendor/bin/ATFWD-daemon
 vendor/bin/netmgrd
 vendor/bin/qrtr-cfg
 vendor/bin/qrtr-lookup
@@ -1244,6 +1248,18 @@ vendor/bin/rmt_storage
 vendor/bin/tftp_server
 vendor/etc/data/dsi_config.xml
 vendor/etc/data/netmgr_config.xml
+vendor/etc/init/netmgrd.rc
+vendor/etc/locale/plmn_delta_eng.bin
+vendor/etc/locale/plmn_delta_zh-rCN.bin
+vendor/etc/locale/plmn_delta_zh-rHK.bin
+vendor/etc/locale/plmn_delta_zh-rTW.bin
+vendor/etc/mtu-conf.xml
+vendor/etc/plmn_delta_attaio.bin
+vendor/etc/plmn_delta.bin
+vendor/etc/plmn_delta_hktw.bin
+vendor/etc/plmn_delta_usagsm.bin
+vendor/etc/plmn_se13.bin
+vendor/etc/sec_config_oem
 vendor/lib/libconfigdb.so
 vendor/lib/libdsi_netctrl.so
 #vendor/lib/liblqe.so
@@ -1256,16 +1272,18 @@ vendor/lib/libqcmaputils.so
 vendor/lib/libqrtr.so
 vendor/lib/libqsocket.so
 -vendor/lib/libril.so
+vendor/lib/librilqmiservices-ext.so
 vendor/lib/libsecril-client.so
 vendor/lib/libsec_semRil.so
 vendor/lib/libsemnativecarrierfeature.so
-vendor/lib64/libvkmanager_vendor.so
+vendor/lib/libsystem_health_mon.so
 vendor/lib/libxml.so
 vendor/lib/vendor.samsung.hardware.radio.bridge@2.0.so
 #vendor/lib/vendor.samsung.hardware.radio.channel@2.0.so
 vendor/lib/vendor.samsung.hardware.radio@2.0.so
 vendor/lib/vendor.samsung.hardware.radio@2.1.so
 vendor/lib64/libconfigdb.so
+vendor/lib64/libengmode_client.so
 vendor/lib64/libdsi_netctrl.so
 vendor/lib64/liblqe.so
 vendor/lib64/libmdmdetect.so
@@ -1278,18 +1296,21 @@ vendor/lib64/libqcmaputils.so
 vendor/lib64/libqrtr.so
 vendor/lib64/libqsocket.so
 -vendor/lib64/libril.so
+vendor/lib64/librilqmiservices-ext.so
 vendor/lib64/libsecril-client.so
 vendor/lib64/libsec_semRil.so
 vendor/lib64/libsec-ril-dsds.so
 vendor/lib64/libsec-ril.so
 vendor/lib64/libsemnativecarrierfeature.so
+vendor/lib64/libsystem_health_mon.so
+vendor/lib64/libvkmanager_vendor.so
+vendor/lib64/libxml.so
 vendor/lib64/vendor.qti.hardware.data.connection@1.0.so
 vendor/lib64/vendor.qti.hardware.radio.atcmdfwd@1.0.so
 vendor/lib64/vendor.samsung.hardware.radio.bridge@2.0.so
 vendor/lib64/vendor.samsung.hardware.radio.channel@2.0.so
 vendor/lib64/vendor.samsung.hardware.radio@2.0.so
 vendor/lib64/vendor.samsung.hardware.radio@2.1.so
-vendor/lib64/libxml.so
 
 # Samsung - Misc
 vendor/lib/libsecnativefeature.so
@@ -1454,7 +1475,7 @@ vendor/etc/init/android.hardware.usb@1.1-service.wahoo.rc
 
 # Wifi
 vendor/bin/hw/macloader
--vendor/bin/cnss_diag
+#vendor/bin/cnss_diag
 vendor/bin/cnss-daemon
 vendor/firmware/wlan/qca_cld/bdwlan.bin
 vendor/firmware/wlan/qca_cld/grippower.info
