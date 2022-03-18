@@ -114,6 +114,11 @@
         <device name="SND_DEVICE_IN_VOCE_RECOG_USB_HEADSET_HEX_MIC" acdb_id="162"/>
         <device name="SND_DEVICE_IN_HANDSET_GENERIC_QMIC" acdb_id="157"/>
         <device name="SND_DEVICE_IN_VOICE_HEARING_AID" acdb_id="34"/>
+
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" acdb_id="15"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_2" acdb_id="15"/>
+        <device name="SND_DEVICE_IN_SPEAKER_MIC" acdb_id="58"/>
+        <device name="SND_DEVICE_IN_VOICE_SPEAKER_MIC" acdb_id="58"/>
     </acdb_ids>
     <backend_names>
         <!-- Samsung Hardware Interface Table           -->
