@@ -1465,10 +1465,6 @@ vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 # Voice
 vendor/lib64/vendor.qti.voiceprint@1.0.so
 
-# USB
-vendor/bin/hw/android.hardware.usb@1.1-service.wahoo
-vendor/etc/init/android.hardware.usb@1.1-service.wahoo.rc
-
 # Wifi
 vendor/bin/hw/macloader
 #vendor/bin/cnss_diag
