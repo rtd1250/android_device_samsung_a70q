@@ -101,6 +101,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.coresight.config=stm-events
 
+# fastbootd
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.fastbootd.available=true
+
 # FM
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.hw.fm.init=0
