@@ -2490,7 +2490,7 @@
 
     <path name="rec-headset-mic">
         <path name="ear-mic" />
-        <ctl name="TX_DEC0 Volume" value="92" />
+        <ctl name="TX_DEC0 Volume" value="102" />
         <ctl name="ADC2 Volume" value="0" />
     </path>
 
