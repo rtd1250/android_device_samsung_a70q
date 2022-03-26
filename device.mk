@@ -9,7 +9,6 @@ $(call inherit-product-if-exists, vendor/samsung/a70q/a70q-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    device/samsung/qcom-common/overlay \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
 
