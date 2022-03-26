@@ -19,7 +19,4 @@
     <!-- Whether to show Connected MAC Randomization in Developer Options
          as not all devices can support dynamic MAC address change.  -->
     <bool name="config_wifi_support_connected_mac_randomization">true</bool>
-
-    <dimen name="fingerprint_dot_radius">8dp</dimen>
-    <item name="fingerprint_sensor_location_fraction_y" type="fraction">85%</item>
 </resources>

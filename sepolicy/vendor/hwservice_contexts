@@ -9,7 +9,7 @@ vendor.samsung.hardware.miscpower::ISecMiscPower                          u:obje
 vendor.samsung.hardware.qchdcpkprov_server::Iqchdcpkprov_server           u:object_r:hal_qchdcpkprov_hwservice:s0
 vendor.samsung.security.drk::IDrkService                                  u:object_r:hal_drk_hwservice:s0
 vendor.samsung.security.proca::IProcaDaemon                               u:object_r:hal_proca_hwservice:s0
-vendor.samsung.hardware.biometrics.fingerprint::ISecBiometricsFingerprint u:object_r:hal_fingerprint_hwservice:s0
+vendor.samsung.hardware.biometrics.fingerprint::ISehBiometricsFingerprint u:object_r:hal_fingerprint_hwservice:s0
 vendor.samsung.hardware.radio::IRadio                                     u:object_r:hal_telephony_hwservice:s0
 vendor.samsung.hardware.radio.channel::ISecChannel                        u:object_r:hal_telephony_hwservice:s0
 vendor.samsung.hardware.radio.configsvc::IConfigSvc                       u:object_r:hal_telephony_hwservice:s0

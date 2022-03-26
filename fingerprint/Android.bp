@@ -1,0 +1,7 @@
+cc_library_static {
+    name: "libudfps_extension.a70q",
+    srcs: ["UdfpsExtension.cpp"],
+    include_dirs: [
+        "frameworks/native/services/surfaceflinger/CompositionEngine/include"
+    ],
+}
