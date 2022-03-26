@@ -33,9 +33,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
-    camera.aux.packagelist="org.codeaurora.snapcam,com.android.camera,com.android.lightboxtest" \
+    camera.aux.packagelist=com.android.camera \
     camera.disable_zsl_mode=1 \
-    vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.android.camera"
+    vendor.camera.aux.packagelist=com.android.camera
 
 # Chipset
 PRODUCT_PROPERTY_OVERRIDES += \
