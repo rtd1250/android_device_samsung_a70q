@@ -171,7 +171,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.qcomsysd.enabled=1
 
 # Radio/RIL
- PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_PROPERTY_OVERRIDES += \
     vendor.voice.path.for.pcm.voip=true \
     persist.vendor.radio.atfwd.start=true \
     persist.vendor.radio.apm_sim_not_pwdn=1 \
@@ -187,3 +187,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     persist.vendor.data.mode=concurrent \
     ro.vendor.use_data_netmgrd=false
+
+# USB
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.usb.controller=a600000.dwc3 \
+    vendor.usb.diag.func.name=diag \
+    vendor.usb.use_ffs_mtp=0
