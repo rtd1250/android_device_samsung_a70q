@@ -145,6 +145,7 @@ PRODUCT_PACKAGES += \
     gralloc.sm6150 \
     hwcomposer.sm6150 \
     libdisplayconfig.qti \
+    libqdMetaData \
     libtinyxml \
     libtinyxml.vendor \
     libvulkan \

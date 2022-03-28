@@ -726,7 +726,6 @@ vendor/lib/libdpps.so
 vendor/lib/libgpu_tonemapper.so
 vendor/lib/libgralloccore.so
 vendor/lib/libgrallocutils.so
-vendor/lib/libqdMetaData.so
 vendor/lib/libdrmutils.so
 vendor/lib/libsdedrm.so
 vendor/lib/libsdmcore.so
@@ -744,7 +743,6 @@ vendor/lib64/libdpps.so
 vendor/lib64/libgpu_tonemapper.so
 vendor/lib64/libgralloccore.so
 vendor/lib64/libgrallocutils.so
-vendor/lib64/libqdMetaData.so
 vendor/lib64/libdrmutils.so
 vendor/lib64/libsdedrm.so
 vendor/lib64/libsdmcore.so
