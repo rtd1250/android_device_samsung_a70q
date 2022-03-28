@@ -65,4 +65,3 @@ service ftm_ptt /system/bin/ftm_ptt -d
     user root
     group radio system
     disabled
-
