@@ -17,3 +17,4 @@ ueventd: 1
 timer_create: 1
 timer_settime: 1
 rt_sigtimedwait: 1
+sched_setaffinity: 1

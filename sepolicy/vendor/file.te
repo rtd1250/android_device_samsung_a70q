@@ -1,6 +1,5 @@
 # data
 type biometrics_vendor_data_file, data_file_type, file_type;
-type secure_storage_vendor_data_file, data_file_type, file_type;
 type vendor_audiopcm_data_file, data_file_type, file_type;
 type vendor_convergence_data_file, data_file_type, file_type;
 type vendor_gps_file, data_file_type, file_type;
@@ -12,21 +11,33 @@ type bin_nv_data_efs_file, file_type;
 type carrier_efs_file, file_type, mlstrustedobject;
 type cpk_efs_file, file_type;
 type drm_efs_file, file_type;
+type dsms_efs_file, file_type;
+type efs_gsm_file, file_type;
+type gatekeeper_efs_file, file_type;
 type imei_efs_file, file_type, mlstrustedobject;
 type iss_efs_file, file_type;
+type kpm_efs_file, file_type;
+type mb_po_efs_file, file_type;
+type nfc_efs_file, file_type;
 type nv_core_efs_file, file_type;
 type otadm_efs_file, file_type;
+type pdp_efs_file, file_type;
 type pfw_efs_file, file_type, mlstrustedobject;
 type prov_efs_file, file_type;
 type retailmode_efs_file, file_type, mlstrustedobject;
 type sec_efs_file, file_type, mlstrustedobject;
 type sec_poc_file, file_type, mlstrustedobject;
+type snap_efs_file, file_type, mlstrustedobject;
+type snapsec_efs_file, file_type;
+type ssm_efs_file, file_type;
 type tee_efs_file, file_type;
 type vaultkeeper_efs_file, file_type;
 type wifi_efs_file, file_type, mlstrustedobject;
 
 # proc
 type proc_default_smp_affinity, fs_type, proc_type;
+type proc_last_kmsg, fs_type, proc_type;
+type proc_simslot_count, fs_type, proc_type;
 type proc_swappiness, fs_type, proc_type;
 
 # rootfs
@@ -40,5 +51,6 @@ type sysfs_lcd_writable, fs_type, sysfs_type;
 type sysfs_mdnie_writable, fs_type, sysfs_type;
 type sysfs_ss_writable, fs_type, sysfs_type;
 type sysfs_tsp, fs_type, sysfs_type;
+type sysfs_wifi, fs_type, sysfs_type;
 
 type cache_pdp_file, file_type;
