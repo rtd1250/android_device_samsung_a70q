@@ -183,6 +183,9 @@ TARGET_COPY_OUT_VENDOR := vendor
 
 TARGET_USES_MKE2FS := true
 
+# Power
+TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/power/power-mode.cpp
+
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
 
