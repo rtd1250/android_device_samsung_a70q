@@ -1,0 +1,30 @@
+# Bluetooth
+persist.bluetooth.disableabsvol=true
+persist.vendor.btstack.enable.splita2dp=true
+ro.bluetooth.emb_wp_mode=true
+ro.bluetooth.wipower=true
+persist.vendor.btstack.avrcp-playstatus.blacklist=true
+bt.max.hfpclient.connections=1
+
+# Media
+media.aac_51_output_enabled=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-http=true
+media.stagefright.enable-player=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-scan=true
+mm.enable.smoothstreaming=true
+mmp.enable.3g2=true
+vendor.mm.enable.qcom_parser=63963135
+media.stagefright.enable-fma2dp=true
+media.settings.xml=/vendor/etc/media_profiles_V1_0.xml
+persist.mm.enable.prefetch=true
+
+# NetFlix
+ro.netflix.bsp_rev=Q6150-17263-1
+
+# SDCard
+ro.sys.sdcardfs=true
+
+# Radio/RIL
+use.voice.path.for.pcm.voip=true

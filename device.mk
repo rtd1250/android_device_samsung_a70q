@@ -15,10 +15,6 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_ENFORCE_RRO_TARGETS := \
     framework-res
 
-# Properties
--include $(LOCAL_PATH)/system_prop.mk
--include $(LOCAL_PATH)/vendor_prop.mk
-
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
