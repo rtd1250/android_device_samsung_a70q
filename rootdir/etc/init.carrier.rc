@@ -143,4 +143,3 @@ service swapon /sbin/sswap -s -z -f 2048
     group root
     seclabel u:r:sswap:s0
     oneshot
-

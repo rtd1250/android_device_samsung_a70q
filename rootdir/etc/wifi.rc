@@ -67,4 +67,3 @@ service wlandutservice /system/bin/wlandutservice
     oneshot
 
 # end of WiFi MFG (TestMode)
-
