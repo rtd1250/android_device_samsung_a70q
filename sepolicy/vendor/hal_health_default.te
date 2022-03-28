@@ -1,6 +1,5 @@
-allow hal_health_default app_efs_file:dir search;
-allow hal_health_default app_efs_file:file { open read getattr write setattr };
+allow hal_health_default mnt_vendor_file:dir search;
 
-allow hal_health_default efs_file:dir search;
-
-allow hal_health_default sysfs_batteryinfo:file write;
+r_dir_file(hal_health_default, app_efs_file)
+r_dir_file(hal_health_default, efs_file)
+r_dir_file(hal_health_default, battery_efs_file)

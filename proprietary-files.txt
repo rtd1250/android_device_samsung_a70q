@@ -1311,34 +1311,34 @@ vendor/lib/libsecnativefeature.so
 vendor/lib64/libsecnativefeature.so
 
 # Samsung - Process Authenticator
-vendor/bin/vendor.samsung.hardware.security.proca@2.0-service
-vendor/etc/init/pa_daemon_qsee.rc
+#vendor/bin/vendor.samsung.hardware.security.proca@2.0-service
+#vendor/etc/init/pa_daemon_qsee.rc
 #vendor/etc/process_authenticator/pa_config
-vendor/lib/libpadm.so
-vendor/lib/libpa.so
-vendor/lib/vendor.samsung.hardware.security.proca@2.0.so
-vendor/lib64/libpadm.so
-vendor/lib64/libpa.so
-vendor/lib64/vendor.samsung.hardware.security.proca@2.0.so
+#vendor/lib/libpadm.so
+#vendor/lib/libpa.so
+#vendor/lib/vendor.samsung.hardware.security.proca@2.0.so
+#vendor/lib64/libpadm.so
+#vendor/lib64/libpa.so
+#vendor/lib64/vendor.samsung.hardware.security.proca@2.0.so
 
 # Samsung - Secure Storage
-vendor/bin/secure_storage_daemon
-vendor/etc/init/secure_storage_daemon_qsee.rc
-vendor/lib/libsecure_storage.so
-vendor/lib/vendor.samsung.hardware.security.securestorage@3.0.so
-vendor/lib64/libsecure_storage.so
-vendor/lib64/vendor.samsung.hardware.security.securestorage@3.0.so
+#vendor/bin/secure_storage_daemon
+#vendor/etc/init/secure_storage_daemon_qsee.rc
+#vendor/lib/libsecure_storage.so
+#vendor/lib/vendor.samsung.hardware.security.securestorage@3.0.so
+#vendor/lib64/libsecure_storage.so
+#vendor/lib64/vendor.samsung.hardware.security.securestorage@3.0.so
 
 # Samsung - VaultKeeper
-vendor/bin/vendor.samsung.hardware.security.vaultkeeper@2.0-service
-vendor/etc/init/vaultkeeper_common.rc
-vendor/lib64/vendor.samsung.hardware.security.vaultkeeper@2.0.so
+#vendor/bin/vendor.samsung.hardware.security.vaultkeeper@2.0-service
+#vendor/etc/init/vaultkeeper_common.rc
+#vendor/lib64/vendor.samsung.hardware.security.vaultkeeper@2.0.so
 
 # Samsung - wsm
-vendor/bin/vendor.samsung.hardware.security.wsm@1.0-service
-vendor/etc/init/wsm-service.rc
-vendor/lib64/libhal.wsm.samsung.so
-vendor/lib64/libwsmd_functions.so
+#vendor/bin/vendor.samsung.hardware.security.wsm@1.0-service
+#vendor/etc/init/wsm-service.rc
+#vendor/lib64/libhal.wsm.samsung.so
+#vendor/lib64/libwsmd_functions.so
 
 # Sensors
 vendor/bin/hw/android.hardware.sensors@2.0-service.multihal

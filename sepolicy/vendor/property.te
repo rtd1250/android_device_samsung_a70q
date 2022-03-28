@@ -1,26 +1,21 @@
-type boot_force_upload_prop, property_type;
-type bssl_post_prop, property_type;
-type compact_dump_prop, property_type;
-type csc_prop, property_type;
-type ctl_hbtp_prop, property_type;
-type debug_level_prop, property_type;
-type dolby_prop, property_type;
-type ina_status_prop, property_type;
-type receiver_error_prop, property_type;
-type sbl_log_prop, property_type;
-type sec_camera_prop, property_type;
-type sec_cnss_diag_prop, property_type;
-type tzdaemon_prop, property_type;
-type vendor_bssl_post_prop, property_type;
-type vendor_factory_prop, property_type;
-type vendor_mediadrm_prop, property_type;
-type vendor_members_prop, property_type;
-type vendor_camera_motor_prop, property_type;
-type vendor_chre_prop, property_type;
-type vendor_nfc_prop, property_type;
-type vendor_qseecomd_prop, property_type;
-type vendor_sensor_prop, property_type;
-type vendor_tzdaemon_prop, property_type;
-type vendor_tztsdaemon_prop, property_type;
-type vendor_wlbtd_prop, property_type;
-type vm_bms_prop, property_type;
+vendor_internal_prop(boot_force_upload_prop)
+vendor_internal_prop(bssl_post_prop)
+vendor_internal_prop(compact_dump_prop)
+vendor_internal_prop(csc_prop)
+vendor_internal_prop(ctl_hbtp_prop)
+vendor_internal_prop(debug_level_prop)
+vendor_internal_prop(ina_status_prop)
+vendor_internal_prop(receiver_error_prop)
+vendor_internal_prop(sbl_log_prop)
+vendor_internal_prop(sec_camera_prop)
+vendor_internal_prop(sec_cnss_diag_prop)
+vendor_internal_prop(vendor_factory_prop)
+vendor_internal_prop(vendor_mediadrm_prop)
+vendor_internal_prop(vendor_members_prop)
+vendor_internal_prop(vendor_camera_motor_prop)
+vendor_internal_prop(vendor_chre_prop)
+vendor_internal_prop(vendor_nfc_prop)
+vendor_internal_prop(vendor_qseecomd_prop)
+vendor_internal_prop(vendor_sensor_prop)
+vendor_internal_prop(vendor_tztsdaemon_prop)
+vendor_internal_prop(vm_bms_prop)

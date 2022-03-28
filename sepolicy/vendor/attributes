@@ -1,26 +1,6 @@
-attribute hal_drk;
-attribute hal_drk_client;
-attribute hal_drk_server;
-
-attribute hal_proca;
-attribute hal_proca_client;
-attribute hal_proca_server;
-
 attribute hal_qchdcpkprov;
 attribute hal_qchdcpkprov_client;
 attribute hal_qchdcpkprov_server;
-
-attribute hal_secure_storage_daemon;
-attribute hal_secure_storage_daemon_client;
-attribute hal_secure_storage_daemon_server;
-
-attribute hal_sem;
-attribute hal_sem_client;
-attribute hal_sem_server;
-
-attribute hal_skpm;
-attribute hal_skpm_client;
-attribute hal_skpm_server;
 
 attribute hal_wvkprov;
 attribute hal_wvkprov_client;

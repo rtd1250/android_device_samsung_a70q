@@ -4,8 +4,6 @@ cnss_diag.service                      u:object_r:sec_cnss_diag_prop:s0
 ctl.hbtp                               u:object_r:ctl_hbtp_prop:s0
 ctl.mdm_helper                         u:object_r:vendor_mdm_helper_prop:s0
 ctl.vm_bms                             u:object_r:vm_bms_prop:s0
-dolby.                                 u:object_r:dolby_prop:s0
-fips.bssl.post                         u:object_r:bssl_post_prop:s0
 init.svc.compact_dump                  u:object_r:compact_dump_prop:s0
 init.svc.vendor.cnd                    u:object_r:cnd_vendor_prop:s0
 init.svc.vendor.drm-clearkey-hal-1-1   u:object_r:vendor_mediadrm_prop:s0
@@ -41,12 +39,13 @@ ro.camera.req.fmq.size                 u:object_r:sec_camera_prop:s0
 ro.csc.omcnw_code                      u:object_r:csc_prop:s0
 ro.csc.omcnw_code2                     u:object_r:csc_prop:s0
 ro.csc.sales_code                      u:object_r:csc_prop:s0
-ro.csc.spotify.music.partnerid         u:object_r:csc_prop:s0
-ro.csc.spotify.music.referrerid        u:object_r:csc_prop:s0
+ro.csc.                                u:object_r:csc_prop:s0
 ro.error.receiver.default              u:object_r:receiver_error_prop:s0
 ro.factory.factory_binary              u:object_r:vendor_factory_prop:s0
 ro.gpu.available_frequencies           u:object_r:freq_prop:s0
 ro.netflix.channel                     u:object_r:csc_prop:s0
+ro.vendor.multisim.                    u:object_r:vendor_radio_prop:s0
+ro.vendor.radio.                       u:object_r:vendor_radio_prop:s0
 ro.qc.sdk.audio.                       u:object_r:audio_prop:s0
 ro.simbased.changetype                 u:object_r:csc_prop:s0
 ro.vendor.gpu.available_frequencies    u:object_r:freq_prop:s0
@@ -56,11 +55,7 @@ tunnel.audio.                          u:object_r:audio_prop:s0
 vendor.bluetooth_fw_ver                u:object_r:vendor_bluetooth_prop:s0
 vendor.camera.motor.service            u:object_r:vendor_camera_motor_prop:s0
 vendor.chre                            u:object_r:vendor_chre_prop:s0
-vendor.dolby.                          u:object_r:dolby_prop:s0
-vendor.fips.bssl.post                  u:object_r:vendor_bssl_post_prop:s0
 vendor.npu.usr_drv.log_mask            u:object_r:sec_camera_prop:s0
 vendor.sensor.                         u:object_r:vendor_sensor_prop:s0
 vendor.sys.qseecomd.                   u:object_r:vendor_qseecomd_prop:s0
-vendor.tzdaemon                        u:object_r:vendor_tzdaemon_prop:s0
 vendor.tzts_daemon                     u:object_r:vendor_tztsdaemon_prop:s0
-vendor.wlbtd.                          u:object_r:vendor_wlbtd_prop:s0
