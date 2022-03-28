@@ -37,6 +37,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     camera.disable_zsl_mode=1 \
     vendor.camera.aux.packagelist=com.android.camera
 
+# Charger
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.charger.enable_suspend=true
+
 # Chipset
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.soc.manufacturer=Qualcomm \

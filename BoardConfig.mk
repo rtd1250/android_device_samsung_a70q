@@ -100,9 +100,6 @@ QCOM_BT_USE_BTNV := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 USE_CAMERA_STUB := false
 
-# Charger Mode
-BOARD_CHARGER_ENABLE_SUSPEND := true
-
 # Dex
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
