@@ -18,6 +18,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio.feature.compr_voip.enable=true \
     vendor.audio.feature.deepbuffer_as_primary.enable=true \
     vendor.audio.feature.fm.enable=true \
+    vendor.audio.feature.incall_music.enable=true \
     vendor.audio.feature.multi_voice_session.enable=true \
     vendor.audio.feature.usb_offload.enable=true \
     vendor.dedicated.device.for.voip=true \
