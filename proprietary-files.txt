@@ -648,7 +648,7 @@ vendor/lib64/vendor.qti.hardware.cvp@1.0.so
 # Device Health
 vendor/bin/hw/android.hardware.health@2.1-service-samsung
 vendor/etc/init/android.hardware.health@2.1-service-samsung.rc
--vendor/etc/vintf/manifest/android.hardware.health@2.1-samsung.xml
+vendor/etc/vintf/manifest/android.hardware.health@2.1-samsung.xml
 vendor/lib/hw/android.hardware.health@2.0-impl-2.1-samsung.so
 vendor/lib/vendor.samsung.hardware.health@2.0.so
 vendor/lib64/hw/android.hardware.health@2.0-impl-2.1-samsung.so
@@ -747,7 +747,7 @@ vendor/lib64/libhdcpsrm.so
 # DRM - Widevine
 vendor/bin/hw/android.hardware.drm@1.3-service.widevine
 vendor/etc/init/android.hardware.drm@1.3-service.widevine.rc
--vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.3-service.widevine.xml
+vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.3-service.widevine.xml
 vendor/lib/libwvhidl.so
 
 # DRM - Widevine key provisioning
@@ -1276,6 +1276,7 @@ vendor/lib/libaudio_soundtrigger.so
 # Thermal
 vendor/bin/hw/vendor.samsung.hardware.thermal@1.0-service
 vendor/etc/init/vendor.samsung.hardware.thermal@1.0-service.rc
+vendor/etc/vintf/manifest/vendor.samsung.hardware.thermal@1.0-manifest.xml
 vendor/bin/thermal-engine
 vendor/etc/thermal-engine.conf
 vendor/lib/libhypervintf.so
@@ -1287,7 +1288,7 @@ vendor/lib64/vendor.samsung.hardware.thermal@1.0.so
 vendor/lib64/vendor.samsung.hardware.hyper-V1-ndk_platform.so
 
 # Time
--vendor/app/TimeService/TimeService.apk
+vendor/app/TimeService/TimeService.apk
 vendor/bin/time_daemon
 vendor/lib/libtime_genoff.so
 vendor/lib64/libtime_genoff.so
