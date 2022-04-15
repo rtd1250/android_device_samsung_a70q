@@ -58,6 +58,7 @@ vendor.audio.feature.maxx_audio.enable=false
 vendor.audio.feature.audiozoom.enable=false
 
 # Bluetooth
+bluetooth.device.default_name=Galaxy A70
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac
 ro.bluetooth.a2dp_offload.supported=true
 persist.bluetooth.a2dp_offload.disabled=false
