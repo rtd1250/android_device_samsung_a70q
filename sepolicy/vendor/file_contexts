@@ -11,7 +11,7 @@
 /dev/block/platform/soc/1d84000\.ufshc/by-name/hidden        u:object_r:hiddenblk_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/modemst1      u:object_r:vendor_modem_efs_partition_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/modemst2      u:object_r:vendor_modem_efs_partition_device:s0
-/dev/block/platform/soc/1d84000\.ufshc/by-name/omr           u:object_r:omr_block_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/omr           u:object_r:metadata_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/param         u:object_r:paramblk_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/persistent    u:object_r:frp_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/sec_efs       u:object_r:sec_efs_block_device:s0
