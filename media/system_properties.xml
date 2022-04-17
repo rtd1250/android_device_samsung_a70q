@@ -32,10 +32,15 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <property name="vidc_dec_log_out" value="0"/>
         <property name="vidc_enc_log_in" value="0"/>
         <property name="vidc_enc_log_out" value="0"/>
-        <property name="vidc_enc_csc_custom_matrix" value="0"/>
+        <property name="vidc_enc_csc_custom_matrix" value="1"/>
         <!-- Buffer size : internal : 30 MB (30 X 1), output : 50 MB (3.125 X 16) -->
         <property name="vidc_dec_sec_prefetch_size_internal" value="31457280"/>
         <property name="vidc_dec_sec_prefetch_size_output" value="3276800"/>
         <!-- Bitmask for arb mode: 1: AVC, 2: HEVC, 4: MPEG2 -->
         <property name="vidc_dec_arb_mode_override" value="7"/>
+        <!-- Bitmask for linear color: 1: 8-bit, 2: 10-bit -->
+        <property name="vidc_enc_linear_color_format" value="3"/>
+        <!-- Enable CAC control: 0x0: disabled, 0x1:enabled for 8 bit, 0x2:enabled for 10 bit, 0x3:enabled for 8 and 10 bits both -->
+        <property name="vidc_enc_bitrate_savings_enable" value="3"/>
+        <property name="vidc_perf_control_enable" value="1"/>
 </configs>
