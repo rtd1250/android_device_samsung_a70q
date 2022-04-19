@@ -371,10 +371,7 @@ vendor/lib64/vendor.samsung.hardware.bluetooth@2.0.so
 -lib64/libchromaflash.so
 -lib64/libseemore.so
 vendor/bin/hw/vendor.samsung.hardware.camera.provider@4.0-service
-vendor/bin/snap_utility_64
-vendor/etc/init/snap_utility.rc
 vendor/etc/init/vendor.samsung.hardware.camera.provider@4.0-service.rc
-vendor/etc/snap_gpu_kernel_64.bin
 vendor/lib/android.hardware.camera.provider@2.4-legacy.so
 vendor/lib/android.hardware.camera.provider@2.5-legacy.so
 vendor/lib/camera.device@1.0-impl.so
