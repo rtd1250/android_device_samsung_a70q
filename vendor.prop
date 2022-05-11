@@ -115,6 +115,9 @@ dalvik.vm.heapsize=512m
 dalvik.vm.heaptargetutilization=0.75
 ro.dalvik.vm.native.bridge=0
 
+# Dex2oat
+dalvik.vm.systemuicompilerfilter=speed
+
 # Display
 persist.sys.sf.color_saturation=1.0
 debug.sf.hw=1
