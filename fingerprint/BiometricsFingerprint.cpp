@@ -25,9 +25,9 @@
 #include "BiometricsFingerprint.h"
 
 #include <dlfcn.h>
+#include <fstream>
 #include <inttypes.h>
 #include <unistd.h>
-#include <fstream>
 #include <thread>
 
 #define BRIGHTNESS_PATH "/sys/class/backlight/panel0-backlight/brightness"
@@ -37,7 +37,6 @@
 #define SEH_PARAM_PRESSED 2
 #define SEH_PARAM_RELEASED 1
 #define SEH_AOSP_FQNAME "android.hardware.biometrics.fingerprint@2.3::IBiometricsFingerprint"
-
 
 namespace vendor {
 namespace samsung {
@@ -84,8 +83,6 @@ SehBiometricsFingerprint::SehBiometricsFingerprint() : mClientCallback(nullptr) 
     if (!openHal()) {
         LOG(ERROR) << "Can't open HAL module";
     }
-
-    set(TSP_CMD_PATH, "set_fod_rect,426,2031,654,2259");
 
     std::ifstream in("/sys/devices/virtual/fingerprint/fingerprint/position");
     mIsUdfps = !!in;
@@ -398,17 +395,15 @@ void SehBiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
             }
         } break;
         case FINGERPRINT_TEMPLATE_ENROLLING:
+            const_cast<fingerprint_msg_t*>(msg)->data.enroll.samples_remaining =
+                100 - msg->data.enroll.samples_remaining;
             LOG(DEBUG) << "onEnrollResult(fid=" << msg->data.enroll.finger.fid
                        << ", gid=" << msg->data.enroll.finger.gid
                        << ", rem=" << msg->data.enroll.samples_remaining << ")";
-            if (thisPtr->mClientCallback
+            if (!thisPtr->mClientCallback
                     ->onEnrollResult(devId, msg->data.enroll.finger.fid,
                                      msg->data.enroll.finger.gid, msg->data.enroll.samples_remaining)
                     .isOk()) {
-                fingerprint_msg_t* newMsg = (fingerprint_msg_t*)msg;
-                newMsg->data.enroll.samples_remaining = 100 - msg->data.enroll.samples_remaining;
-                msg = newMsg;
-            } else {
                 LOG(ERROR) << "failed to invoke fingerprint onEnrollResult callback";
             }
             break;

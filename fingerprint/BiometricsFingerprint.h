@@ -70,7 +70,7 @@ public:
     // Methods from ::vendor::samsung::hardware::biometrics::fingerprint::V3_0::ISehBiometricsFingerprint follow.
     Return<void> sehRequest(int32_t cmd_id, int32_t inParam, const hidl_vec<int8_t>& inputBuf, sehRequest_cb _hidl_cb) override;
 
-  private:
+private:
     bool openHal();
     static void notify(
         const fingerprint_msg_t* msg); /* Static callback for legacy HAL implementation */
@@ -100,7 +100,6 @@ public:
 
     static void requestResult(int retval, const hidl_vec<int8_t>& outBuf);
     std::string mPreviousBrightness;
-
 };
 
 }  // namespace implementation
