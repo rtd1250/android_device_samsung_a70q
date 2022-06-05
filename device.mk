@@ -181,10 +181,14 @@ PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-service
 
 # FM
-PRODUCT_PACKAGES += \
-    FM2 \
-    libqcomfm_jni \
-    qcom.fmradio
+# PRODUCT_PACKAGES += \
+#     FM2 \
+#     libqcomfm_jni \
+#     qcom.fmradio \
+#     qcom.fmradio.xml
+
+# PRODUCT_BOOT_JARS += \
+#     qcom.fmradio
 
 # GPS
 PRODUCT_PACKAGES += \
