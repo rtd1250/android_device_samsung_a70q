@@ -419,7 +419,8 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service-qti
+    android.hardware.usb@1.0.vendor \
+    android.hardware.usb@1.1.vendor
 
 # Vibrator
 PRODUCT_PACKAGES += \
