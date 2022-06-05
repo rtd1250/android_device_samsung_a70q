@@ -176,10 +176,14 @@ PRODUCT_PACKAGES += \
     vendor.samsung.hardware.biometrics.fingerprint@3.0-service.a70q
 
 # FM
-PRODUCT_PACKAGES += \
-    FM2 \
-    libqcomfm_jni \
-    qcom.fmradio
+# PRODUCT_PACKAGES += \
+#     FM2 \
+#     libqcomfm_jni \
+#     qcom.fmradio \
+#     qcom.fmradio.xml
+
+# PRODUCT_BOOT_JARS += \
+#     qcom.fmradio
 
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
