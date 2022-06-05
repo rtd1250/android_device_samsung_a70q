@@ -31,9 +31,9 @@ vendor/lib64/rfsa/adsp/libsns_device_mode_skel.so
 vendor/lib64/rfsa/adsp/libsns_low_lat_stream_skel.so
 
 # ANT+
--lib/com.qualcomm.qti.ant@1.0.so
+-system_ext/lib/com.qualcomm.qti.ant@1.0.so
 -lib/libantradio.so
--lib64/com.qualcomm.qti.ant@1.0.so
+-system_ext/lib64/com.qualcomm.qti.ant@1.0.so
 -lib64/libantradio.so
 vendor/lib/hw/com.qualcomm.qti.ant@1.0-impl.so
 vendor/lib/com.qualcomm.qti.ant@1.0.so
@@ -41,8 +41,8 @@ vendor/lib64/hw/com.qualcomm.qti.ant@1.0-impl.so
 vendor/lib64/com.qualcomm.qti.ant@1.0.so
 
 # Audio
-etc/permissions/audiosphere.xml
-framework/audiosphere.jar
+system_ext/etc/permissions/audiosphere.xml
+system_ext/framework/audiosphere.jar
 vendor/etc/dolby/dax-default.xml
 vendor/lib/lib_SamsungRec_07002.so
 vendor/lib/lib_SoundAlive_3DPosition_ver202.so
@@ -344,8 +344,7 @@ vendor/lib64/soundfx/libshoebox.so
 vendor/lib64/soundfx/libswdap.so
 
 # Bluetooth
--system_ext/lib64/libaptX_encoder.so
--system_ext/lib64/libaptXHD_encoder.so
+-lib64/libaptX_encoder.so
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
 vendor/firmware/apbtfw11.tlv
@@ -366,10 +365,6 @@ vendor/lib64/vendor.samsung.hardware.bluetooth.a2dp@1.0.so
 vendor/lib64/vendor.samsung.hardware.bluetooth@2.0.so
 
 # Camera
--lib/libchromaflash.so
--lib/libseemore.so
--lib64/libchromaflash.so
--lib64/libseemore.so
 vendor/bin/hw/vendor.samsung.hardware.camera.provider@4.0-service
 vendor/etc/init/vendor.samsung.hardware.camera.provider@4.0-service.rc
 vendor/lib/android.hardware.camera.provider@2.4-legacy.so
@@ -775,12 +770,12 @@ vendor/lib64/libqfp_sensortest.so
 vendor/lib64/libsynaFpSensorTestNwd.so
 
 # FM
--lib/fm_helium.so
--lib/libfm-hci.so
--lib/vendor.qti.hardware.fm@1.0.so
--lib64/fm_helium.so
--lib64/libfm-hci.so
--lib64/vendor.qti.hardware.fm@1.0.so
+-system_ext/lib/fm_helium.so
+-system_ext/lib/libfm-hci.so
+-system_ext/lib/vendor.qti.hardware.fm@1.0.so
+-system_ext/lib64/fm_helium.so
+-system_ext/lib64/libfm-hci.so
+-system_ext/lib64/vendor.qti.hardware.fm@1.0.so
 vendor/lib/hw/vendor.qti.hardware.fm@1.0-impl.so
 vendor/lib/vendor.qti.hardware.fm@1.0.so
 vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so
@@ -1342,7 +1337,7 @@ vendor/etc/init/vendor.qti.hardware.tui_comm@1.0-service-qti.rc
 vendor/lib/vendor.qti.hardware.tui_comm@1.0.so
 vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 
-# Voice
+# Voiceprint
 vendor/lib64/vendor.qti.voiceprint@1.0.so
 
 # Wifi
