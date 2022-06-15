@@ -485,6 +485,14 @@
         <path name="deep-buffer-playback speaker" />
     </path>
 
+    <path name="deep-buffer-playback voice-speaker">
+        <path name="deep-buffer-playback speaker" />
+    </path>
+
+    <path name="deep-buffer-playback voice-speaker-2">
+        <path name="deep-buffer-playback speaker" />
+    </path>
+
     <path name="deep-buffer-playback display-port">
         <ctl name="DISPLAY_PORT Mixer MultiMedia1" value="1" />
     </path>
@@ -630,6 +638,14 @@
     </path>
 
     <path name="low-latency-playback speaker-protected">
+        <path name="low-latency-playback speaker" />
+    </path>
+
+    <path name="low-latency-playback voice-speaker">
+        <path name="low-latency-playback speaker" />
+    </path>
+
+    <path name="low-latency-playback voice-speaker-2">
         <path name="low-latency-playback speaker" />
     </path>
 
@@ -1609,6 +1625,14 @@
         <ctl name="Voip_Tx Mixer TX_CDC_DMA_TX_3_Voip" value="1" />
     </path>
 
+    <path name="compress-voip-call voice-speaker">
+        <path name="compress-voip-call speaker" />
+    </path>
+
+    <path name="compress-voip-call voice-speaker-2">
+        <path name="compress-voip-call speaker" />
+    </path>
+
     <path name="compress-voip-call bt-sco-wb">
         <ctl name="BT SampleRate" value="KHZ_16" />
         <path name="compress-voip-call bt-sco" />
@@ -1846,6 +1870,14 @@
     <path name="audio-playback-voip speaker-and-display-port">
         <path name="audio-playback-voip display-port" />
         <path name="audio-playback-voip speaker" />
+    </path>
+
+    <path name="audio-playback-voip voice-speaker">
+        <path name="audio-playback-voip" />
+    </path>
+
+    <path name="audio-playback-voip voice-speaker-2">
+        <path name="audio-playback-voip" />
     </path>
 
     <!-- VoIP Tx settings -->
@@ -2709,6 +2741,10 @@
     </path>
 
     <path name="voice-speaker">
+        <path name="call-speaker" />
+    </path>
+
+    <path name="voice-speaker-2">
         <path name="call-speaker" />
     </path>
 
