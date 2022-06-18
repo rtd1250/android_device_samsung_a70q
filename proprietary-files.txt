@@ -1219,9 +1219,7 @@ vendor/lib/libsecnativefeature.so
 vendor/lib64/libsecnativefeature.so
 
 # Sensors
-vendor/bin/hw/android.hardware.sensors@2.0-service.multihal
 vendor/bin/factory.ssc
-vendor/etc/init/android.hardware.sensors@2.0-service-multihal.rc
 vendor/etc/sensors/config/default_sensors.json
 vendor/etc/sensors/config/lsm6dsm_0.json
 vendor/etc/sensors/config/sns_amd.json

@@ -1,5 +1,5 @@
 #!/vendor/bin/sh
-# Copyright (c) 2015,2018 The Linux Foundation. All rights reserved.
+# Copyright (c) 2020 The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -29,22 +29,5 @@
 #
 # Function to start sensors for SSC enabled platforms
 #
-start_sensors()
-{
-    sscrpcd_status=`getprop init.svc.vendor.sensors`
-
-    chmod -h 775 /mnt/vendor/persist/sensors
-    chmod -h 664 /mnt/vendor/persist/sensors/sensors_settings
-    mkdir -p /mnt/vendor/persist/sensors/registry/registry
-    chown -h -R system.system /mnt/vendor/persist/sensors
-
-    start vendor.sensors.qti
-    start factory_ssc
-
-    # Only for SLPI
-    if [ -c /dev/msm_dsps -o -c /dev/sensors ] && [ -z "$sscrpcd_status" ]; then
-        start vendor.sensors
-    fi
-}
-
-start_sensors
+cp /vendor/etc/sensors/scripts/* /data/vendor/sensors/scripts/
+chmod a+rw /data/vendor/sensors/scripts/*
