@@ -1,0 +1,10 @@
+service vendor.camera-provider-2-6 /vendor/bin/hw/android.hardware.camera.provider@2.6-service.a70q
+    interface android.hardware.camera.provider@2.6::ICameraProvider legacy/0
+    interface android.hardware.camera.provider@2.5::ICameraProvider legacy/0
+    interface android.hardware.camera.provider@2.4::ICameraProvider legacy/0
+    class hal
+    user cameraserver
+    group audio camera input drmrpc system media_rw sdcard_rw media
+    ioprio rt 4
+    capabilities SYS_NICE
+    task_profiles CameraServiceCapacity MaxPerformance

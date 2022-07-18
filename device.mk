@@ -120,13 +120,13 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.6-service.a70q \
+    android.hardware.camera.provider@2.6.vendor \
+    android.hardware.camera.device@3.6.vendor \
     android.frameworks.cameraservice.common@2.0.vendor \
     android.frameworks.cameraservice.device@2.0.vendor \
     android.frameworks.cameraservice.service@2.1.vendor \
     android.frameworks.cameraservice.service@2.0.vendor \
-    android.hardware.camera.provider@2.6-service \
-    android.hardware.camera.provider@2.6.vendor \
-    android.hardware.camera.device@3.6.vendor \
     vendor.qti.hardware.camera.device@1.0.vendor
 
 # Display/Graphics
