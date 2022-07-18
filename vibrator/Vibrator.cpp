@@ -232,7 +232,7 @@ ndk::ScopedAStatus Vibrator::activate(uint32_t timeoutMs) {
 
     /* We mostly get values that are 20ms and lower, but
        that's not enough to be actually noticeable. Set it to
-       40ms if timeoutMs is less than that. */
+       30ms if timeoutMs is less than that. */
     if (timeoutMs < INTENSITY_MIN) {
         timeoutMs = INTENSITY_MIN;
     }

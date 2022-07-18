@@ -8,7 +8,7 @@
 
 #include <aidl/android/hardware/vibrator/BnVibrator.h>
 
-#define INTENSITY_MIN 40
+#define INTENSITY_MIN 30
 #define INTENSITY_MAX 10000
 #define INTENSITY_DEFAULT INTENSITY_MAX
 
