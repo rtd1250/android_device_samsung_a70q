@@ -1,0 +1,24 @@
+cc_library_static {
+    name: "libbtdevice.a70q",
+    defaults: ["fluoride_defaults"],
+    stem: "libbtdevice",
+    host_supported: true,
+    local_include_dirs: [
+        "include",
+    ],
+    include_dirs: [
+        "system/bt",
+        "system/bt/btcore/include",
+        "system/bt/hci/include",
+        "system/bt/internal_include",
+        "system/bt/stack/include",
+    ],
+    srcs: [
+        "src/controller.cc",
+        "src/esco_parameters.cc",
+        "src/interop.cc",
+    ],
+    shared_libs: [
+        "liblog",
+    ],
+}
