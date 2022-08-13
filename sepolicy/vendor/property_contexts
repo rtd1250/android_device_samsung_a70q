@@ -57,5 +57,6 @@ vendor.camera.motor.service            u:object_r:vendor_camera_motor_prop:s0
 vendor.chre                            u:object_r:vendor_chre_prop:s0
 vendor.npu.usr_drv.log_mask            u:object_r:sec_camera_prop:s0
 vendor.sensor.                         u:object_r:vendor_sensor_prop:s0
+vendor.sensor.file.permission          u:object_r:vendor_sensors_prop:s0
 vendor.sys.qseecomd.                   u:object_r:vendor_qseecomd_prop:s0
 vendor.tzts_daemon                     u:object_r:vendor_tztsdaemon_prop:s0
