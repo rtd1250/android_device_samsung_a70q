@@ -34,6 +34,8 @@
 #include "property_service.h"
 #include "vendor_init.h"
 
+#include "init_a70q.h"
+
 void property_override(char const prop[], char const value[])
 {
     prop_info *pi;
@@ -45,13 +47,66 @@ void property_override(char const prop[], char const value[])
         __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
-void property_override_dual(char const system_prop[], char const vendor_prop[], char const value[])
+void property_override_quad(char const system_prop[], char const vendor_prop[], char const product_prop[], char const odm_prop[], char const value[])
 {
     property_override(system_prop, value);
     property_override(vendor_prop, value);
+    property_override(product_prop, value);
+    property_override(odm_prop, value);
 }
 
-void vendor_load_properties() {
-    std::string boot_model_version = android::base::GetProperty("ro.boot.product.model", "SM-A705");
-    property_override_dual("ro.product.model", "ro.product.vendor.model", boot_model_version.c_str());
+void vendor_load_properties()
+{
+    const std::string bootloader = android::base::GetProperty("ro.bootloader", "");
+
+    std::string bl_model;
+    std::string bl_build;
+    
+    if (bootloader.length() == 13) {
+        bl_model = bootloader.substr(0, 5);
+        bl_build = bootloader.substr(5);
+    } else if (bootloader.length() == 14) {
+        bl_model = bootloader.substr(0, 6);
+        bl_build = bootloader.substr(6);
+    } else {
+        LOG(ERROR) << "Could not detect model, defaulting to A705FN";
+        bl_model = "A705FN";
+        bl_build = "XXU5DVE3";
+    }
+    
+    std::string model;
+    std::string device;
+    std::string name;
+
+    model = "SM-" + bl_model;
+
+    for (size_t i = 0; i < VARIANT_MAX; i++) {
+        std::string model_ = all_variants[i]->model;
+        if (model.compare(model_) == 0) {
+            device = all_variants[i]->codename;
+            break;
+        }
+    }
+    if (device.size() == 0) {
+        LOG(ERROR) << "Could not detect device, forcing a70q";
+        device = "a70q";
+    }
+
+    name = device + "xx";
+
+    LOG(INFO) << "Found bootloader:";
+    LOG(INFO) << bootloader.c_str();
+    LOG(INFO) << "Setting ro.product.model:";
+    LOG(INFO) << model.c_str();
+    LOG(INFO) << "Setting ro.product.device:";
+    LOG(INFO) << device.c_str();
+    LOG(INFO) << "Setting ro.product.name:";
+    LOG(INFO) << name.c_str();
+    LOG(INFO) << "Setting ro.build.product:";
+    LOG(INFO) << device.c_str();
+
+    property_override_quad("ro.product.model", "ro.product.vendor.model", "ro.product.product.model", "ro.product.odm.model", model.c_str());
+    property_override_quad("ro.product.device", "ro.product.vendor.device", "ro.product.product.device", "ro.product.odm.device", device.c_str());
+    property_override_quad("ro.product.name", "ro.product.vendor.name", "ro.product.product.name", "ro.product.odm.name", name.c_str());
+    property_override("ro.build.product", device.c_str());
 }
