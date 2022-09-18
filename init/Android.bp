@@ -17,9 +17,8 @@
 cc_library_static {
     name: "libinit_a70q",
     recovery_available: true,
-    srcs: [
-        "init_a70q.cpp",
-    ],
+    srcs: ["init_a70q.cpp"],
+    whole_static_libs: ["libbase"],
     include_dirs: [
         "system/libbase/include",
         "system/core/init"
