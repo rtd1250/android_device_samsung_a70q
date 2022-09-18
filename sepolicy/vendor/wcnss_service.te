@@ -1,1 +1,7 @@
+allow vendor_wcnss_service vendor_shell_exec:file rx_file_perms;
+
+allow vendor_wcnss_service vendor_wifi_vendor_wpa_socket:dir create_dir_perms;
+allow vendor_wcnss_service vendor_wifi_vendor_wpa_socket:dir r_dir_perms;
+allow vendor_wcnss_service vendor_wifi_vendor_wpa_socket:sock_file create_file_perms;
+
 r_dir_file(vendor_wcnss_service, vendor_convergence_data_file)

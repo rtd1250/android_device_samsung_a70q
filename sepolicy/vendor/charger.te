@@ -1,0 +1,26 @@
+binder_use(charger)
+
+allow charger ashmem_device:chr_file execute;
+allow charger input_device:chr_file write;
+
+allow charger proc_reset_reason:file r_file_perms;
+
+allow charger sysfs_graphics:dir search;
+allow charger sysfs_graphics:file rw_file_perms;
+
+allow charger sysfs_usb_supply:dir search;
+allow charger sysfs_usb_supply:file rw_file_perms;
+
+allow charger sysfs_batteryinfo:file rw_file_perms;
+allow charger sysfs_rtc:file r_file_perms;
+
+allow charger app_efs_file:dir search;
+allow charger app_efs_file:file rw_file_perms;
+allow charger battery_efs_file:dir rw_dir_perms;
+allow charger battery_efs_file:file create_file_perms;
+allow charger efs_file:dir rw_dir_perms;
+allow charger efs_file:file create_file_perms;
+allow charger sec_efs_file:dir rw_dir_perms;
+allow charger sec_efs_file:file create_file_perms;
+
+set_prop(charger, powerctl_prop)

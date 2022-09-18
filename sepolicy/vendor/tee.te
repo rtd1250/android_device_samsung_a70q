@@ -40,8 +40,8 @@ allow tee ssdblk_device:blk_file { open read write };
 allow tee vaultkeeper_efs_file:dir rw_dir_perms;
 allow tee vaultkeeper_efs_file:file rw_file_perms;
 
-allow tee vendor_data_file:dir create_dir_perms;
-allow tee vendor_data_file:file create_file_perms;
+allow tee gatekeeper_vendor_data_file:dir { write add_name read open search };
+allow tee gatekeeper_vendor_data_file:file { create write open read getattr };
 
 get_prop(tee, hwservicemanager_prop)
 set_prop(tee, vendor_qseecomd_prop)

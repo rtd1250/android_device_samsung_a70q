@@ -4,6 +4,7 @@ type macloader_exec, exec_type, vendor_file_type, file_type;
 init_daemon_domain(macloader)
 
 allow macloader self:capability { chown fowner fsetid net_admin net_raw sys_module };
+
 allow macloader self:udp_socket { ioctl create };
 allowxperm macloader self:udp_socket ioctl { SIOCGIFFLAGS SIOCSIFFLAGS };
 
@@ -26,11 +27,11 @@ allow macloader system_file:system module_load;
 
 allow macloader vendor_shell_exec:file rx_file_perms;
 
-allow macloader sysfs:file { read write open getattr};
+allow macloader sysfs:file { read write open getattr };
 allow macloader sysfs_net:dir r_dir_perms;
 allow macloader sysfs_wlan_fwpath:file w_file_perms;
 
 allow macloader sysfs_wifi:dir r_dir_perms;
 allow macloader sysfs_wifi:file rw_file_perms;
 
-get_prop(macloader, sec_cnss_diag_prop)
+set_prop(macloader, vendor_wifi_prop);

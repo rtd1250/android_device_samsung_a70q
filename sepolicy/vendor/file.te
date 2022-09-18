@@ -1,5 +1,6 @@
 # data
 type biometrics_vendor_data_file, data_file_type, file_type;
+type gatekeeper_vendor_data_file, file_type, data_file_type;
 type vendor_audiopcm_data_file, data_file_type, file_type;
 type vendor_convergence_data_file, data_file_type, file_type;
 type vendor_gps_file, data_file_type, file_type;
@@ -37,6 +38,7 @@ type wifi_efs_file, file_type, mlstrustedobject;
 # proc
 type proc_default_smp_affinity, fs_type, proc_type;
 type proc_last_kmsg, fs_type, proc_type;
+type proc_reset_reason, fs_type, proc_type;
 type proc_simslot_count, fs_type, proc_type;
 type proc_swappiness, fs_type, proc_type;
 
@@ -49,6 +51,7 @@ type sysfs_camera_writable, fs_type, sysfs_type;
 type sysfs_fpc, fs_type, sysfs_type;
 type sysfs_lcd_writable, fs_type, sysfs_type;
 type sysfs_mdnie_writable, fs_type, sysfs_type;
+type sysfs_power_writable, sysfs_type, rw_fs_type, fs_type;
 type sysfs_ss_writable, fs_type, sysfs_type;
 type sysfs_tsp, fs_type, sysfs_type;
 type sysfs_wifi, fs_type, sysfs_type;
