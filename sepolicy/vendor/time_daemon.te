@@ -6,5 +6,3 @@ allow vendor_time_daemon tee:file { open read };
 
 allow vendor_time_daemon vendor_timeservice_app:dir search;
 allow vendor_time_daemon vendor_timeservice_app:file read;
-
-get_prop(vendor_time_daemon, debug_level_prop)

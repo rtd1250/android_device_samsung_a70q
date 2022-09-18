@@ -1,7 +1,0 @@
-attribute hal_qchdcpkprov;
-attribute hal_qchdcpkprov_client;
-attribute hal_qchdcpkprov_server;
-
-attribute hal_wvkprov;
-attribute hal_wvkprov_client;
-attribute hal_wvkprov_server;

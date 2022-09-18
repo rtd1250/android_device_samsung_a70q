@@ -9,10 +9,7 @@ allow vendor_init proc_sysrq:file rw_file_perms;
 allow vendor_init tmpfs:dir { add_name write };
 
 set_prop(vendor_init, audio_prop)
-set_prop(vendor_init, csc_prop)
+set_prop(vendor_init, vendor_radio_prop)
 set_prop(vendor_init, vendor_freq_prop)
-set_prop(vendor_init, ina_status_prop)
-set_prop(vendor_init, receiver_error_prop)
 set_prop(vendor_init, vendor_camera_prop)
 set_prop(vendor_init, vendor_iop_prop)
-set_prop(vendor_init, vendor_members_prop)

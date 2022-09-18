@@ -1,1 +1,1 @@
-get_prop(vendor_location, csc_prop)
+get_prop(vendor_location, vendor_radio_prop)

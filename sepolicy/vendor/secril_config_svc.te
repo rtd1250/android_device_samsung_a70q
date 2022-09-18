@@ -10,5 +10,8 @@ r_dir_file(secril_config_svc, sec_poc_file)
 
 allow secril_config_svc proc_simslot_count:file r_file_perms;
 
-get_prop(secril_config_svc, csc_prop)
+get_prop(secril_config_svc, exported_system_prop)
+set_prop(secril_config_svc, radio_prop)
 set_prop(secril_config_svc, vendor_radio_prop)
+
+get_prop(secril_config_svc, vendor_radio_prop)

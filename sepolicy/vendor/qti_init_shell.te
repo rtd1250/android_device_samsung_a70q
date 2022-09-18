@@ -11,4 +11,3 @@ allow vendor_qti_init_shell vendor_sysfs_devfreq:file setattr;
 allow vendor_qti_init_shell vendor_sysfs_msm_power:file setattr;
 
 set_prop(vendor_qti_init_shell, ctl_default_prop)
-set_prop(vendor_qti_init_shell, vendor_chre_prop)

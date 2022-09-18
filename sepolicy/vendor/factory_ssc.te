@@ -11,4 +11,4 @@ allow factory_ssc efs_file:dir search;
 allow factory_ssc self:netlink_socket { bind create write read };
 allow factory_ssc self:qipcrtr_socket { create getattr write read setopt };
 
-set_prop(factory_ssc, vendor_sensor_prop)
+set_prop(factory_ssc, vendor_sensors_prop)
