@@ -1078,10 +1078,10 @@
     <string name="db_wal_sync_mode">OFF</string>
 
     <!-- The properties of a UDFPS sensor in pixels, in the order listed below: -->
-    <integer-array name="config_udfps_sensor_props" translatable="false" >
-        <item>540</item>  <!-- <item>sensorLocationX</item> -->
-        <item>2130</item> <!-- <item>sensorLocationY</item> -->
-        <item>105</item>   <!-- <item>sensorRadius</item> -->
+    <integer-array name="config_udfps_sensor_props">
+        <item>540</item>
+        <item>2145</item>
+        <item>114</item>
     </integer-array>
 
     <!-- For performance and storage reasons, limit the number of fingerprints per user -->
