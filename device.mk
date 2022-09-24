@@ -227,7 +227,9 @@ PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml \
     libipanat \
-    liboffloadhal
+    liboffloadhal \
+    android.hardware.tetheroffload.config@1.0.vendor  \
+    android.hardware.tetheroffload.control@1.0.vendor
 
 # IRSC
 PRODUCT_COPY_FILES += \
