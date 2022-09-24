@@ -22,6 +22,23 @@ genfscon sysfs /power/cpufreq_max_limit                                         
 genfscon sysfs /power/cpufreq_min_limit                                                                                                      u:object_r:sysfs_power:s0
 genfscon sysfs /power/cpufreq_table                                                                                                          u:object_r:sysfs_power:s0
 genfscon sysfs /wifi                                                                                                                         u:object_r:sysfs_wifi:s0
+genfscon sysfs /class/input                                                                                 u:object_r:sysfs_input:s0
+genfscon sysfs /class/sec/tsp                                                                               u:object_r:sysfs_sec_touchscreen:s0
+genfscon sysfs /class/sensor_event                                                                          u:object_r:sysfs_sensors:s0
+genfscon sysfs /class/fingerprint/fingerprint                                                               u:object_r:sysfs_fingerprint:s0
+genfscon sysfs /devices/virtual/sensors/                                                                    u:object_r:sysfs_sensors:s0
+genfscon sysfs /devices/virtual/fingerprint/fingerprint                                                     u:object_r:sysfs_fingerprint:s0
+genfscon sysfs /devices/virtual/sec/hall_ic/                                                                u:object_r:sysfs_sensors:s0
+genfscon sysfs /devices/virtual/sec/sec_key                                                                 u:object_r:sysfs_sec_key:s0
+genfscon sysfs /devices/virtual/sec/tsp                                                                     u:object_r:sysfs_sec_touchscreen:s0
+genfscon sysfs /devices/virtual/sec/tsp/cmd                                                                 u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/virtual/sec/tsp/prox_power_off                                                      u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/virtual/sec/tsp/input/enabled                                                       u:object_r:sysfs_touchscreen_writable:s0
+genfscon sysfs /devices/virtual/sec/switch                                                                  u:object_r:sysfs_sec_switch:s0
+genfscon sysfs /devices/virtual/sec/switch/afc_disable                                                      u:object_r:sysfs_sec_switch_writable:s0
+genfscon sysfs /devices/virtual/camera/                                                                     u:object_r:sysfs_camera:s0
+genfscon sysfs /devices/virtual/camera/rear/ssrm_camera_info                                                u:object_r:sysfs_camera_writable:s0
+genfscon sysfs /devices/virtual/camera/flash/rear_flash                                                     u:object_r:sysfs_camera_writable:s0
 
 genfscon sysfs /devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-00/c440000.qcom,spmi:qcom,pm6150@0:qcom,qpnp-smb5/power_supply/battery   u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-00/c440000.qcom,spmi:qcom,pm6150@0:qcom,qpnp-smb5/power_supply           u:object_r:sysfs_batteryinfo:s0

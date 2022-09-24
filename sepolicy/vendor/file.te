@@ -47,12 +47,21 @@ type omr_file, file_type, mlstrustedobject;
 
 # sysfs
 type sysfs_audio_writable, fs_type, sysfs_type;
+type sysfs_camera, sysfs_type, fs_type;
 type sysfs_camera_writable, fs_type, sysfs_type;
+type sysfs_fingerprint, sysfs_type, fs_type;
 type sysfs_fpc, fs_type, sysfs_type;
+type sysfs_input, sysfs_type, fs_type;
 type sysfs_lcd_writable, fs_type, sysfs_type;
 type sysfs_mdnie_writable, fs_type, sysfs_type;
 type sysfs_power_writable, sysfs_type, fs_type;
+type sysfs_sec_key, sysfs_type, fs_type;
+type sysfs_sec_switch, sysfs_type, fs_type;
+type sysfs_sec_switch_writable, sysfs_type, fs_type;
+type sysfs_sec_touchscreen, sysfs_type, fs_type;
+type sysfs_sensors, sysfs_type, fs_type;
 type sysfs_ss_writable, fs_type, sysfs_type;
+type sysfs_touchscreen_writable, sysfs_type, fs_type;
 type sysfs_tsp, fs_type, sysfs_type;
 type sysfs_wifi, fs_type, sysfs_type;
 

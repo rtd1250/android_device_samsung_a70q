@@ -1,7 +1,0 @@
-package vendor.samsung.hardware.biometrics.fingerprint@3.0;
-
-import android.hardware.biometrics.fingerprint@2.3::IBiometricsFingerprint;
-
-interface ISehBiometricsFingerprint extends android.hardware.biometrics.fingerprint@2.3::IBiometricsFingerprint {
-    sehRequest(int32_t cmdId, int32_t inParam, vec<int8_t> inBuf) generates (int32_t retval, vec<int8_t> outBuf);
-};

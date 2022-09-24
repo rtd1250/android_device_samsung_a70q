@@ -386,6 +386,9 @@ on boot
     chown system radio /sys/class/sec/tsp/cmd
     chown system system /sys/class/sec/tsp/input/enabled
     chmod 0660 /sys/class/sec/tsp/input/enabled
+    chown system system /sys/class/sec/tsp/enabled
+    chmod 0660 /sys/class/sec/tsp/enabled
+    chown system system /sys/class/sec/tsp/input/fod_pressed
     chown root system /proc/tsp_msg
     chmod 0440 /proc/tsp_msg
     chown system radio /sys/class/sec/tsp/pressure_enable

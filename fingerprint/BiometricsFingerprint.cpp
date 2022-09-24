@@ -13,124 +13,131 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "vendor.samsung.hardware.biometrics.fingerprint@3.0-service.a70q"
+#define LOG_TAG "android.hardware.biometrics.fingerprint@2.3-service-samsung.a70q"
 
 #include <android-base/logging.h>
-#include <android-base/properties.h>
 
 #include <hardware/hw_auth_token.h>
 
 #include <hardware/fingerprint.h>
 #include <hardware/hardware.h>
 #include "BiometricsFingerprint.h"
-
+#include <android-base/properties.h>
 #include <dlfcn.h>
 #include <fstream>
 #include <inttypes.h>
 #include <unistd.h>
-#include <thread>
 
-#define BRIGHTNESS_PATH "/sys/class/backlight/panel0-backlight/brightness"
+#ifdef HAS_FINGERPRINT_GESTURES
+#include <fcntl.h>
+#endif
+
 #define TSP_CMD_PATH "/sys/class/sec/tsp/cmd"
+#define HBM_PATH "/sys/class/lcd/panel/mask_brightness"
 
-#define SEH_FINGER_STATE 22
-#define SEH_PARAM_PRESSED 2
-#define SEH_PARAM_RELEASED 1
-#define SEH_AOSP_FQNAME "android.hardware.biometrics.fingerprint@2.3::IBiometricsFingerprint"
-
-namespace vendor {
-namespace samsung {
+namespace android {
 namespace hardware {
 namespace biometrics {
 namespace fingerprint {
-namespace V3_0 {
+namespace V2_3 {
 namespace implementation {
 
 using RequestStatus = android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
 
-ISehBiometricsFingerprint* SehBiometricsFingerprint::sInstance = nullptr;
+BiometricsFingerprint* BiometricsFingerprint::sInstance = nullptr;
 
-/*
- * Write value to path and close file.
- */
 template <typename T>
 static void set(const std::string& path, const T& value) {
     std::ofstream file(path);
     file << value;
 }
 
-template <typename T>
-static T get(const std::string& path, const T& def) {
-    std::ifstream file(path);
-    T result;
-
-    file >> result;
-    return file.fail() ? def : result;
+std::string getBootloader() {
+    return android::base::GetProperty("ro.boot.bootloader", "");
 }
 
-static hidl_vec<int8_t> stringToVec(const std::string& str) {
-    auto vec = hidl_vec<int8_t>();
-    vec.resize(str.size() + 1);
-    for (size_t i = 0; i < str.size(); ++i) {
-        vec[i] = (int8_t) str[i];
-    }
-    vec[str.size()] = '\0';
-    return vec;
-}
-
-SehBiometricsFingerprint::SehBiometricsFingerprint() : mClientCallback(nullptr) {
+BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr) {
     sInstance = this;  // keep track of the most recent instance
     if (!openHal()) {
         LOG(ERROR) << "Can't open HAL module";
     }
+    
+    set(TSP_CMD_PATH, "set_fod_rect,426,2031,654,2259");
 
     std::ifstream in("/sys/devices/virtual/fingerprint/fingerprint/position");
     mIsUdfps = !!in;
     if (in)
         in.close();
 
+#ifdef HAS_FINGERPRINT_GESTURES
+    request(FINGERPRINT_REQUEST_NAVIGATION_MODE_START, 1);
+
+    uinputFd = open("/dev/uinput", O_WRONLY | O_NONBLOCK);
+    if (uinputFd < 0) {
+        LOG(ERROR) << "Unable to open uinput node";
+        return;
+    }
+
+    int err = ioctl(uinputFd, UI_SET_EVBIT, EV_KEY) |
+          ioctl(uinputFd, UI_SET_KEYBIT, KEY_UP) |
+          ioctl(uinputFd, UI_SET_KEYBIT, KEY_DOWN);
+    if (err != 0) {
+        LOG(ERROR) << "Unable to enable key events";
+        return;
+    }
+
+    struct uinput_user_dev uidev;
+    sprintf(uidev.name, "uinput-sec-fp");
+    uidev.id.bustype = BUS_VIRTUAL;
+
+    err = write(uinputFd, &uidev, sizeof(uidev));
+    if (err < 0) {
+       LOG(ERROR) << "Write user device to uinput node failed";
+       return;
+    }
+
+    err = ioctl(uinputFd, UI_DEV_CREATE);
+    if (err < 0) {
+       LOG(ERROR) << "Unable to create uinput device";
+       return;
+    }
+
+    LOG(INFO) << "Successfully registered uinput-sec-fp for fingerprint gestures";
+#endif
+
     set(TSP_CMD_PATH, "fod_enable,1,1,0");
 }
 
-SehBiometricsFingerprint::~SehBiometricsFingerprint() {
+BiometricsFingerprint::~BiometricsFingerprint() {
     if (ss_fingerprint_close() != 0) {
         LOG(ERROR) << "Can't close HAL module";
     }
 }
 
-Return<bool> SehBiometricsFingerprint::isUdfps(uint32_t) {
+Return<bool> BiometricsFingerprint::isUdfps(uint32_t) {
     return mIsUdfps;
 }
 
-void SehBiometricsFingerprint::requestResult(int, const hidl_vec<int8_t>&) {
-    // Ignore all results
-}
-
-Return<void> SehBiometricsFingerprint::onFingerDown(uint32_t, uint32_t, float, float) {
-    mPreviousBrightness = get<std::string>(BRIGHTNESS_PATH, "");
-    set(BRIGHTNESS_PATH, "319");
-
-    sehRequest(SEH_FINGER_STATE, SEH_PARAM_PRESSED,
-        stringToVec(SEH_AOSP_FQNAME), SehBiometricsFingerprint::requestResult);
-
+Return<void> BiometricsFingerprint::onFingerDown(uint32_t, uint32_t, float, float) {
     std::thread([this]() {
-        std::this_thread::sleep_for(std::chrono::milliseconds(400));
-        if (!mPreviousBrightness.empty()) {
-            set(BRIGHTNESS_PATH, mPreviousBrightness);
-            mPreviousBrightness = "";
-        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(35));
+        set(HBM_PATH, "331");
     }).detach();
-    return Void();
-}
 
-Return<void> SehBiometricsFingerprint::onFingerUp() {
-    sehRequest(SEH_FINGER_STATE, SEH_PARAM_RELEASED,
-        stringToVec(SEH_AOSP_FQNAME), SehBiometricsFingerprint::requestResult);
+    request(SEM_REQUEST_TOUCH_EVENT, FINGERPRINT_REQUEST_SESSION_OPEN);
 
     return Void();
 }
 
-Return<RequestStatus> SehBiometricsFingerprint::ErrorFilter(int32_t error) {
+Return<void> BiometricsFingerprint::onFingerUp() {
+    request(SEM_REQUEST_TOUCH_EVENT, FINGERPRINT_REQUEST_RESUME);
+
+    set(HBM_PATH, "0");
+
+    return Void();
+}
+
+Return<RequestStatus> BiometricsFingerprint::ErrorFilter(int32_t error) {
     switch (error) {
         case 0:
             return RequestStatus::SYS_OK;
@@ -164,7 +171,7 @@ Return<RequestStatus> SehBiometricsFingerprint::ErrorFilter(int32_t error) {
 
 // Translate from errors returned by traditional HAL (see fingerprint.h) to
 // HIDL-compliant FingerprintError.
-FingerprintError SehBiometricsFingerprint::VendorErrorFilter(int32_t error, int32_t* vendorCode) {
+FingerprintError BiometricsFingerprint::VendorErrorFilter(int32_t error, int32_t* vendorCode) {
     *vendorCode = 0;
     switch (error) {
         case FINGERPRINT_ERROR_HW_UNAVAILABLE:
@@ -194,7 +201,7 @@ FingerprintError SehBiometricsFingerprint::VendorErrorFilter(int32_t error, int3
 
 // Translate acquired messages returned by traditional HAL (see fingerprint.h)
 // to HIDL-compliant FingerprintAcquiredInfo.
-FingerprintAcquiredInfo SehBiometricsFingerprint::VendorAcquiredFilter(int32_t info,
+FingerprintAcquiredInfo BiometricsFingerprint::VendorAcquiredFilter(int32_t info,
                                                                     int32_t* vendorCode) {
     *vendorCode = 0;
     switch (info) {
@@ -221,7 +228,7 @@ FingerprintAcquiredInfo SehBiometricsFingerprint::VendorAcquiredFilter(int32_t i
     return FingerprintAcquiredInfo::ACQUIRED_INSUFFICIENT;
 }
 
-Return<uint64_t> SehBiometricsFingerprint::setNotify(
+Return<uint64_t> BiometricsFingerprint::setNotify(
     const sp<IBiometricsFingerprintClientCallback>& clientCallback) {
     std::lock_guard<std::mutex> lock(mClientCallbackMutex);
     mClientCallback = clientCallback;
@@ -232,30 +239,45 @@ Return<uint64_t> SehBiometricsFingerprint::setNotify(
     return reinterpret_cast<uint64_t>(this);
 }
 
-Return<uint64_t> SehBiometricsFingerprint::preEnroll() {
+Return<uint64_t> BiometricsFingerprint::preEnroll() {
     return ss_fingerprint_pre_enroll();
 }
 
-Return<RequestStatus> SehBiometricsFingerprint::enroll(const hidl_array<uint8_t, 69>& hat,
+Return<RequestStatus> BiometricsFingerprint::enroll(const hidl_array<uint8_t, 69>& hat,
                                                     uint32_t gid, uint32_t timeoutSec) {
     const hw_auth_token_t* authToken = reinterpret_cast<const hw_auth_token_t*>(hat.data());
+
+#ifdef REQUEST_FORCE_CALIBRATE
+    request(SEM_REQUEST_FORCE_CBGE, 1);
+#endif
 
     return ErrorFilter(ss_fingerprint_enroll(authToken, gid, timeoutSec));
 }
 
-Return<RequestStatus> SehBiometricsFingerprint::postEnroll() {
+Return<RequestStatus> BiometricsFingerprint::postEnroll() {
     return ErrorFilter(ss_fingerprint_post_enroll());
 }
 
-Return<uint64_t> SehBiometricsFingerprint::getAuthenticatorId() {
+Return<uint64_t> BiometricsFingerprint::getAuthenticatorId() {
     return ss_fingerprint_get_auth_id();
 }
 
-Return<RequestStatus> SehBiometricsFingerprint::cancel() {
-    return ErrorFilter(ss_fingerprint_cancel());
+Return<RequestStatus> BiometricsFingerprint::cancel() {
+    int32_t ret = ss_fingerprint_cancel();
+
+#ifdef CALL_NOTIFY_ON_CANCEL
+    if (ret == 0) {
+        fingerprint_msg_t msg{};
+        msg.type = FINGERPRINT_ERROR;
+        msg.data.error = FINGERPRINT_ERROR_CANCELED;
+        notify(&msg);
+    }
+#endif
+
+    return ErrorFilter(ret);
 }
 
-Return<RequestStatus> SehBiometricsFingerprint::enumerate() {
+Return<RequestStatus> BiometricsFingerprint::enumerate() {
     if (ss_fingerprint_enumerate != nullptr) {
         return ErrorFilter(ss_fingerprint_enumerate());
     }
@@ -263,62 +285,36 @@ Return<RequestStatus> SehBiometricsFingerprint::enumerate() {
     return RequestStatus::SYS_UNKNOWN;
 }
 
-Return<RequestStatus> SehBiometricsFingerprint::remove(uint32_t gid, uint32_t fid) {
+Return<RequestStatus> BiometricsFingerprint::remove(uint32_t gid, uint32_t fid) {
     return ErrorFilter(ss_fingerprint_remove(gid, fid));
 }
 
-Return<RequestStatus> SehBiometricsFingerprint::setActiveGroup(uint32_t gid,
-                                                            const hidl_string&) {
-    std::string storePath = "/data/vendor/biometrics/fp/User_" + std::to_string(gid);
-    LOG(ERROR) << "setActiveGroup " << gid << " " << storePath;
+Return<RequestStatus> BiometricsFingerprint::setActiveGroup(uint32_t gid,
+                                                            const hidl_string& storePath) {
+    if (storePath.size() >= PATH_MAX || storePath.size() <= 0) {
+        LOG(ERROR) << "Bad path length: " << storePath.size();
+        return RequestStatus::SYS_EINVAL;
+    }
+
+    if (access(storePath.c_str(), W_OK)) {
+        return RequestStatus::SYS_EINVAL;
+    }
+
     return ErrorFilter(ss_fingerprint_set_active_group(gid, storePath.c_str()));
 }
 
-Return<RequestStatus> SehBiometricsFingerprint::authenticate(uint64_t operationId, uint32_t gid) {
+Return<RequestStatus> BiometricsFingerprint::authenticate(uint64_t operationId, uint32_t gid) {
     return ErrorFilter(ss_fingerprint_authenticate(operationId, gid));
 }
 
-Return<void> SehBiometricsFingerprint::sehRequest(int32_t cmd_id,
-            int32_t inParam, const hidl_vec<int8_t>& inputBuf, sehRequest_cb _hidl_cb) {
-    size_t inputSize = 0;
-    for (; inputBuf[inputSize] != '\0'; ++inputSize);
-
-    int8_t input[inputSize + 1];
-
-    // HACK: SehBiometrics 3.0 doesn't have the len parameter like the older 2.1 HAL has. Set it to 10 for now
-    int8_t output[10];
-
-    for (size_t i = 0; i < inputSize; ++i) {
-        input[i] = inputBuf[i];
-    }
-    input[inputSize] = '\0';
-    for (size_t i = 0; i < static_cast<size_t>(10); ++i) {
-        output[i] = '\0';
-    }
-
-    LOG(ERROR) << "request(cmd_id=" << cmd_id
-            << ", len=" << 10
-            << ", inParam=" << inParam
-            << ", inputBuf=" << input
-            << ")";
-
-    int ret = ss_fingerprint_request(cmd_id, input, 0, 10 == 0 ? nullptr : output, 10, inParam);
-
-    auto outBuf = hidl_vec<int8_t>();
-    outBuf.setToExternal(output, 10);
-
-    _hidl_cb(ret, outBuf);
-    return Void();
-}
-
-ISehBiometricsFingerprint* SehBiometricsFingerprint::getInstance() {
+IBiometricsFingerprint* BiometricsFingerprint::getInstance() {
     if (!sInstance) {
-        sInstance = new SehBiometricsFingerprint();
+        sInstance = new BiometricsFingerprint();
     }
     return sInstance;
 }
 
-bool SehBiometricsFingerprint::openHal() {
+bool BiometricsFingerprint::openHal() {
     void* handle = dlopen("libbauthserver.so", RTLD_NOW);
     if (handle) {
         int err;
@@ -356,7 +352,7 @@ bool SehBiometricsFingerprint::openHal() {
             return false;
         }
 
-        if ((err = ss_set_notify_callback(SehBiometricsFingerprint::notify)) != 0) {
+        if ((err = ss_set_notify_callback(BiometricsFingerprint::notify)) != 0) {
             LOG(ERROR) << "Can't register fingerprint module callback, error: " << err;
             return false;
         }
@@ -367,9 +363,9 @@ bool SehBiometricsFingerprint::openHal() {
     return false;
 }
 
-void SehBiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
-    SehBiometricsFingerprint* thisPtr =
-        static_cast<SehBiometricsFingerprint*>(SehBiometricsFingerprint::getInstance());
+void BiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
+    BiometricsFingerprint* thisPtr =
+        static_cast<BiometricsFingerprint*>(BiometricsFingerprint::getInstance());
     std::lock_guard<std::mutex> lock(thisPtr->mClientCallbackMutex);
     if (thisPtr == nullptr || thisPtr->mClientCallback == nullptr) {
         LOG(ERROR) << "Receiving callbacks before the client callback is registered.";
@@ -384,8 +380,13 @@ void SehBiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
             if (!thisPtr->mClientCallback->onError(devId, result, vendorCode).isOk()) {
                 LOG(ERROR) << "failed to invoke fingerprint onError callback";
             }
+            getInstance()->onFingerUp();
         } break;
         case FINGERPRINT_ACQUIRED: {
+            if (msg->data.acquired.acquired_info > SEM_FINGERPRINT_EVENT_BASE) {
+                thisPtr->handleEvent(msg->data.acquired.acquired_info);
+                return;
+            }
             int32_t vendorCode = 0;
             FingerprintAcquiredInfo result =
                 VendorAcquiredFilter(msg->data.acquired.acquired_info, &vendorCode);
@@ -395,8 +396,16 @@ void SehBiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
             }
         } break;
         case FINGERPRINT_TEMPLATE_ENROLLING:
+#ifdef USES_PERCENTAGE_SAMPLES
             const_cast<fingerprint_msg_t*>(msg)->data.enroll.samples_remaining =
                 100 - msg->data.enroll.samples_remaining;
+#endif
+            if(msg->data.enroll.samples_remaining == 0) {
+                set(HBM_PATH, "0");
+#ifdef CALL_CANCEL_ON_ENROLL_COMPLETION
+                thisPtr->ss_fingerprint_cancel();
+#endif
+            }
             LOG(DEBUG) << "onEnrollResult(fid=" << msg->data.enroll.finger.fid
                        << ", gid=" << msg->data.enroll.finger.gid
                        << ", rem=" << msg->data.enroll.samples_remaining << ")";
@@ -425,6 +434,7 @@ void SehBiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
                 const uint8_t* hat = reinterpret_cast<const uint8_t*>(&msg->data.authenticated.hat);
                 const hidl_vec<uint8_t> token(
                     std::vector<uint8_t>(hat, hat + sizeof(msg->data.authenticated.hat)));
+                set(HBM_PATH, "0");
                 if (!thisPtr->mClientCallback
                          ->onAuthenticated(devId, msg->data.authenticated.finger.fid,
                                            msg->data.authenticated.finger.gid, token)
@@ -456,10 +466,84 @@ void SehBiometricsFingerprint::notify(const fingerprint_msg_t* msg) {
     }
 }
 
+void BiometricsFingerprint::handleEvent(int eventCode) {
+    switch (eventCode) {
+#ifdef HAS_FINGERPRINT_GESTURES
+        case SEM_FINGERPRINT_EVENT_GESTURE_SWIPE_DOWN:
+        case SEM_FINGERPRINT_EVENT_GESTURE_SWIPE_UP:
+            struct input_event event {};
+            int keycode = eventCode == SEM_FINGERPRINT_EVENT_GESTURE_SWIPE_UP ?
+                          KEY_UP : KEY_DOWN;
+
+            // Report the key
+            event.type = EV_KEY;
+            event.code = keycode;
+            event.value = 1;
+            if (write(uinputFd, &event, sizeof(event)) < 0) {
+                LOG(ERROR) << "Write EV_KEY to uinput node failed";
+                return;
+            }
+
+            // Force a flush with an EV_SYN
+            event.type = EV_SYN;
+            event.code = SYN_REPORT;
+            event.value = 0;
+            if (write(uinputFd, &event, sizeof(event)) < 0) {
+                LOG(ERROR) << "Write EV_SYN to uinput node failed";
+                return;
+            }
+
+            // Report the key
+            event.type = EV_KEY;
+            event.code = keycode;
+            event.value = 0;
+            if (write(uinputFd, &event, sizeof(event)) < 0) {
+                LOG(ERROR) << "Write EV_KEY to uinput node failed";
+                return;
+            }
+
+            // Force a flush with an EV_SYN
+            event.type = EV_SYN;
+            event.code = SYN_REPORT;
+            event.value = 0;
+            if (write(uinputFd, &event, sizeof(event)) < 0) {
+                LOG(ERROR) << "Write EV_SYN to uinput node failed";
+                return;
+            }
+        break;
+#endif
+    }
+}
+
+int BiometricsFingerprint::request(int cmd, int param) {
+    // TO-DO: input, output handling not implemented
+    int result = ss_fingerprint_request(cmd, nullptr, 0, nullptr, 0, param);
+    LOG(INFO) << "request(cmd=" << cmd << ", param=" << param << ", result=" << result << ")";
+    return result;
+}
+
+int BiometricsFingerprint::waitForSensor(std::chrono::milliseconds pollWait,
+                                         std::chrono::milliseconds timeOut) {
+    int sensorStatus = SEM_SENSOR_STATUS_WORKING;
+    std::chrono::milliseconds timeWaited = 0ms;
+    while (sensorStatus != SEM_SENSOR_STATUS_OK) {
+        if (sensorStatus == SEM_SENSOR_STATUS_CALIBRATION_ERROR
+                || sensorStatus == SEM_SENSOR_STATUS_ERROR){
+            return -1;
+        }
+        if (timeWaited >= timeOut) {
+            return -2;
+        }
+        sensorStatus = request(FINGERPRINT_REQUEST_GET_SENSOR_STATUS, 0);
+        std::this_thread::sleep_for(pollWait);
+        timeWaited += pollWait;
+    }
+    return 0;
+}
+
 }  // namespace implementation
-}  // namespace V3_0
+}  // namespace V2_3
 }  // namespace fingerprint
 }  // namespace biometrics
 }  // namespace hardware
-}  // namespace samsung
-}  // namespace vendor
+}  // namespace android

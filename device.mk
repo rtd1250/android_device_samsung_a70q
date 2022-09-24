@@ -173,7 +173,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    vendor.samsung.hardware.biometrics.fingerprint@3.0-service.a70q
+    android.hardware.biometrics.fingerprint@2.3-service-samsung.a70q
 
 # FM
 # PRODUCT_PACKAGES += \
@@ -341,10 +341,10 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.carrier.rc \
     init.display.rc \
+    init.fingerprint.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
     init.target.rc \
-    init.udfps.rc \
     init.vendor.rilchip.rc \
     init.vendor.rilcommon.rc \
     ueventd.qcom.rc \

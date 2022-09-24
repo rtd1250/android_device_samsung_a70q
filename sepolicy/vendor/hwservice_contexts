@@ -7,7 +7,6 @@ vendor.samsung.hardware.camera.provider::ISehCameraProvider                     
 vendor.samsung.hardware.gnss::ISehGnss                                                 u:object_r:hal_gnss_hwservice:s0
 vendor.samsung.hardware.health::ISehHealth                                             u:object_r:hal_health_hwservice:s0
 vendor.samsung.hardware.miscpower::ISehMiscPower                                       u:object_r:hal_miscpower_hwservice:s0
-vendor.samsung.hardware.biometrics.fingerprint::ISehBiometricsFingerprint              u:object_r:hal_fingerprint_hwservice:s0
 vendor.samsung.hardware.radio::ISehRadio                                               u:object_r:hal_telephony_hwservice:s0
 vendor.samsung.hardware.radio.bridge::ISehBridge                                       u:object_r:hal_telephony_hwservice:s0
 vendor.samsung.hardware.radio.channel::ISehChannel                                     u:object_r:hal_telephony_hwservice:s0

@@ -9,14 +9,4 @@
         </interface>
         <fqname>@2.3::IBiometricsFingerprint/default</fqname>
     </hal>
-    <hal format="hidl" override="true">
-        <name>vendor.samsung.hardware.biometrics.fingerprint</name>
-        <transport>hwbinder</transport>
-        <version>3.0</version>
-        <interface>
-            <name>ISehBiometricsFingerprint</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@3.0::ISehBiometricsFingerprint/default</fqname>
-    </hal>
 </manifest>

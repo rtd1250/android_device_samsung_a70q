@@ -21,5 +21,8 @@
             0 - GLOBAL HBM
             1 - LOCAL HBM
     -->
-    <integer name="config_udfps_hbm_type">0</integer>
+    <integer name="config_udfpsHbmType">0</integer>
+
+    <!-- Color of the UDFPS pressed view -->
+    <color name="config_udfpsColor">#00ff50</color>
 </resources>

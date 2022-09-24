@@ -1084,4 +1084,6 @@
         <item>105</item>   <!-- <item>sensorRadius</item> -->
     </integer-array>
 
+    <!-- For performance and storage reasons, limit the number of fingerprints per user -->
+    <integer name="config_fingerprintMaxTemplatesPerUser">4</integer>
 </resources>
