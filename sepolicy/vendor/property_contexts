@@ -19,7 +19,7 @@ vendor.sec.rild.                                 u:object_r:vendor_radio_prop:s0
 ro.vendor.sec.radio.                             u:object_r:vendor_radio_prop:s0
 ro.vendor.use_data_netmgrd                       u:object_r:vendor_radio_prop:s0
 ro.vendor.epdg.support                           u:object_r:vendor_radio_prop:s0
-vendor.calls                                     u:object_r:vendor_radio_prop:s0
+vendor.calls.slotid                              u:object_r:vendor_radio_prop:s0
 
 # Sensors
 vendor.sensor.file.permission                    u:object_r:vendor_sensors_prop:s0

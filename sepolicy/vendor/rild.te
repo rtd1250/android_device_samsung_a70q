@@ -1,19 +1,50 @@
-allow rild app_efs_file:dir search;
-allow rild app_efs_file:file { open read getattr };
-
-allow rild drb_device:chr_file { getattr ioctl open read write };
-
-allow rild imei_efs_file:dir { add_name search write };
-allow rild imei_efs_file:file { create read write open setattr getattr };
-
-allow rild mnt_vendor_file:dir search;
-
-allow rild proc_net:file write;
-
-allow rild proc_qtaguid_stat:file { getattr open read };
-
-allow rild prov_efs_file:dir search;
-allow rild prov_efs_file:file { read getattr open };
+# rild.te
 
 get_prop(rild, vendor_radio_prop)
 get_prop(rild, radio_prop)
+
+allow rild block_device:dir search;
+allow rild mnt_vendor_file:dir { getattr search };
+
+# audio hal
+allow rild hal_audio_default:dir search;
+allow rild hal_audio_default:file r_file_perms;
+
+# /data
+allow rild system_data_file:dir getattr;
+
+# /dev/drb
+allow rild drb_device:chr_file rw_file_perms;
+
+# /data/vendor/secradio
+allow rild vendor_radio_data_file:dir rw_dir_perms;
+allow rild vendor_radio_data_file:file create_file_perms;
+
+# /efs/FactoryApp/
+allow rild app_efs_file:dir r_dir_perms;
+allow rild app_efs_file:file { rw_file_perms setattr };
+
+# /efs/imei
+allow rild imei_efs_file:dir r_dir_perms;
+allow rild imei_efs_file:file r_file_perms;
+
+# /mnt/vendor/efs/
+allow rild prov_efs_file:dir r_dir_perms;
+allow rild prov_efs_file:file r_file_perms;
+
+# /proc/net/xt_qtaguid/iface_stat_fmt
+allow rild proc_qtaguid_stat:file r_file_perms;
+
+# /proc/sys/net/ipv6/conf/*/accept_ra_defrtr
+allow rild proc_net:file rw_file_perms;
+
+allow rild tun_device:chr_file rw_file_perms;
+allowxperm rild tun_device:chr_file ioctl { 0x54ca 0x54cb };
+allow rild self:tun_socket create;
+
+dontaudit rild {
+    system_prop
+    default_prop
+}:file read;
+
+dontaudit rild default_prop:property_service set;

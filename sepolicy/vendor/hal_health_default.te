@@ -1,5 +1,13 @@
 allow hal_health_default mnt_vendor_file:dir search;
 
-r_dir_file(hal_health_default, app_efs_file)
+allow hal_health_default app_efs_file:dir rw_dir_perms;
+allow hal_health_default app_efs_file:file create_file_perms;
+
+allow hal_health_default battery_efs_file:dir create_dir_perms;
+allow hal_health_default battery_efs_file:file create_file_perms;
+
+allow hal_health_default sysfs_battery_supply:file w_file_perms;
+allow hal_health_default sysfs_batteryinfo:file w_file_perms;
+
 r_dir_file(hal_health_default, efs_file)
-r_dir_file(hal_health_default, battery_efs_file)
+r_dir_file(hal_health_default, sec_poc_file)

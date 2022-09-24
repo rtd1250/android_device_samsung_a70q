@@ -6,8 +6,8 @@ allow vendor_qti_init_shell mnt_vendor_file:dir create_dir_perms;
 allow vendor_qti_init_shell proc_default_smp_affinity:file { open write };
 allow vendor_qti_init_shell proc_sched:file { open write };
 
-allow vendor_qti_init_shell vendor_sysfs_devfreq:file setattr;
+allow vendor_qti_init_shell vendor_sysfs_devfreq:file { write setattr };
 
-allow vendor_qti_init_shell vendor_sysfs_msm_power:file setattr;
+allow vendor_qti_init_shell vendor_sysfs_msm_power:file { write setattr };
 
 set_prop(vendor_qti_init_shell, ctl_default_prop)

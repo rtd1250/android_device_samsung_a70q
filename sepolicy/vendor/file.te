@@ -51,7 +51,7 @@ type sysfs_camera_writable, fs_type, sysfs_type;
 type sysfs_fpc, fs_type, sysfs_type;
 type sysfs_lcd_writable, fs_type, sysfs_type;
 type sysfs_mdnie_writable, fs_type, sysfs_type;
-type sysfs_power_writable, sysfs_type, rw_fs_type, fs_type;
+type sysfs_power_writable, sysfs_type, fs_type;
 type sysfs_ss_writable, fs_type, sysfs_type;
 type sysfs_tsp, fs_type, sysfs_type;
 type sysfs_wifi, fs_type, sysfs_type;

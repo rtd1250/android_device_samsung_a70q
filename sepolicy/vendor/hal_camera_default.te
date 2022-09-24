@@ -9,6 +9,7 @@ allow hal_camera_default vendor_sysfs_sensors:file r_file_perms;
 r_dir_file(hal_camera_default, efs_file)
 r_dir_file(hal_camera_default, sec_poc_file)
 
-get_prop(hal_camera_default, vendor_radio_prop)
+binder_call(hal_camera_default, system_server)
 get_prop(hal_camera_default, vendor_mpctl_prop)
-get_prop(hal_camera_default, vendor_gpu_prop)
+
+dontaudit hal_camera_default default_prop:file read;

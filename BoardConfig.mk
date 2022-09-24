@@ -220,6 +220,8 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
+SELINUX_IGNORE_NEVERALLOWS := true
+
 # Shims
 TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib64/libsec-ril.so|libcutils_shim.so \
