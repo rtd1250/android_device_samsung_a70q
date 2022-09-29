@@ -14,25 +14,12 @@ ro.vendor.audio.sdk.ssr=false
 tunnel.audio.encode=true
 qcom.hw.aac.encoder=true
 ro.config.vc_call_vol_steps=7
-vendor.audio.feature.a2dp_offload.enable=true
 vendor.audio.feature.compr_voip.enable=false
-vendor.audio.feature.compress_meta_data.enable=true
 vendor.audio.feature.deepbuffer_as_primary.enable=true
-vendor.audio.feature.display_port.enable=true
 vendor.audio.feature.fm.enable=true
-vendor.audio.feature.hdmi_edid.enable=true
-vendor.audio.feature.hfp.enable=true
 vendor.audio.feature.incall_music.enable=true
-vendor.audio.feature.spkr_prot.enable=true
+vendor.audio.feature.multi_voice_session.enable=true
 vendor.audio.feature.usb_offload.enable=true
-vendor.audio.feature.snd_mon.enable=true
-vendor.audio.feature.multi_voice_session.enable=false
-vendor.audio.feature.external_dsp.enable=false
-vendor.audio.feature.external_speaker.enable=false
-vendor.audio.feature.hwdep_cal.enable=false
-vendor.audio.feature.concurrent_capture.enable=false
-vendor.audio.feature.maxx_audio.enable=false
-vendor.audio.feature.audiozoom.enable=false
 vendor.dedicated.device.for.voip=true
 use.dedicated.device.for.voip=true
 
@@ -120,11 +107,14 @@ vendor.hw.fm.init=0
 ro.frp.pst=/dev/block/persistent
 
 # Fluence/Audio Proccessing
-ro.vendor.audio.sdk.fluencetype=none
+persist.audio.fluence.speaker=true
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.vendor.audio.fluence.speaker=true
 persist.vendor.audio.fluence.voicecall=true
 persist.vendor.audio.fluence.voicerec=false
-persist.vendor.audio.fluence.speaker=true
-persist.vendor.audio.fluence.voicecomm=true
+ro.qc.sdk.audio.fluencetype=none
+ro.vendor.audio.sdk.fluencetype=none
 
 # Gatekeeper
 ro.hardware.gatekeeper=mdfpp
