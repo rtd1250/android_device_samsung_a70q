@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2019 The LineageOS Project
+# Copyright (C) 2019-2022 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ def IncrementalOTA_InstallEnd(info):
 
 def AddBootloaderAssertion(info, input_zip):
   android_info = input_zip.read("OTA/android-info.txt")
-  m = re.search(r'require\s+version-bootloader\s*=\s*(\d)$', android_info)
+  m = re.search(r'require\s+version-bootloader\s*=\s*(\d)$', android_info.decode('utf-8'))
   if m:
     bootloader_version = m.group(1)
     cmd = ('assert(a70q.verify_bootloader("{}") == "1" || abort("ERROR: This package '
