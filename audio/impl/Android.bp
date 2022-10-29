@@ -39,6 +39,8 @@ cc_defaults {
         "libhidlbase",
         "liblog",
         "libmedia_helper",
+        "libmediautils_vendor",
+        "libmemunreachable",
         "libtinyalsa",
         "libutils",
         "android.hardware.audio.common-util",
@@ -47,7 +49,6 @@ cc_defaults {
     header_libs: [
         "android.hardware.audio-impl_a70q_headers",
         "android.hardware.audio.common.util@all-versions",
-        "libaudioclient_headers",
         "libaudioutils_headers",
         "libaudio_system_headers",
         "libhardware_headers",
@@ -139,6 +140,27 @@ cc_library_shared {
     cflags: [
         "-DMAJOR_VERSION=7",
         "-DMINOR_VERSION=0",
+        "-include common/all-versions/VersionMacro.h",
+    ],
+}
+
+cc_library_shared {
+    name: "android.hardware.audio@7.1-impl_a70q",
+    defaults: ["android.hardware.audio-impl_a70q"],
+    shared_libs: [
+        "android.hardware.audio@7.0",
+        "android.hardware.audio@7.1",
+        "android.hardware.audio@7.1-util",
+        "android.hardware.audio.common@7.0",
+        "android.hardware.audio.common@7.1-enums",
+        "android.hardware.audio.common@7.1-util",
+        "libbase",
+    ],
+    cflags: [
+        "-DMAJOR_VERSION=7",
+        "-DMINOR_VERSION=1",
+        "-DCOMMON_TYPES_MINOR_VERSION=0",
+        "-DCORE_TYPES_MINOR_VERSION=0",
         "-include common/all-versions/VersionMacro.h",
     ],
 }
