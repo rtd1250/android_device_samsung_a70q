@@ -132,7 +132,6 @@ PRODUCT_PACKAGES += \
 # Display/Graphics
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.4-service \
-    android.hardware.graphics.composer@2.4-impl \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     android.hardware.memtrack@1.0-impl \
@@ -142,7 +141,7 @@ PRODUCT_PACKAGES += \
     libdisplayconfig.qti \
     libqdMetaData \
     libtinyxml \
-    libtinyxml.vendor \
+    libtinyxml2 \
     libvulkan \
     memtrack.sm6150 \
     vendor.qti.hardware.display.allocator-service \
@@ -189,12 +188,7 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    android.hardware.gnss@2.1.vendor \
-    android.hardware.gnss@2.1-impl-qti:64 \
-    android.hardware.gnss@2.1-service-qti \
-    libbatching \
-    libgeofencing \
-    libgnss
+    android.hardware.gnss@2.1.vendor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/apdr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/apdr.conf \
@@ -282,11 +276,12 @@ PRODUCT_PACKAGES += \
     android.hardware.nfc@1.1:64 \
     android.hardware.nfc@1.2:64 \
     com.android.nfc_extras \
+    libnfc-nci \
+    libnfc_nci_jni \
     NfcNci \
     Tag \
     vendor.nxp.nxpese@1.0:64 \
     vendor.nxp.nxpnfc@1.0:64 \
-    vendor.nxp.nxpnfc@1.1:64
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
@@ -349,11 +344,11 @@ PRODUCT_PACKAGES += \
     wifi_a70q.rc
 
 # RCS
-PRODUCT_PACKAGES += \
-    rcs_service_aidl \
-    rcs_service_aidl.xml \
-    rcs_service_api \
-    rcs_service_api.xml
+# PRODUCT_PACKAGES += \
+#     rcs_service_aidl \
+#     rcs_service_aidl.xml \
+#     rcs_service_api \
+#     rcs_service_api.xml
 
 # Recovery
 PRODUCT_COPY_FILES += \
@@ -374,7 +369,6 @@ PRODUCT_PACKAGES += \
     librilutils \
     secril_config_svc \
     libprotobuf-cpp-full \
-    libtrafficcontrol-spoofer \
     libcutils_shim
 
 # Seccomp policy
@@ -407,12 +401,8 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0.vendor
 
 # TextClassifier
-PRODUCT_PACKAGES += \
-    textclassifier.bundle1
-
-# Touchscreen
-PRODUCT_PACKAGES += \
-    libtinyxml2
+# PRODUCT_PACKAGES += \
+    # textclassifier.bundle1
 
 # Trust HAL
 PRODUCT_PACKAGES += \

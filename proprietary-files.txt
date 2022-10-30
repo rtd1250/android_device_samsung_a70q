@@ -853,8 +853,10 @@ vendor/bin/loc_launcher
 vendor/bin/lowi-server
 vendor/bin/xtra-daemon
 vendor/etc/init/android.hardware.gnss@2.1-service-qti.rc
+vendor/etc/vintf/manifest/android.hardware.gnss@2.1-service-qti.xml
 vendor/lib/hw/android.hardware.gnss@2.1-impl-qti.so
 vendor/lib/hw/vendor.samsung.hardware.gnss@2.0-impl-sec.so
+vendor/lib/libbatching.so
 vendor/lib/libcdfw_remote_api.so
 vendor/lib/libcdfw.so
 vendor/lib/libdataitems.so
@@ -886,6 +888,7 @@ vendor/lib/vendor.qti.gnss@4.0.so
 vendor/lib/vendor.samsung.hardware.gnss@2.0.so
 vendor/lib64/hw/android.hardware.gnss@2.1-impl-qti.so
 vendor/lib64/hw/vendor.samsung.hardware.gnss@2.0-impl-sec.so
+vendor/lib64/libbatching.so
 vendor/lib64/libcdfw_remote_api.so
 vendor/lib64/libcdfw.so
 vendor/lib64/libdataitems.so
