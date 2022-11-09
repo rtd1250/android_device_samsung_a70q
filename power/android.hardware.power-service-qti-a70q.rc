@@ -1,0 +1,4 @@
+service vendor.power /vendor/bin/hw/android.hardware.power-service-qti-a70q
+    class hal
+    user system
+    group system
