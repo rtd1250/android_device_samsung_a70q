@@ -52,18 +52,12 @@ static void set(const std::string& path, const T& value) {
     file << value;
 }
 
-std::string getBootloader() {
-    return android::base::GetProperty("ro.boot.bootloader", "");
-}
-
 BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr) {
     sInstance = this;  // keep track of the most recent instance
     if (!openHal()) {
         LOG(ERROR) << "Can't open HAL module";
     }
     
-    set(TSP_CMD_PATH, "set_fod_rect,426,2031,654,2259");
-
     std::ifstream in("/sys/devices/virtual/fingerprint/fingerprint/position");
     mIsUdfps = !!in;
     if (in)
