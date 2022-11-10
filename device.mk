@@ -77,7 +77,6 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio-impl \
     android.hardware.soundtrigger@2.2-impl:32 \
     audio.bluetooth.default \
-    audio.primary.sm6150 \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
@@ -358,7 +357,7 @@ PRODUCT_PACKAGES += \
     librilutils \
     secril_config_svc \
     libprotobuf-cpp-full \
-    libcutils_shim
+    libcutils_shim.vendor
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
