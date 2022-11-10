@@ -44,6 +44,7 @@ vendor/lib64/com.qualcomm.qti.ant@1.0.so
 system_ext/etc/permissions/audiosphere.xml
 system_ext/framework/audiosphere.jar
 vendor/etc/dolby/dax-default.xml
+vendor/lib/hw/audio.primary.sm6150.so
 vendor/lib/lib_SamsungRec_07002.so
 vendor/lib/lib_SoundAlive_3DPosition_ver202.so
 vendor/lib/lib_SoundAlive_AlbumArt_ver105.so
@@ -57,12 +58,15 @@ vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libadm.so
 vendor/lib/libaudcal.so
+vendor/lib/libaudio_log_utils.so
+vendor/lib/libaudioconfigstore.so
+vendor/lib/vendor.qti.hardware.audiohalext@1.0.so
 vendor/lib/libaudioalsa.so
+vendor/lib/libaudioparsers.so
 vendor/lib/libprofileparamstorage.so
 vendor/lib/libqtigef.so
 vendor/lib/librecordalive.so
 vendor/lib/libsamsungVoipResampler.so
-vendor/lib/libsecaudiocoreutils.so
 vendor/lib/libsecaudiocoreutils.so
 vendor/lib/libsecaudioinfo.so
 vendor/lib/libsurround_3mic_proc.so
@@ -77,6 +81,7 @@ vendor/lib64/libacdbrtac.so
 vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
 vendor/lib64/libaudioalsa.so
+vendor/lib64/libaudioconfigstore.so
 vendor/lib64/libaudioparsers.so
 vendor/lib64/libprofileparamstorage.so
 vendor/lib64/libqtigef.so

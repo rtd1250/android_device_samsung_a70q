@@ -434,6 +434,16 @@
         </interface>
         <fqname>@4.0::ILocHidlGnss/gnss_vendor</fqname>
     </hal>
+    <hal format="hidl">
+        <name>vendor.qti.hardware.audiohalext</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IAudioHalExt</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IAudioHalExt/default</fqname>
+    </hal>
     <hal format="hidl" override="true">
         <name>vendor.qti.hardware.data.connection</name>
         <transport>hwbinder</transport>
@@ -634,6 +644,16 @@
     <hal format="hidl" override="true">
         <name>vendor.qti.imsrtpservice</name>
         <transport>hwbinder</transport>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.samsung.hardware.audio</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ISehDevicesFactory</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::ISehDevicesFactory/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.samsung.hardware.bluetooth</name>
