@@ -192,6 +192,7 @@
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.miscpower@2\.0-service                     u:object_r:hal_power_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.radio\.configsvc@1\.0-service              u:object_r:hal_radio_config_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.thermal@1\.0-service                       u:object_r:hal_thermal_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.power-service-qti-a70q                             u:object_r:hal_power_default_exec:s0
 
 # Rootfs
 /omr(/.*)?    u:object_r:omr_file:s0
