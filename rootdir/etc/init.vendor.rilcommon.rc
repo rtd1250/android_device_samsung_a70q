@@ -9,12 +9,28 @@
 
 on post-fs-data
     mkdir /data/vendor/secradio 0770 radio radio
+    restorecon -R /data/vendor/secradio
 
 on property:ro.vendor.multisim.simslotcount=1
     stop ril-daemon1
 
-on property:hwservicemanager.ready=false
-    restart ril-daemon
+on property:vts.native_server.on=*    
+    setprop vendor.vts.native_server.on ${vts.native_server.on}
 
-on property:hwservicemanager.ready=false && property:ro.vendor.multisim.simslotcount=2
-    restart ril-daemon1
+service network_config /vendor/bin/secril_config_svc NetworkConfig
+    user radio
+    group radio
+    oneshot
+    disabled
+
+service sim_config /vendor/bin/secril_config_svc SimConfig
+    user radio
+    group radio
+    oneshot
+    disabled
+
+on fs
+    exec_start sim_config
+
+on post-fs-data
+    exec_start network_config

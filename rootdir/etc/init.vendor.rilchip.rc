@@ -4,14 +4,14 @@
 # This is a common source of Android security bugs.
 #
 
-service ril-daemon /vendor/bin/hw/rild -l ${vendor.sec.rild.libpath}
+service ril-daemon /vendor/bin/hw/rild
     class main
     user radio
     group radio cache inet misc audio log oem_2901 system drmrpc vpn readproc wakelock
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW SYS_ADMIN CHOWN SYS_TIME
     socket sap_uim_socket1 stream 660 bluetooth bluetooth
 
-service ril-daemon1 /vendor/bin/hw/rild -c 2 -l ${vendor.sec.rild.libpath2}
+service ril-daemon1 /vendor/bin/hw/rild -c 2
     class main
     user radio
     group radio cache inet misc audio log oem_2901 system drmrpc vpn readproc wakelock
@@ -28,21 +28,20 @@ service irsc_util_oem /vendor/bin/irsc_util "/vendor/etc/sec_config_oem"
     user root
     oneshot
 
-# Avoid running ril-daemon2/3 service on qualcomm model
-on property:init.svc.ril-daemon2=running
-    stop ril-daemon2
+# Avoid running ril-daemon services on qualcomm model
+service vendor.ril-daemon /vendor/bin/hw/rild-dummy
+    override
 
-on property:init.svc.ril-daemon3=running
-    stop ril-daemon3
+service vendor.ril-daemon2 /vendor/bin/hw/rild-dummy
+    override
 
-on property:init.svc.vendor.ril-daemon=running
-    stop vendor.ril-daemon
+service vendor.ril-daemon3 /vendor/bin/hw/rild-dummy
+    override
 
-on property:init.svc.vendor.ril-daemon2=running
-    stop vendor.ril-daemon2
-
-on property:init.svc.vendor.ril-daemon3=running
-    stop vendor.ril-daemon3
+# Disable vendor.embmsslServer to fix VTS failure
+# as vendor.embmsslServer is not running even though it has interface
+service vendor.embmsslServer /vendor/bin/embmsslServer
+    override
 
 on property:init.svc.vendor.netmgrd=running && property:ro.vendor.use_data_netmgrd=false
     stop vendor.netmgrd
