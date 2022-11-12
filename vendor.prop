@@ -193,7 +193,6 @@ vendor.sec.rild.libpath=/vendor/lib64/libsec-ril.so
 vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so
 persist.vendor.radio.atfwd.start=true
 ro.vendor.sec.radio.def_network=9
-persist.radio.multisim.config=dsds
 persist.vendor.radio.enableadvancedscan=true
 ro.telephony.default_network=9,9
 telephony.lteOnCdmaDevice=1
