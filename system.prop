@@ -1,10 +1,3 @@
-# Bluetooth
-persist.vendor.btstack.enable.splita2dp=true
-ro.bluetooth.emb_wp_mode=true
-ro.bluetooth.wipower=true
-persist.vendor.btstack.avrcp-playstatus.blacklist=true
-bt.max.hfpclient.connections=1
-
 # Media
 media.aac_51_output_enabled=true
 media.stagefright.enable-aac=true
