@@ -1,5 +1,4 @@
 # Bluetooth
-persist.bluetooth.disableabsvol=true
 persist.vendor.btstack.enable.splita2dp=true
 ro.bluetooth.emb_wp_mode=true
 ro.bluetooth.wipower=true
