@@ -1316,6 +1316,7 @@ vendor/lib/libQSEEComAPI.so
 vendor/lib/libSecureUILib.so
 vendor/lib/libStDrvInt.so
 vendor/lib/libminkdescriptor.so
+vendor/lib/libops.so
 vendor/lib/libqcbor.so
 vendor/lib/libqisl.so
 vendor/lib/librpmb.so
@@ -1331,6 +1332,7 @@ vendor/lib64/libQSEEComAPI.so
 vendor/lib64/libSecureUILib.so
 vendor/lib64/libStDrvInt.so
 vendor/lib64/libminkdescriptor.so
+vendor/lib64/libops.so
 vendor/lib64/libqcbor.so
 vendor/lib64/libqisl.so
 vendor/lib64/librpmb.so
