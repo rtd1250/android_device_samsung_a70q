@@ -5,6 +5,9 @@ vendor.audio_hal.                                u:object_r:vendor_audio_prop:s0
 vendor.bluetooth_fw_ver                          u:object_r:vendor_bluetooth_prop:s0
 persist.vendor.bt.                               u:object_r:vendor_bluetooth_prop:s0
 
+# Fingerprint
+vendor.finger.down                               u:object_r:vendor_fingerprint_prop:s0
+
 # Perf
 ro.vendor.extension_library                      u:object_r:vendor_mpctl_prop:s0
 persist.vendor.perfservice.                      u:object_r:vendor_mpctl_prop:s0
