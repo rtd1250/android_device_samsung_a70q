@@ -176,7 +176,8 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3-service-samsung.a70q
+    android.hardware.biometrics.fingerprint@2.3-service-samsung.a70q \
+    SamsungUdfpsHandler.a70q
 
 # FM
 # PRODUCT_PACKAGES += \
