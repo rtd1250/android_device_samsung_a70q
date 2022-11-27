@@ -5,7 +5,7 @@
 /dev/block/platform/soc/1d84000\.ufshc/by-name/debug         u:object_r:debug_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/dsp           u:object_r:dsp_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/dtbo          u:object_r:boot_block_device:s0
-/dev/block/platform/soc/1d84000\.ufshc/by-name/efs           u:object_r:efsblk_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/efs           u:object_r:efs_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/fsc           u:object_r:vendor_modem_efs_partition_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/fsg           u:object_r:vendor_modem_efs_partition_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/hidden        u:object_r:hiddenblk_device:s0
@@ -14,7 +14,7 @@
 /dev/block/platform/soc/1d84000\.ufshc/by-name/omr           u:object_r:omr_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/param         u:object_r:paramblk_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/persistent    u:object_r:frp_block_device:s0
-/dev/block/platform/soc/1d84000\.ufshc/by-name/sec_efs       u:object_r:sec_efsblk_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/sec_efs       u:object_r:sec_efs_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/ssd           u:object_r:ssdblk_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/steady        u:object_r:steady_block_device:s0
 /dev/block/platform/soc/1d84000\.ufshc/by-name/userdata      u:object_r:userdata_block_device:s0
@@ -31,7 +31,7 @@
 
 # Data files
 /data/vendor/biometrics(/.*)?        u:object_r:biometrics_vendor_data_file:s0
-/data/vendor/conn(/.*)?              u:object_r:vendor_convergence_data_file:s0
+/data/vendor/conn(/.*)?              u:object_r:conn_vendor_data_file:s0
 /data/vendor/gatekeeper(/.*)?        u:object_r:gatekeeper_vendor_data_file:s0
 /data/vendor/gps(/.*)?               u:object_r:vendor_gps_file:s0
 /data/vendor/log/audiopcm(/.*)?      u:object_r:vendor_audiopcm_data_file:s0
@@ -187,7 +187,7 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.usb@1\.1-service\.wahoo                            u:object_r:hal_usb_default_exec:s0
 /(vendor|system/vendor)/bin/hw/nxp\.android\.hardware\.nfc@1\.1-service                              u:object_r:hal_nfc_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.samsung-a70q               u:object_r:hal_lineage_livedisplay_sysfs_exec:s0
-/(vendor|system/vendor)/bin/hw/android.hardware.biometrics.fingerprint@2.3-service-samsung.a70q    u:object_r:hal_fingerprint_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android.hardware.biometrics.fingerprint@2.3-service-samsung.a70q      u:object_r:hal_fingerprint_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.camera\.provider@4\.[0-9]-service          u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.miscpower@2\.0-service                     u:object_r:hal_power_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.radio\.configsvc@1\.0-service              u:object_r:hal_radio_config_default_exec:s0
@@ -203,21 +203,19 @@
 /sys/class/cirrus/cirrus_cal(/.*)?                              u:object_r:vendor_sysfs_audio:s0
 /sys/class/cirrus/cirrus_pwr(/.*)?                              u:object_r:vendor_sysfs_audio:s0
 /sys/class/lcd(/.*)?                                        --  u:object_r:sysfs_lcd_writable:s0
-/sys/class/power_supply(/.*)?                               --  u:object_r:sysfs_batteryinfo:s0
-/sys/class/power_supply/battery(/.*)?                       --  u:object_r:sysfs_batteryinfo:s0
+/sys/class/power_supply(/.*)?                               --  u:object_r:sysfs_battery:s0
+/sys/class/power_supply/battery(/.*)?                       --  u:object_r:sysfs_battery:s0
 /sys/class/power_supply/usb(/.*)?                           --  u:object_r:sysfs_usb_supply:s0
 /sys/class/rtc/rtc0(/.*)?                                       u:object_r:sysfs_rtc:s0
 /sys/class/rfkill/rfkill[0-9]+/state                        --  u:object_r:sysfs_bluetooth_writable:s0
 /sys/class/rfkill/rfkill[0-9]+/type                         --  u:object_r:sysfs_bluetooth_writable:s0
-/sys/devices/platform/soc/soc:battery/power_supply(/.*)?    --  u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/soc/soc:battery/power_supply(/.*)?    --  u:object_r:sysfs_battery:s0
 /sys/devices/virtual/audio/earjack/state                        u:object_r:sysfs_audio_writable:s0
 /sys/devices/virtual/camera/flash(/.*)?                         u:object_r:sysfs_camera_writable:s0
 /sys/devices/virtual/camera/rear(/.*)?                          u:object_r:sysfs_camera_writable:s0
 /sys/devices/virtual/fingerprint/fingerprint(/.*)?              u:object_r:sysfs_fpc:s0
 /sys/devices/virtual/lcd/panel(/.*)?                            u:object_r:sysfs_lcd_writable:s0
 /sys/devices/virtual/mdnie(/.*)?                            --  u:object_r:sysfs_mdnie_writable:s0
-/sys/devices/virtual/sec/sec_key(/.*)?                          u:object_r:sysfs_ss_writable:s0
-/sys/devices/virtual/sec/tsp(/.*)?                              u:object_r:sysfs_tsp:s0
 /sys/devices/virtual/sensors/proximity_sensor(/.*)?             u:object_r:vendor_sysfs_sensors:s0
 /sys/devices/virtual/sensors/ssc_core(/.*)?                     u:object_r:vendor_sysfs_sensors:s0
 /sys/module/qpnp_power_on/parameters(/.*)?                      u:object_r:sysfs_ss_writable:s0
@@ -226,6 +224,9 @@
 /sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm6150@0:qcom,pm6150_rtc/rtc(/.*)?              u:object_r:sysfs_rtc:s0
 /sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-01/c440000\.qcom,spmi:qcom,pm6150@1:qcom,vibrator@5300/leds/vibrator(/.*)? u:object_r:sysfs_leds:s0
 /sys/devices/platform/soc/soc:qcom,cam-req-mgr/video4linux/video[0-33]/name(/.*)?                                                    u:object_r:sysfs_graphics:s0
+
+# Wakeup
+/sys/devices/platform/(.*)/wakeup[0-9]*(/.*)?                                     u:object_r:sysfs_wakeup:s0
 
 # Vendor files
 /vendor/lib(/.*)?              u:object_r:same_process_hal_file:s0

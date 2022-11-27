@@ -3,7 +3,7 @@ binder_call(vendor_hal_gnss_qti, hal_gnss_default)
 allow vendor_hal_gnss_qti vendor_location_data_file:dir rw_dir_perms;
 allow vendor_hal_gnss_qti vendor_location_data_file:file rw_file_perms;
 
-allow vendor_hal_gnss_qti sysfs_batteryinfo:dir search;
+allow vendor_hal_gnss_qti sysfs_battery:dir search;
 
 allow vendor_hal_gnss_qti vendor_data_file:dir rw_dir_perms;
 

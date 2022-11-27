@@ -1,8 +1,24 @@
+# /vendor/firmware/
+allow kernel vendor_firmware_file:dir r_dir_perms;
+allow kernel vendor_firmware_file:file r_file_perms;
+
+allow kernel block_device:blk_file { read write open };
 allow kernel block_device:dir search;
 
 allow kernel debug_block_device:blk_file rw_file_perms;
 
-allow kernel self:capability kill;
+# /sys/devices/virtual/sec/hall_ic/hall_detect
+allow kernel sysfs_sensors:file { read open };
 
 allow kernel sysfs_ss_writable:dir search;
 allow kernel sysfs_ss_writable:file { open read };
+
+allow kernel {
+    sysfs_sensors
+    vendor_sysfs_sensors
+}:dir search;
+
+# /efs/FactoryApp/
+allow kernel efs_file:dir search;
+allow kernel app_efs_file:dir search;
+allow kernel app_efs_file:file { read open getattr };

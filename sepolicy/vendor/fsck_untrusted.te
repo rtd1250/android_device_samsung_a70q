@@ -1,0 +1,2 @@
+allow fsck_untrusted vendor_sysfs_mmc_host:file { read open getattr };
+allow fsck_untrusted vendor_sysfs_mmc_host:dir search;

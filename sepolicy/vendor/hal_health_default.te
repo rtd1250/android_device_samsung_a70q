@@ -1,13 +1,16 @@
 allow hal_health_default mnt_vendor_file:dir search;
 
-allow hal_health_default app_efs_file:dir rw_dir_perms;
-allow hal_health_default app_efs_file:file create_file_perms;
+allow hal_health_default app_efs_file:dir { read write add_name search };
+allow hal_health_default app_efs_file:file { read write open create getattr setattr };
 
-allow hal_health_default battery_efs_file:dir create_dir_perms;
-allow hal_health_default battery_efs_file:file create_file_perms;
+allow hal_health_default battery_efs_file:dir r_dir_perms;
+allow hal_health_default battery_efs_file:file { rw_file_perms setattr };
 
-allow hal_health_default sysfs_battery_supply:file w_file_perms;
-allow hal_health_default sysfs_batteryinfo:file w_file_perms;
+allow hal_health_default efs_file:dir search;
+allow hal_health_default sec_poc_file:dir search;
 
-r_dir_file(hal_health_default, efs_file)
-r_dir_file(hal_health_default, sec_poc_file)
+allow hal_health_default sysfs_battery:file r_file_perms;
+allow hal_health_default sysfs_battery:dir search;
+
+allow hal_health_default hal_thermal_samsung_hwservice:hwservice_manager find;
+binder_call(hal_health_default, hal_thermal_default)

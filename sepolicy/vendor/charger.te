@@ -11,7 +11,7 @@ allow charger sysfs_graphics:file rw_file_perms;
 allow charger sysfs_usb_supply:dir search;
 allow charger sysfs_usb_supply:file rw_file_perms;
 
-allow charger sysfs_batteryinfo:file rw_file_perms;
+allow charger sysfs_battery:file rw_file_perms;
 allow charger sysfs_rtc:file r_file_perms;
 
 allow charger app_efs_file:dir search;

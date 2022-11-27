@@ -1,37 +1,47 @@
+# macloader.te
+
 type macloader, domain;
 type macloader_exec, exec_type, vendor_file_type, file_type;
 
+# macloader is started by init, type transit from init domain to macloader domain
 init_daemon_domain(macloader)
 
-allow macloader self:capability { chown fowner fsetid net_admin net_raw sys_module };
-
-allow macloader self:udp_socket { ioctl create };
-allowxperm macloader self:udp_socket ioctl { SIOCGIFFLAGS SIOCSIFFLAGS };
-
-allow macloader efs_file:dir search;
-allow macloader mnt_vendor_file:dir r_dir_perms;
-allow macloader sec_poc_file:dir search;
-
-allow macloader wifi_efs_file:dir create_dir_perms;
-allow macloader wifi_efs_file:file create_file_perms;
-
-allow macloader vendor_convergence_data_file:dir create_dir_perms;
-allow macloader vendor_convergence_data_file:file create_file_perms;
-
-allow macloader kernel:key search;
-allow macloader kernel:system module_request;
-
-allow macloader kmsg_device:chr_file rw_file_perms;
-
-allow macloader system_file:system module_load;
-
-allow macloader vendor_shell_exec:file rx_file_perms;
-
-allow macloader sysfs:file { read write open getattr };
-allow macloader sysfs_net:dir r_dir_perms;
-allow macloader sysfs_wlan_fwpath:file w_file_perms;
-
-allow macloader sysfs_wifi:dir r_dir_perms;
-allow macloader sysfs_wifi:file rw_file_perms;
-
 set_prop(macloader, vendor_wifi_prop);
+
+allow macloader self:capability { net_admin sys_module };
+
+allow macloader self:udp_socket create_socket_perms;
+allowxperm macloader self:udp_socket ioctl { 0x8913 0x8914 };
+
+# /data/vendor/conn
+allow macloader conn_vendor_data_file:dir rw_dir_perms;
+allow macloader conn_vendor_data_file:file create_file_perms;
+
+# /mnt/vendor
+allow macloader mnt_vendor_file:dir search;
+
+# /mnt/vendor/efs
+allow macloader efs_file:dir rw_dir_perms;
+
+# /mnt/vendor/efs/wifi
+allow macloader wifi_efs_file:dir rw_dir_perms;
+allow macloader wifi_efs_file:file rw_file_perms;
+
+# /sys/class/net
+allow macloader sysfs_net:dir r_dir_perms;
+allow macloader sysfs_net:file r_file_perms;
+
+allow macloader sysfs_wifi_writable:dir r_dir_perms;
+allow macloader sysfs_wifi_writable:file rw_file_perms;
+
+# /sys/wifi
+allow macloader sysfs_wifi:dir r_dir_perms;
+allow macloader sysfs_wifi:file r_file_perms;
+
+# /sys/kernel/boot_wlan
+allow macloader sysfs_wifi_writable:file { write open };
+
+set_prop(macloader, vendor_wifi_prop)
+
+# Don't set ro.vendor.wifi.sap.interface
+dontaudit macloader vendor_default_prop:property_service set;
