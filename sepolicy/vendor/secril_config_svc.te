@@ -16,6 +16,9 @@ allow secril_config_svc mnt_vendor_file:dir search;
 allow secril_config_svc efs_file:dir search;
 allow secril_config_svc efs_file:file r_file_perms;
 
+# /efs/imei/
+r_dir_file(secril_config_svc, imei_efs_file);
+
 # ro.multisim.
 # ro.vendor.multisim.
 # ro.vendor.radio.default_network

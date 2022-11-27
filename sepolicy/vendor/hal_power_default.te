@@ -1,13 +1,27 @@
-add_hwservice(hal_power_default, hal_miscpower_hwservice)
+allow hal_power_default cgroup:file rw_file_perms;
+
+allow hal_power_default sysfs_input:dir r_dir_perms;
+
+allow hal_power_default sysfs_power:dir r_dir_perms;
+allow hal_power_default sysfs_power:file r_file_perms;
+allow hal_power_default sysfs_power_writable:file rw_file_perms;
+
+allow hal_power_default sysfs_sec_touchscreen:dir r_dir_perms;
+allow hal_power_default sysfs_sec_touchscreen:lnk_file r_file_perms;
+allow hal_power_default sysfs_touchscreen_writable:file rw_file_perms;
 
 allow hal_power_default sysfs_devices_system_cpu:file rw_file_perms;
 
-allow hal_power_default sysfs_batteryinfo:dir r_dir_perms;
-allow hal_power_default sysfs_batteryinfo:file rw_file_perms;
+allow hal_power_default sysfs_battery:dir r_dir_perms;
+allow hal_power_default sysfs_battery:file rw_file_perms;
+
+allow hal_power_default { sysfs_sensors vendor_sysfs_sensors }:dir search;
+allow hal_power_default sysfs_sensors:file { open write };
 
 allow hal_power_default sysfs_ss_writable:dir search;
 allow hal_power_default sysfs_ss_writable:file { open read write };
 
-allow hal_power_default sysfs_tsp:dir r_dir_perms;
-allow hal_power_default sysfs_tsp:file rw_file_perms;
-allow hal_power_default sysfs_tsp:lnk_file read;
+allow hal_power_default property_socket:sock_file write;
+unix_socket_connect(hal_power_default, property, init)
+get_prop(hal_power_default, vendor_mpctl_prop)
+set_prop(hal_power_default, vendor_power_prop)

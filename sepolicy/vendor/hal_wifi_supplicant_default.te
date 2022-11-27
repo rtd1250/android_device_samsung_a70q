@@ -1,0 +1,2 @@
+allow hal_wifi_supplicant_default vendor_wifi_vendor_data_file:dir rw_dir_perms;
+allow hal_wifi_supplicant_default vendor_wifi_vendor_data_file:file rw_file_perms;

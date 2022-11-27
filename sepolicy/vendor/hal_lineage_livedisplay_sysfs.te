@@ -1,5 +1,5 @@
-allow hal_lineage_livedisplay_sysfs display_vendor_data_file:dir rw_dir_perms;
-allow hal_lineage_livedisplay_sysfs display_vendor_data_file:file create_file_perms;
+allow hal_lineage_livedisplay_sysfs display_vendor_data_file:dir { write add_name search };
+allow hal_lineage_livedisplay_sysfs display_vendor_data_file:file { read write open create getattr };
 
 allow hal_lineage_livedisplay_sysfs sysfs_graphics:dir search;
 allow hal_lineage_livedisplay_sysfs sysfs_graphics:file { getattr open read write };

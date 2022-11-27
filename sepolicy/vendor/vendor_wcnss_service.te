@@ -4,4 +4,6 @@ allow vendor_wcnss_service vendor_wifi_vendor_wpa_socket:dir create_dir_perms;
 allow vendor_wcnss_service vendor_wifi_vendor_wpa_socket:dir r_dir_perms;
 allow vendor_wcnss_service vendor_wifi_vendor_wpa_socket:sock_file create_file_perms;
 
-r_dir_file(vendor_wcnss_service, vendor_convergence_data_file)
+r_dir_file(vendor_wcnss_service, conn_vendor_data_file)
+
+get_prop(vendor_wcnss_service, vendor_mpctl_prop)

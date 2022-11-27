@@ -1,0 +1,3 @@
+allow vendor_thermal-engine sysfs_battery:dir search;
+
+get_prop(vendor_thermal-engine, vendor_mpctl_prop)

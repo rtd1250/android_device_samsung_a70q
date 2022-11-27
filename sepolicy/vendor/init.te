@@ -1,7 +1,11 @@
 allow init efs_file:dir mounton;
 allow init omr_file:dir mounton;
-allow init self:qipcrtr_socket create;
+
+allow init debugfs_tracing_debug:dir mounton;
+allow init misc_block_device:blk_file w_file_perms;
+allow init self:qipcrtr_socket { getattr read setopt write };
 allow init socket_device:sock_file create_file_perms;
-allow init sysfs_tsp:file write;
-allow init vendor_firmware_file:file mounton;
+allow init sysfs_sec_touchscreen:file rw_file_perms;
 allow init proc_last_kmsg:file { r_file_perms setattr };
+allow init vendor_firmware_file:file mounton;
+allow init vendor_sysfs_mmc_host:file rw_file_perms;

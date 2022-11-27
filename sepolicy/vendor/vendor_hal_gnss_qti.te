@@ -1,0 +1,2 @@
+allow vendor_hal_gnss_qti sysfs_battery:dir search;
+dontaudit vendor_hal_gnss_qti default_prop:file { read open getattr map };
