@@ -57,6 +57,8 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr) {
     if (!openHal()) {
         LOG(ERROR) << "Can't open HAL module";
     }
+
+    set(TSP_CMD_PATH, "set_fod_rect,426,2015,654,2243");
     
     std::ifstream in("/sys/devices/virtual/fingerprint/fingerprint/position");
     mIsUdfps = !!in;
