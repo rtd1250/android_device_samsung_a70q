@@ -187,6 +187,7 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.usb@1\.1-service\.wahoo                            u:object_r:hal_usb_default_exec:s0
 /(vendor|system/vendor)/bin/hw/nxp\.android\.hardware\.nfc@1\.1-service                              u:object_r:hal_nfc_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.samsung-a70q               u:object_r:hal_lineage_livedisplay_sysfs_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.touch\@[0-9]\.[0-9]-service.a70q                     u:object_r:hal_lineage_touch_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android.hardware.biometrics.fingerprint@2.3-service-samsung.a70q      u:object_r:hal_fingerprint_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.camera\.provider@2\.6-service\.a70q                u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung\.hardware\.miscpower@2\.0-service                     u:object_r:hal_power_default_exec:s0
