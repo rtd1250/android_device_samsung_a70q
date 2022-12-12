@@ -102,8 +102,12 @@ ro.soc.manufacturer=Qualcomm
 ro.soc.model=SM6150
 
 # Crypto
+<<<<<<< HEAD
 ro.crypto.allow_encrypt_override=true
 ro.crypto.volume.filenames_mode=aes-256-cts
+=======
+ro.crypto.volume.filenames_mode=aes-256-xts
+>>>>>>> d0184d9 (sm6150-common: rootdir: Enable aes-256-xts data encryption)
 
 # Dalvik VM
 dalvik.vm.heapstartsize=8m
