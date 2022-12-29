@@ -2,6 +2,7 @@
 
 # ADSP
 vendor/bin/adsprpcd
+vendor/etc/init/vendor.qti.adsprpc-sscrpc-service.rc
 vendor/lib/libadsp_default_listener.so
 vendor/lib/libadsprpc.so
 vendor/lib/libmdsprpc.so
@@ -666,6 +667,7 @@ vendor/lib64/vendor.samsung.hardware.health@2.0.so
 # Firmware
 vendor/firmware/Data.msc
 vendor/firmware/dax_param.bin
+vendor/etc/init/ipa_fws.rc
 vendor/firmware/ipa_fws.b00
 vendor/firmware/ipa_fws.b01
 vendor/firmware/ipa_fws.b02
@@ -1120,6 +1122,9 @@ vendor/bin/pm-service
 vendor/lib/libperipheral_client.so
 vendor/lib64/libperipheral_client.so
 
+# QTI
+vendor/etc/init/init.qti.qcv.rc
+
 # Qualcomm MSM Interface
 vendor/bin/irsc_util
 vendor/bin/pd-mapper
@@ -1152,7 +1157,9 @@ vendor/lib64/libqmiservices.so
 
 # Radio
 vendor/bin/hw/rild
+vendor/bin/adpl
 vendor/bin/ATFWD-daemon
+vendor/bin/ipacm-diag
 vendor/bin/netmgrd
 vendor/bin/qrtr-cfg
 vendor/bin/qrtr-lookup
@@ -1161,7 +1168,11 @@ vendor/bin/rmt_storage
 vendor/bin/tftp_server
 vendor/etc/data/dsi_config.xml
 vendor/etc/data/netmgr_config.xml
+vendor/etc/init/dataadpl.rc
+vendor/etc/init/ipacm-diag.rc
 vendor/etc/init/netmgrd.rc
+vendor/etc/init/vendor.qti.tftp.rc
+vendor/etc/init/vendor.qti.rmt_storage.rc
 vendor/etc/locale/plmn_delta_eng.bin
 vendor/etc/locale/plmn_delta_zh-rCN.bin
 vendor/etc/locale/plmn_delta_zh-rHK.bin
@@ -1303,8 +1314,8 @@ vendor/lib64/libtime_genoff.so
 
 # TrustZone
 vendor/bin/hw/vendor.qti.hardware.qseecom@1.0-service
--vendor/bin/StoreKeybox
 vendor/bin/qseecomd
+vendor/etc/init/qseecomd.rc
 vendor/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc
 vendor/etc/gpfspath_oem_config.xml
 vendor/lib/hw/vendor.qti.hardware.qseecom@1.0-impl.so

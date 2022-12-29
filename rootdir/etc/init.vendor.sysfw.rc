@@ -1,0 +1,13 @@
+on boot
+    # FSDBG dlog permissions
+    chown root system /proc/fslog/dlog_efs
+    chown root system /proc/fslog/dlog_etc
+    chown root system /proc/fslog/dlog_mm
+    chown root system /proc/fslog/dlog_rmdir
+
+    # Permissions for Filesystem
+    # change owner f2fs bigdata node for hqm write
+    chown system system /sys/fs/f2fs/userdata/sec_gc_stat
+    chown system system /sys/fs/f2fs/userdata/sec_io_stat
+    chown system system /sys/fs/f2fs/userdata/sec_fsck_stat
+    chown system system /sys/fs/f2fs/userdata/sec_defrag_stat

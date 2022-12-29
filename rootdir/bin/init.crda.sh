@@ -1,6 +1,6 @@
 #! /vendor/bin/sh
 
-# Copyright (c) 2018, The Linux Foundation. All rights reserved.
+# Copyright (c) 2012, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,18 +27,9 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-#
-# start atfwd daemon
-#
-atfwd_status=`getprop persist.vendor.radio.atfwd.start`
-baseband=`getprop ro.baseband`
-
-#Do not start atfwd for sda, apq, qcs
-case "$baseband" in
-    "apq" | "sda" | "qcs" )
-        setprop persist.vendor.radio.atfwd.start false;;
-    *)
-        if [ "$atfwd_status" = "true" ]; then
-            start vendor.atfwd
-        fi
-esac
+country=`getprop wlan.crda.country`
+# crda takes input in COUNTRY environment variable
+if [ $country != "" ]
+then
+COUNTRY="$country" /system/bin/crda
+fi
