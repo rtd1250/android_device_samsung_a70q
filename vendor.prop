@@ -89,6 +89,11 @@ persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 persist.vendor.qcom.bluetooth.scram.enabled=true
 persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=false
 
+# Blur
+ro.surface_flinger.supports_background_blur=1
+ro.sf.blurs_are_expensive=1
+ro.launcher.blur.appLaunch=0
+
 # Camera
 camera.aux.packagelist=com.android.camera
 camera.disable_zsl_mode=1
