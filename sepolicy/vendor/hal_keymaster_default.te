@@ -8,6 +8,8 @@ allow hal_keymaster_default efs_file:lnk_file r_file_perms;
 
 allow hal_keymaster_default prov_efs_file:dir create_dir_perms;
 allow hal_keymaster_default prov_efs_file:file create_file_perms;
+allow hal_keymaster_default prov_efs_file:dir search;
+allow hal_keymaster_default prov_efs_file:file { read open getattr };
 
 allow hal_keymaster_default sec_poc_file:dir r_dir_perms;
 allow hal_keymaster_default sec_poc_file:file r_file_perms;

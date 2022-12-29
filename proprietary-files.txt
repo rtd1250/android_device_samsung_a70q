@@ -949,16 +949,7 @@ vendor/lib64/vendor.samsung.hardware.gnss@2.0.so
 #vendor/saiv/image_understanding/db/aig_detector/aig_detector_cnn_light.caffemodel
 
 # Keymaster
-vendor/bin/hw/android.hardware.keymaster@4.0-service
-vendor/etc/init/android.hardware.keymaster@4.0-service.rc
-vendor/lib64/libkeymaster4.so
-vendor/lib64/libkeymaster4_1support.so
-vendor/lib64/libkeymaster4support.so
 vendor/lib64/libkeymaster_helper.so
-vendor/lib64/libkeymaster_portable.so
-vendor/lib64/libkeystore-engine-wifi-hidl.so
-vendor/lib64/libkeystore-wifi-hidl.so
-vendor/lib64/libpuresoftkeymasterdevice.so
 -vendor/lib64/libskeymaster4device.so
 
 # Listen
