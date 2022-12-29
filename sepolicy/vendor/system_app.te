@@ -5,7 +5,7 @@ allow system_app proc_pagetypeinfo:file { read open getattr };
 #allow system_app sysfs_zram:file { read open getattr };
 
 binder_call(system_app, hal_power_default)
-#binder_call(system_app, hal_vibrator_default)
+binder_call(system_app, hal_vibrator_default)
 
 # MDNIE
 allow system_app sysfs_mdnie_writable:dir search;
