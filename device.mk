@@ -322,29 +322,43 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml \
     $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
 
-# Ramdisk
+# Ramdisk bin
 PRODUCT_PACKAGES += \
-    init.class_late.sh \
     init.class_main.sh \
+    init.crda.sh \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
-    init.qcom.sensors.sh \
+    init.qcom.sdio.sh \
     init.qcom.sh \
     init.qcom.usb.sh \
-    init.qti.qseecomd.sh \
+    init.qti.chg_policy.sh \
+    init.qti.dcvs.sh \
+    init.qcom.coex.sh \
+    init.qcom.efs.sync.sh \
+    init.qcom.sensors.sh \
+    init.qti.qcv.sh \
+    qca6234-service.sh
+
+# Ramdisk etc
+PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.carrier.rc \
-    init.display.rc \
-    init.fingerprint.rc \
+    init.a70q.rc \
+    init.qcom.factory.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
+    init.samsung.bsp.rc \
+    init.samsung.display.rc \
+    init.samsung.rc \
     init.target.rc \
+    ueventd.qcom.rc \
+    wifi_qcom.rc \
+    wifi_sec.rc \
+    init.nfc.samsung.rc \
     init.vendor.onebinary.rc \
     init.vendor.rilchip.rc \
     init.vendor.rilcommon.rc \
-    ueventd.qcom.rc \
-    wifi_qcom.rc \
-    wifi_a70q.rc
+    init.vendor.sensors.rc \
+    init.vendor.sysfw.rc
 
 # Recovery
 PRODUCT_COPY_FILES += \

@@ -40,6 +40,8 @@ on init
 	chown system media_rw /sys/class/mdnie/mdnie/outdoor
 	chown system system  /sys/class/mdnie/mdnie/mdnie_temp
 	chown system media_rw /sys/class/mdnie/mdnie/mode
+	chown system system /sys/class/mdnie/mdnie/mode
+	chown system system /sys/class/mdnie/mdnie/mode_max
 	chown system system /sys/class/mdnie/mdnie/negative
 	chown system media_rw /sys/class/mdnie/mdnie/playspeed
 	chown system media_rw /sys/class/mdnie/mdnie/accessibility
@@ -100,8 +102,11 @@ on init
 	chmod 700 /efs/etc
 
 # reading mode
-	chown system media_rw /sys/class/lcd/panel/reading_mode
-	chmod 0660 /sys/class/lcd/panel/reading_mode
+    chown system media_rw /sys/class/lcd/panel/reading_mode
+    chmod 0660 /sys/class/lcd/panel/reading_mode
+
+    chown system media_rw /sys/class/lcd/panel1/reading_mode
+    chmod 0660 /sys/class/lcd/panel1/reading_mode
 
 # adaptive control
 	chown system system /sys/class/lcd/panel/adaptive_control
@@ -138,6 +143,29 @@ on init
 # Self Display in AOD
 	chown system system /dev/self_display
 	chmod 0660 /dev/self_display
+
+	chown system system /dev/self_display1
+	chmod 0660 /dev/self_display1
+
+# Self Move in IDLE
+	chown system system /sys/class/lcd/panel/self_move
+	chmod 0660 /sys/class/lcd/panel/self_move
+
+	chown system system /sys/class/lcd/panel1/self_move
+	chmod 0660 /sys/class/lcd/panel1/self_move
+
+# MAFPC
+	chown system system /dev/mafpc
+	chmod 0660 /dev/mafpc
+
+	chown system system /dev/mafpc1
+	chmod 0660 /dev/mafpc1
+
+	chown system system /sys/class/lcd/panel/mafpc_check
+	chmod 0660 /sys/class/lcd/panel/mafpc_check
+
+	chown system system /sys/class/lcd/panel1/mafpc_check
+	chmod 0660 /sys/class/lcd/panel1/mafpc_check
 
 # POC
 	mkdir /efs/etc/poc 0700 system system
@@ -188,6 +216,13 @@ on init
 	chown system system /sys/class/lcd/panel1/mcd_mode
 	chmod 0660 /sys/class/lcd/panel1/mcd_mode
 
+# BRIGHTDOT
+	chown system system /sys/class/lcd/panel/brightdot
+	chmod 0660 /sys/class/lcd/panel/brightdot
+
+	chown system system /sys/class/lcd/panel1/brightdot
+	chmod 0660 /sys/class/lcd/panel1/brightdot
+
 # MCD_RESISTANCE
 	chown system system /sys/class/lcd/panel/mcd_resistance
 	chmod 0660 /sys/class/lcd/panel/mcd_resistance
@@ -237,6 +272,27 @@ on init
 	chown system system /sys/class/lcd/panel1/grayspot
 	chmod 0660 /sys/class/lcd/panel1/grayspot
 
+# POC
+	chown system system /sys/class/lcd/panel/poc
+	chmod 0660 /sys/class/lcd/panel/poc
+
+	chown system system /sys/class/lcd/panel1/poc
+	chmod 0660 /sys/class/lcd/panel1/poc
+
+# POC_MCA
+	chown system system /sys/class/lcd/panel/poc_mca
+	chmod 0440 /sys/class/lcd/panel/poc_mca
+
+	chown system system /sys/class/lcd/panel1/poc_mca
+	chmod 0440 /sys/class/lcd/panel1/poc_mca
+
+# POC_INFO
+	chown system system /sys/class/lcd/panel/poc_info
+	chmod 0440 /sys/class/lcd/panel/poc_info
+
+	chown system system /sys/class/lcd/panel1/poc_info
+	chmod 0440 /sys/class/lcd/panel1/poc_info
+	
 # POC OFF
 	chown system system /sys/class/lcd/panel/poc_onoff
 	chmod 0660 /sys/class/lcd/panel/poc_onoff
@@ -324,6 +380,12 @@ on init
 	chown system system /sys/class/lcd/panel1/self_mask
 	chmod 0660 /sys/class/lcd/panel1/self_mask
 
+	chown system system /sys/class/lcd/panel/self_mask_check
+	chmod 0660 /sys/class/lcd/panel/self_mask_check
+
+	chown system system /sys/class/lcd/panel1/self_mask_check
+	chmod 0660 /sys/class/lcd/panel1/self_mask_check
+
 # DYNAMIC HLPM
 	chown system system /sys/class/lcd/panel/dynamic_hlpm
 	chmod 0660 /sys/class/lcd/panel/dynamic_hlpm
@@ -356,9 +418,73 @@ on init
 	chown system system /sys/class/lcd/panel/actual_mask_brightness
 	chmod 0660 /sys/class/lcd/panel/actual_mask_brightness
 
+# UB CONN DET 
+	chown system system /sys/class/lcd/panel/conn_det
+	chmod 0660 /sys/class/lcd/panel/conn_det
+
+	chown system system /sys/class/lcd/panel1/conn_det
+	chmod 0660 /sys/class/lcd/panel1/conn_det
+
+# DIA
+	chown system system /sys/class/lcd/panel/dia
+	chmod 0660 /sys/class/lcd/panel/dia
+
+	chown system system /sys/class/lcd/panel1/dia
+	chmod 0660 /sys/class/lcd/panel1/dia
+
+# dynamic_freq
+	chown system system /sys/class/lcd/panel/dynamic_freq
+	chmod 0660 /sys/class/lcd/panel/dynamic_freq
+
+	chown system system /sys/class/lcd/panel1/dynamic_freq
+	chmod 0660 /sys/class/lcd/panel1/dynamic_freq
+
 # Finger Print Green Circle
 	chown system system /sys/class/lcd/panel/fp_green_circle
 	chmod 0660 /sys/class/lcd/panel/fp_green_circle
 
 	chown system system /sys/class/lcd/panel1/fp_green_circle
 	chmod 0660 /sys/class/lcd/panel1/fp_green_circle
+
+# Window Color
+	chown system system /sys/class/lcd/panel/window_color
+	chmod 0660 /sys/class/lcd/panel/window_color
+
+	chown system system /sys/class/lcd/panel1/window_color
+	chmod 0660 /sys/class/lcd/panel1/window_color
+
+# Demux_stress Test
+	chown system system /sys/class/lcd/panel/demux_stress
+	chmod 0660 /sys/class/lcd/panel/demux_stress
+
+	chown system system /sys/class/lcd/panel1/demux_stress
+	chmod 0660 /sys/class/lcd/panel1/demux_stress
+
+# VRR
+	chown system system /sys/class/lcd/panel/vrr
+	chmod 0440 /sys/class/lcd/panel/vrr
+	chown system system /sys/class/lcd/panel/vrr_state
+	chmod 0440 /sys/class/lcd/panel/vrr_state
+	chown system system /sys/class/lcd/panel/vrr_lfd
+	chmod 0660 /sys/class/lcd/panel/vrr_lfd
+	chown system system /sys/class/drm/card0/device/perf_mode
+	chmod 0666 /sys/class/drm/card0/device/perf_mode
+
+# Motto
+	chown system system /sys/class/lcd/panel/motto/swing
+	chmod 0660 /sys/class/lcd/panel/motto/swing
+	chown system system /sys/class/lcd/panel/motto/emphasis
+	chmod 0660 /sys/class/lcd/panel/motto/emphasis
+
+# ioctl_power_ctrl  
+	chown system system /sys/class/lcd/panel/ioctl_power_ctrl
+	chmod 0440 /sys/class/lcd/panel/ioctl_power_ctrl
+
+# CELL ID
+	chown system system /sys/class/lcd/panel/cell_id
+
+# SVC
+	chown system system /sys/class/lcd/panel/SVC_OCTA_DDI_CHIPID
+	chmod 0660 /sys/class/lcd/panel/SVC_OCTA_DDI_CHIPID
+	chown system system /sys/class/lcd/panel1/SVC_OCTA_DDI_CHIPID
+	chmod 0660 /sys/class/lcd/panel1/SVC_OCTA_DDI_CHIPID
