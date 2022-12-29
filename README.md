@@ -1,5 +1,5 @@
 # android_device_samsung_a70q
-Samsung Galaxy A70 device tree for LineageOS 20
+Samsung Galaxy A70 device tree for Pixel Experience 13 Plus
 
 Based on the work: https://github.com/MacTavishAO/android_device_samsung_a70q
 
