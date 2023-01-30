@@ -59,7 +59,7 @@ BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr) {
     }
 
     set(TSP_CMD_PATH, "set_fod_rect,426,2015,654,2243");
-    
+
     std::ifstream in("/sys/devices/virtual/fingerprint/fingerprint/position");
     mIsUdfps = !!in;
     if (in)

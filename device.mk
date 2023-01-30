@@ -71,23 +71,21 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.broadcastradio@1.0-impl \
     android.hardware.audio.service \
-    android.hardware.audio@6.0 \
     android.hardware.audio@6.0-impl.a70q \
-    android.hardware.audio.effect@6.0 \
     android.hardware.audio.effect@6.0-impl \
-    android.hardware.bluetooth.audio-impl \
-    android.hardware.soundtrigger@2.2-impl:32 \
-    audio.bluetooth.default \
+    android.hardware.soundtrigger@2.2-impl \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
+    libtinycompress \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libqcompostprocbundle \
     libvolumelistener \
     SamsungDAP
+
+TARGET_EXCLUDES_AUDIOFX := true
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/configs/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.conf \
@@ -119,9 +117,9 @@ PRODUCT_PACKAGES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.bluetooth_audio@2.0.vendor \
-    android.hardware.bluetooth@1.0.vendor \
-    vendor.qti.hardware.btconfigstore@1.0.vendor \
-    vendor.qti.hardware.btconfigstore@2.0.vendor
+    audio.bluetooth.default \
+    android.hardware.bluetooth.audio-impl \
+    android.hardware.bluetooth@1.0.vendor
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -325,6 +323,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml \
     $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
+
+# Radio
+PRODUCT_PACKAGES += \
+    android.hardware.broadcastradio@1.0-impl
 
 # Ramdisk bin
 PRODUCT_PACKAGES += \
