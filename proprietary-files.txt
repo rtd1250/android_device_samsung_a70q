@@ -46,6 +46,8 @@ system_ext/etc/permissions/audiosphere.xml
 system_ext/framework/audiosphere.jar
 vendor/etc/dolby/dax-default.xml
 vendor/lib/hw/audio.primary.sm6150.so
+vendor/lib/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so
+vendor/lib/btaudio_offload_if.so
 vendor/lib/lib_SamsungRec_07002.so
 vendor/lib/lib_SoundAlive_3DPosition_ver202.so
 vendor/lib/lib_SoundAlive_AlbumArt_ver105.so
@@ -53,6 +55,7 @@ vendor/lib/lib_SoundAlive_SRC384_ver320.so
 vendor/lib/lib_SoundAlive_play_plus_ver400.so
 vendor/lib/lib_SoundBooster_ver1000.so
 vendor/lib/lib_soundaliveresampler.so
+vendor/lib/liba2dpoffload.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
@@ -64,14 +67,25 @@ vendor/lib/libaudioconfigstore.so
 vendor/lib/vendor.qti.hardware.audiohalext@1.0.so
 vendor/lib/libaudioalsa.so
 vendor/lib/libaudioparsers.so
+vendor/lib/libbatterylistener.so
+vendor/lib/libcirrusspkrprot.so
+vendor/lib/libcomprcapture.so
+vendor/lib/libdrc.so
+vendor/lib/libexthwplugin.so
+vendor/lib/libhdmiedid.so
+vendor/lib/libhdmipassthru.so
+vendor/lib/libhfp.so
 vendor/lib/libprofileparamstorage.so
 vendor/lib/libqtigef.so
 vendor/lib/librecordalive.so
 vendor/lib/libsamsungVoipResampler.so
 vendor/lib/libsecaudiocoreutils.so
 vendor/lib/libsecaudioinfo.so
+vendor/lib/libsndmonitor.so
+vendor/lib/libspkrprot.so
 vendor/lib/libsurround_3mic_proc.so
-vendor/lib/libtinycompress.so
+vendor/lib64/btaudio_offload_if.so
+vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so
 vendor/lib64/lib_SoundAlive_3DPosition_ver202.so
 vendor/lib64/lib_SoundAlive_AlbumArt_ver105.so
 vendor/lib64/lib_SoundAlive_play_plus_ver400.so
@@ -352,22 +366,32 @@ vendor/lib64/soundfx/libswdap.so
 # Bluetooth
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
-vendor/firmware/apbtfw11.tlv
-vendor/firmware/apnv11.bin
+vendor/lib/hw/audio.bluetooth_qti.default.so
 vendor/lib/hw/android.hardware.bluetooth@1.0-impl-qti.so
+vendor/lib/hw/vendor.qti.hardware.bluetooth_sar@1.0-impl.so
 vendor/lib/hw/vendor.samsung.hardware.bluetooth.a2dp@1.0-impl.so
-vendor/lib/com.qualcomm.qti.bluetooth_audio@1.0.so
+vendor/lib/libbluetooth_audio_session_qti.so
+vendor/lib/libbthost_if.so
+vendor/lib/libbtnv.so
+vendor/lib/vendor.qti.hardware.bluetooth_sar@1.1.so
+vendor/lib/vendor.qti.hardware.bluetooth_sar@1.0.so
 vendor/lib/vendor.samsung.hardware.bluetooth.a2dp@1.0.so
 vendor/lib/vendor.samsung.hardware.bluetooth@2.0.so
+vendor/lib64/hw/audio.bluetooth_qti.default.so
 vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so
+vendor/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.0-impl.so
 vendor/lib64/hw/vendor.samsung.hardware.bluetooth.a2dp@1.0-impl.so
-vendor/lib64/vendor.qti.hardware.bluetooth_audio@2.0.so
+vendor/lib64/libbluetooth_audio_session_qti.so
+vendor/lib/libbthost_if.so
+vendor/lib64/libbtnv.so
 vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so
 vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.1.so
-vendor/lib64/vendor.qti.hardware.btconfigstore@1.0.so
-vendor/lib64/vendor.qti.hardware.btconfigstore@2.0.so
 vendor/lib64/vendor.samsung.hardware.bluetooth.a2dp@1.0.so
 vendor/lib64/vendor.samsung.hardware.bluetooth@2.0.so
+
+# Bluetooth FW
+vendor/firmware/apbtfw11.tlv
+vendor/firmware/apnv11.bin
 
 # Bluetooth (aptX) - from raven - TP1A.220624.021
 system_ext/lib64/libaptXHD_encoder.so|e13fa70c97caaa24d061678bdee608eb8850a69e
