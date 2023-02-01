@@ -213,11 +213,9 @@ Return<Result> PrimaryDevice::setVoiceVolume(float volume) {
 }
 
 Return<Result> PrimaryDevice::setMode(AudioMode mode) {
-    /* On stock ROM Samsung sets the g_call_state and g_call_sim_slot audio parameters
-     * in the framework, breaking it on AOSP ROMs. For the audio params call_state and
-     * g_call_state 2 corresponds to CALL_ACTIVE and 1 to CALL_INACTIVE respectively.
-     * For the g_call_sim_slot parameter 0x01 describes SIM1 and 0x02 SIM2.
-     */
+    /* Samsung's libsec-ril sets a prop depending on the SIM that is calling
+     * at the moment. Using it we can determine the active slot and pass
+     * the call state together with vsid. */
 
     char simSlot[92];
 
@@ -231,15 +229,20 @@ Return<Result> PrimaryDevice::setMode(AudioMode mode) {
         property_get("vendor.calls.slotid", simSlot, "");
     }
 
+    /* The hardcoded vsid values here are decimal VOICEMMODE1_VSID and VOICEMMODE2_VSID
+     * respectively, found in {QC_AUDIO_HAL}/hal/voice_extn/voice_extn.c.
+     * Parameter call_state 2 corresponds to CALL_ACTIVE and 1 to CALL_INACTIVE,
+     * both of which can be found in {QC_AUDIO_HAL}/hal/voice.h.
+     */
     if (strcmp(simSlot, "0") == 0) {
         // SIM1
-        mDevice->halSetParameters("call_state=2;g_call_state=2;g_call_sim_slot=0x01");
+        mDevice->halSetParameters("call_state=2;vsid=297816064");
     } else if (strcmp(simSlot, "1") == 0) {
         // SIM2
-        mDevice->halSetParameters("call_state=2;g_call_state=2;g_call_sim_slot=0x02");
+        mDevice->halSetParameters("call_state=2;vsid=299651072");
     } else if (strcmp(simSlot, "-1") == 0) {
         // No call
-        mDevice->halSetParameters("call_state=1;g_call_state=1");
+        mDevice->halSetParameters("call_state=1");
     }
 
     // INVALID, CURRENT, CNT, MAX are reserved for internal use.
