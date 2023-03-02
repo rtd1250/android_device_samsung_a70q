@@ -697,61 +697,6 @@ vendor/firmware/ipa_fws.b04
 vendor/firmware/ipa_fws.elf
 vendor/firmware/ipa_fws.mdt
 
-# Display - hardware
-vendor/bin/hw/vendor.qti.hardware.display.allocator-service
-vendor/etc/init/vendor.qti.hardware.display.allocator-service.rc
-vendor/lib/hw/android.hardware.graphics.mapper@3.0-impl-qti-display.so
-vendor/lib/hw/android.hardware.graphics.mapper@4.0-impl-qti-display.so
-vendor/lib/hw/gralloc.sm6150.so
-vendor/lib/hw/hwcomposer.sm6150.so
-vendor/lib/hw/memtrack.sm6150.so
-vendor/lib/libdisplayconfig.qti.so
-vendor/lib/libdisplaydebug.so
-vendor/lib/libdisplayqos.so
-vendor/lib/libdpps.so
-vendor/lib/libdrmutils.so
-vendor/lib/libgpu_tonemapper.so
-vendor/lib/libgralloccore.so
-vendor/lib/libgrallocutils.so
-vendor/lib/libsdedrm.so
-vendor/lib/libsdm-colormgr-algo.so
-vendor/lib/libsdmcore.so
-vendor/lib/libsdmutils.so
-vendor/lib/vendor.qti.hardware.display.mapper@1.0.so
-vendor/lib/vendor.qti.hardware.display.mapper@1.1.so
-vendor/lib/vendor.qti.hardware.display.mapper@2.0.so
-vendor/lib/vendor.qti.hardware.display.mapper@3.0.so
-vendor/lib/vendor.qti.hardware.display.mapper@4.0.so
-vendor/lib/vendor.qti.hardware.display.mapperextensions@1.0.so
-vendor/lib/vendor.qti.hardware.display.mapperextensions@1.1.so
-vendor/lib64/hw/android.hardware.graphics.mapper@3.0-impl-qti-display.so
-vendor/lib64/hw/android.hardware.graphics.mapper@4.0-impl-qti-display.so
-vendor/lib64/hw/gralloc.sm6150.so
-vendor/lib64/hw/hwcomposer.sm6150.so
-vendor/lib64/hw/memtrack.sm6150.so
-vendor/lib64/libdisplayconfig.qti.so
-vendor/lib64/libdisplaydebug.so
-vendor/lib64/libdisplayqos.so
-vendor/lib64/libdpps.so
-vendor/lib64/libdrmutils.so
-vendor/lib64/libgpu_tonemapper.so
-vendor/lib64/libgralloccore.so
-vendor/lib64/libgrallocutils.so
-vendor/lib64/libsdedrm.so
-vendor/lib64/libsdm-colormgr-algo.so
-vendor/lib64/libsdmcore.so
-vendor/lib64/libsdmutils.so
-vendor/lib64/vendor.qti.hardware.display.allocator@1.0.so
-vendor/lib64/vendor.qti.hardware.display.allocator@3.0.so
-vendor/lib64/vendor.qti.hardware.display.allocator@4.0.so
-vendor/lib64/vendor.qti.hardware.display.mapper@1.0.so
-vendor/lib64/vendor.qti.hardware.display.mapper@1.1.so
-vendor/lib64/vendor.qti.hardware.display.mapper@2.0.so
-vendor/lib64/vendor.qti.hardware.display.mapper@3.0.so
-vendor/lib64/vendor.qti.hardware.display.mapper@4.0.so
-vendor/lib64/vendor.qti.hardware.display.mapperextensions@1.0.so
-vendor/lib64/vendor.qti.hardware.display.mapperextensions@1.1.so
-
 # DRM
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libcpion.so
@@ -818,7 +763,6 @@ vendor/lib64/vendor.qti.hardware.fm@1.0.so
 vendor/lib64/hw/gatekeeper.mdfpp.so
 
 # Graphics
--vendor/app/com.qualcomm.qti.gpudrivers.sm6150.api30/com.qualcomm.qti.gpudrivers.sm6150.api30.apk
 vendor/lib/egl/eglSubDriverAndroid.so
 vendor/lib/egl/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
@@ -828,12 +772,14 @@ vendor/lib/egl/libq3dtools_esx.so
 vendor/lib/libC2D2.so
 vendor/lib/libCB.so
 vendor/lib/libOpenCL.so
+vendor/lib/libVkLayer_q3dtools.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libc2d30_bltlib.so
+vendor/lib/libgpudataproducer.so
 vendor/lib/libgsl.so
 vendor/lib/libllvm-glnext.so
 vendor/lib/libllvm-qcom.so
-vendor/lib/librs_adreno.so
+vendor/lib/libpvr.so
 vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so
 vendor/lib64/egl/libGLESv1_CM_adreno.so
@@ -843,28 +789,55 @@ vendor/lib64/egl/libq3dtools_esx.so
 vendor/lib64/libC2D2.so
 vendor/lib64/libCB.so
 vendor/lib64/libOpenCL.so
+vendor/lib64/libVkLayer_q3dtools.so
 vendor/lib64/libadreno_utils.so
 vendor/lib64/libc2d30_bltlib.so
+vendor/lib64/libgpudataproducer.so
 vendor/lib64/libgsl.so
 vendor/lib64/libllvm-glnext.so
 vendor/lib64/libllvm-qcom.so
-vendor/lib64/librs_adreno.so
+vendor/lib64/libpvr.so
+
+# Graphics (postprocessing)
+vendor/bin/hw/vendor.display.color@1.0-service
+vendor/bin/ppd
+vendor/etc/init/vendor.display.color@1.0-service.rc
+vendor/lib/libdisp-aba.so
+vendor/lib/vendor.display.color@1.0.so
+vendor/lib/vendor.display.color@1.1.so
+vendor/lib/vendor.display.color@1.2.so
+vendor/lib/vendor.display.color@1.3.so
+vendor/lib/vendor.display.color@1.4.so
+vendor/lib/vendor.display.color@1.5.so
+vendor/lib/vendor.display.postproc@1.0.so
+vendor/lib64/libdisp-aba.so
+vendor/lib64/vendor.display.color@1.0.so
+vendor/lib64/vendor.display.color@1.1.so
+vendor/lib64/vendor.display.color@1.2.so
+vendor/lib64/vendor.display.color@1.3.so
+vendor/lib64/vendor.display.color@1.4.so
+vendor/lib64/vendor.display.color@1.5.so
+vendor/lib64/vendor.display.postproc@1.0.so
 
 # Graphics (HDR)
 vendor/lib/libhdr_tm.so
 vendor/lib64/libhdr_tm.so
 
 # Graphics (SDM)
+vendor/lib/libdisplayqos.so
 vendor/lib/libqseed3.so
+vendor/lib/libsdedrm.so
 vendor/lib/libsdm-color.so
 vendor/lib/libsdm-diag.so
--vendor/lib/libsdm-disp-vndapis.so
+vendor/lib/libsdm-disp-vndapis.so
 vendor/lib/libsdmextension.so
 vendor/lib/libtinyxml2_1.so
+vendor/lib64/libdisplayqos.so
 vendor/lib64/libqseed3.so
+vendor/lib64/libsdedrm.so
 vendor/lib64/libsdm-color.so
 vendor/lib64/libsdm-diag.so
--vendor/lib64/libsdm-disp-vndapis.so
+vendor/lib64/libsdm-disp-vndapis.so
 vendor/lib64/libsdmextension.so
 vendor/lib64/libtinyxml2_1.so
 
@@ -950,26 +923,6 @@ vendor/lib64/vendor.qti.gnss@2.1.so
 vendor/lib64/vendor.qti.gnss@3.0.so
 vendor/lib64/vendor.qti.gnss@4.0.so
 vendor/lib64/vendor.samsung.hardware.gnss@2.0.so
-
-# Image Understanding
-#vendor/saiv/image_understanding/db/COMMON_CPU__BV3.0FV/5.8.3/food_verifier_cnn.prototxt
-#vendor/saiv/image_understanding/db/COMMON_CPU__BV3.0FV/5.8.3/food_verifier_cnn_light.caffemodel
-#vendor/saiv/image_understanding/db/COMMON_CPU__BV3.0PV/5.8.3/movie_poster_verifier_cnn.prototxt
-#vendor/saiv/image_understanding/db/COMMON_CPU__BV3.0PV/5.8.3/movie_poster_verifier_cnn_light.caffemodel
-#vendor/saiv/image_understanding/db/COMMON_CPU__BV3.0TV/5.8.3/text_verifier_cnn.prototxt
-#vendor/saiv/image_understanding/db/COMMON_CPU__BV3.0TV/5.8.3/text_verifier_cnn_light.caffemodel
-#vendor/saiv/image_understanding/db/COMMON_CPU__BV3.0WV/5.8.3/wine_verifier_cnn.prototxt
-#vendor/saiv/image_understanding/db/COMMON_CPU__BV3.0WV/5.8.3/wine_verifier_cnn_light.caffemodel
-#vendor/saiv/image_understanding/db/QC_DSP_1.33.2_BV3.0CLS/5.8.3/slens_classifier_cnn.dlc
-#vendor/saiv/image_understanding/db/QC_DSP_1.33.2_BV3.0OD/5.8.3/slens_detector_cnn.dlc
-#vendor/saiv/image_understanding/db/aic_classifier/aic_classifier_cnn.prototxt
-#vendor/saiv/image_understanding/db/aic_classifier/aic_classifier_cnn_light.caffemodel
-#vendor/saiv/image_understanding/db/aic_detector/aic_detector_cnn.prototxt
-#vendor/saiv/image_understanding/db/aic_detector/aic_detector_cnn_light.caffemodel
-#vendor/saiv/image_understanding/db/aig_classifier/aig_classifier_gnn.tf
-#vendor/saiv/image_understanding/db/aig_classifier/aig_detector_cnn.tflite
-#vendor/saiv/image_understanding/db/aig_detector/aig_detector_cnn.prototxt
-#vendor/saiv/image_understanding/db/aig_detector/aig_detector_cnn_light.caffemodel
 
 # Keymaster
 vendor/lib64/libkeymaster_helper.so
@@ -1390,7 +1343,6 @@ vendor/etc/init/android.hardware.usb@1.1-service.wahoo.rc
 vendor/lib64/vendor.qti.voiceprint@1.0.so
 
 # Wifi
-#vendor/bin/cnss_diag
 vendor/bin/hw/macloader
 vendor/bin/cnss-daemon
 vendor/firmware/wlan/qca_cld/bdwlan.bin
