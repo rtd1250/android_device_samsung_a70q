@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 The LineageOS Project
+ * Copyright (C) 2021-2023 The LineageOS Project
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -12,8 +12,13 @@
 #define INTENSITY_MAX 10000
 #define INTENSITY_DEFAULT INTENSITY_MAX
 
+#define AMPLITUDE_LIGHT 0.25
+#define AMPLITUDE_MEDIUM 0.5
+#define AMPLITUDE_STRONG 1
+
 #define VIBRATOR_TIMEOUT_PATH "/sys/class/timed_output/vibrator/enable"
 #define VIBRATOR_INTENSITY_PATH "/sys/class/timed_output/vibrator/intensity"
+#define VIBRATOR_CP_TRIGGER_PATH "/sys/class/timed_output/vibrator/cp_trigger_index"
 
 using ::aidl::android::hardware::vibrator::IVibratorCallback;
 using ::aidl::android::hardware::vibrator::Braking;
@@ -59,7 +64,7 @@ public:
 private:
     ndk::ScopedAStatus activate(uint32_t ms);
     static uint32_t effectToMs(Effect effect, ndk::ScopedAStatus* status);
-    static uint8_t strengthToAmplitude(EffectStrength strength, ndk::ScopedAStatus* status);
+    static float strengthToAmplitude(EffectStrength strength, ndk::ScopedAStatus* status);
 
     bool mEnabled{false};
     bool mExternalControl{false};
@@ -67,6 +72,7 @@ private:
 
     bool mIsTimedOutVibrator;
     bool mHasTimedOutIntensity;
+    bool mHasTimedOutEffect;
 };
 
 } // namespace vibrator

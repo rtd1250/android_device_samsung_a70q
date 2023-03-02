@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 The LineageOS Project
+ * Copyright (C) 2021-2023 The LineageOS Project
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -11,12 +11,21 @@
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <thread>
 
 namespace aidl {
 namespace android {
 namespace hardware {
 namespace vibrator {
+
+static std::map<Effect, int> CP_TRIGGER_EFFECTS {
+    { Effect::CLICK, 10 },
+    { Effect::DOUBLE_CLICK, 14 },
+    { Effect::HEAVY_CLICK, 23 },
+    { Effect::TEXTURE_TICK, 50 },
+    { Effect::TICK, 50 }
+};
 
 /*
  * Write value to path and close file.
@@ -48,6 +57,7 @@ static bool nodeExists(const std::string& path) {
 Vibrator::Vibrator() {
     mIsTimedOutVibrator = nodeExists(VIBRATOR_TIMEOUT_PATH);
     mHasTimedOutIntensity = nodeExists(VIBRATOR_INTENSITY_PATH);
+    mHasTimedOutEffect = nodeExists(VIBRATOR_CP_TRIGGER_PATH);
 }
 
 ndk::ScopedAStatus Vibrator::getCapabilities(int32_t* _aidl_return) {
@@ -68,13 +78,18 @@ ndk::ScopedAStatus Vibrator::off() {
 }
 
 ndk::ScopedAStatus Vibrator::on(int32_t timeoutMs, const std::shared_ptr<IVibratorCallback>& callback) {
-    ndk::ScopedAStatus status = activate(timeoutMs);
+    ndk::ScopedAStatus status;
+
+    if (mHasTimedOutEffect)
+        writeNode(VIBRATOR_CP_TRIGGER_PATH, 0); // Clear all effects
+
+    status = activate(timeoutMs);
 
     if (callback != nullptr) {
         std::thread([=] {
-            LOG(INFO) << "Starting on on another thread";
+            LOG(DEBUG) << "Starting on on another thread";
             usleep(timeoutMs * 1000);
-            LOG(INFO) << "Notifying on complete";
+            LOG(DEBUG) << "Notifying on complete";
             if (!callback->onComplete().isOk()) {
                 LOG(ERROR) << "Failed to call onComplete";
             }
@@ -86,26 +101,34 @@ ndk::ScopedAStatus Vibrator::on(int32_t timeoutMs, const std::shared_ptr<IVibrat
 
 ndk::ScopedAStatus Vibrator::perform(Effect effect, EffectStrength strength, const std::shared_ptr<IVibratorCallback>& callback, int32_t* _aidl_return) {
     ndk::ScopedAStatus status;
-    uint8_t amplitude;
-    uint32_t ms;
+    float amplitude = strengthToAmplitude(strength, &status);
+    uint32_t ms = 1000;
 
-    amplitude = strengthToAmplitude(strength, &status);
-    if (!status.isOk()) {
+    if (!status.isOk())
         return status;
-    }
+
+    activate(0);
     setAmplitude(amplitude);
 
-    ms = effectToMs(effect, &status);
-    if (!status.isOk()) {
-        return status;
+    if (mHasTimedOutEffect && CP_TRIGGER_EFFECTS.find(effect) != CP_TRIGGER_EFFECTS.end()) {
+        writeNode(VIBRATOR_CP_TRIGGER_PATH, CP_TRIGGER_EFFECTS[effect]);
+    } else {
+        if (mHasTimedOutEffect)
+            writeNode(VIBRATOR_CP_TRIGGER_PATH, 0); // Clear previous effect
+
+        ms = effectToMs(effect, &status);
+
+        if (!status.isOk())
+            return status;
     }
+
     status = activate(ms);
 
     if (callback != nullptr) {
         std::thread([=] {
-            LOG(INFO) << "Starting perform on another thread";
+            LOG(DEBUG) << "Starting perform on another thread";
             usleep(ms * 1000);
-            LOG(INFO) << "Notifying perform complete";
+            LOG(DEBUG) << "Notifying perform complete";
             callback->onComplete();
         }).detach();
     }
@@ -129,19 +152,21 @@ ndk::ScopedAStatus Vibrator::getSupportedEffects(std::vector<Effect>* _aidl_retu
 ndk::ScopedAStatus Vibrator::setAmplitude(float amplitude) {
     uint32_t intensity;
 
-    if (amplitude == 0) {
-        return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_ARGUMENT);
+    if (amplitude <= 0.0f || amplitude > 1.0f) {
+        return ndk::ScopedAStatus(AStatus_fromExceptionCode(EX_ILLEGAL_ARGUMENT));
     }
 
-    LOG(DEBUG) << "Setting amplitude: " << (uint32_t)amplitude;
+    LOG(DEBUG) << "Setting amplitude: " << amplitude;
 
-    intensity = std::lround((amplitude - 1) * INTENSITY_MAX / 254.0);
-    if (intensity > INTENSITY_MAX) {
-        intensity = INTENSITY_MAX;
-    }
+    intensity = amplitude * INTENSITY_MAX;
+
     LOG(DEBUG) << "Setting intensity: " << intensity;
 
-    return writeNode(VIBRATOR_TIMEOUT_PATH, intensity);
+    if (mIsTimedOutVibrator) {
+        return writeNode(VIBRATOR_TIMEOUT_PATH, intensity);
+    }
+
+    return ndk::ScopedAStatus::ok();
 }
 
 ndk::ScopedAStatus Vibrator::setExternalControl(bool enabled) {
@@ -240,16 +265,16 @@ ndk::ScopedAStatus Vibrator::activate(uint32_t timeoutMs) {
     return writeNode(VIBRATOR_TIMEOUT_PATH, timeoutMs);
 }
 
-uint8_t Vibrator::strengthToAmplitude(EffectStrength strength, ndk::ScopedAStatus* status) {
+float Vibrator::strengthToAmplitude(EffectStrength strength, ndk::ScopedAStatus* status) {
     *status = ndk::ScopedAStatus::ok();
 
     switch (strength) {
         case EffectStrength::LIGHT:
-            return 64;
+            return AMPLITUDE_LIGHT;
         case EffectStrength::MEDIUM:
-            return 128;
+            return AMPLITUDE_MEDIUM;
         case EffectStrength::STRONG:
-            return 255;
+            return AMPLITUDE_STRONG;
     }
 
     *status = ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
@@ -258,19 +283,18 @@ uint8_t Vibrator::strengthToAmplitude(EffectStrength strength, ndk::ScopedAStatu
 
 uint32_t Vibrator::effectToMs(Effect effect, ndk::ScopedAStatus* status) {
     *status = ndk::ScopedAStatus::ok();
-
     switch (effect) {
         case Effect::CLICK:
-            return 20;
+            return 10;
         case Effect::DOUBLE_CLICK:
-            return 25;
-        case Effect::HEAVY_CLICK:
-            return 30;
+            return 15;
         case Effect::TICK:
         case Effect::TEXTURE_TICK:
         case Effect::THUD:
         case Effect::POP:
-            return 15;
+            return 5;
+        case Effect::HEAVY_CLICK:
+            return 10;
         case Effect::RINGTONE_1:
         case Effect::RINGTONE_2:
         case Effect::RINGTONE_3:
@@ -286,9 +310,8 @@ uint32_t Vibrator::effectToMs(Effect effect, ndk::ScopedAStatus* status) {
         case Effect::RINGTONE_13:
         case Effect::RINGTONE_14:
         case Effect::RINGTONE_15:
-            return 300;
+            return 30000;
     }
-
     *status = ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
     return 0;
 }
