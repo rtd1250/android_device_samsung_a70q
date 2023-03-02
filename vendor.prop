@@ -152,9 +152,6 @@ sys.qca1530=detect
 # IO CGroup
 ro.vendor.iocgrp.config=1
 
-# Light
-ro.hardware.lights=qcom
-
 # Media
 audio.offload.video=true
 
