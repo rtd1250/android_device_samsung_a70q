@@ -86,6 +86,9 @@ on init
     chown root system /sys/fs/cgroup/memory/bg/tasks
     chmod 0660 /sys/fs/cgroup/memory/bg/tasks
 
+    # Charger
+    chown system system /sys/class/power_supply/battery/batt_slate_mode
+
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
 
