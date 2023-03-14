@@ -392,10 +392,6 @@ vendor/lib64/vendor.samsung.hardware.bluetooth@2.0.so
 vendor/firmware/apbtfw11.tlv
 vendor/firmware/apnv11.bin
 
-# Bluetooth (aptX) - from raven - TP1A.220624.021
-system_ext/lib64/libaptXHD_encoder.so|e13fa70c97caaa24d061678bdee608eb8850a69e
-system_ext/lib64/libaptX_encoder.so|df1c89d7af1bb35808d5fe3496b04ba066c10cbc
-
 # Camera
 vendor/lib/camera/components/com.qti.camx.chiiqutils.so
 vendor/lib/camera/components/com.qti.eisv2.so
