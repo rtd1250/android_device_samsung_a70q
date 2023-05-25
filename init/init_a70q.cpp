@@ -71,7 +71,7 @@ void vendor_load_properties()
     } else {
         LOG(ERROR) << "Could not detect model, defaulting to A705FN";
         bl_model = "A705FN";
-        bl_build = "XXU5DVK6";
+        bl_build = "XXU5DWB4";
     }
     
     std::string model;
