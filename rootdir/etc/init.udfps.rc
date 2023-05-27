@@ -1,0 +1,2 @@
+on init
+    write /sys/class/sec/tsp/cmd "fod_enable,1"
