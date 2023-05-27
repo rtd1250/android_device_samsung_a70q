@@ -51,12 +51,12 @@
     <hal format="hidl" override="true">
         <name>android.hardware.camera.provider</name>
         <transport>hwbinder</transport>
-        <version>2.5</version>
+        <version>2.6</version>
         <interface>
             <name>ICameraProvider</name>
             <instance>legacy/0</instance>
         </interface>
-        <fqname>@2.5::ICameraProvider/legacy/0</fqname>
+        <fqname>@2.6::ICameraProvider/legacy/0</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.configstore</name>
@@ -728,7 +728,6 @@
         </interface>
         <fqname>@1.0::ISehBluetoothAudioOffload/default</fqname>
     </hal>
-    <!-- Broken for now?
     <hal format="hidl">
         <name>vendor.samsung.hardware.camera.provider</name>
         <transport>hwbinder</transport>
@@ -739,7 +738,6 @@
         </interface>
         <fqname>@4.0::ISehCameraProvider/legacy/0</fqname>
     </hal>
-    -->
     <hal format="hidl">
         <name>vendor.samsung.hardware.gnss</name>
         <transport>hwbinder</transport>
