@@ -8,6 +8,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.bluetooth.wipower=true \
     vendor.bluetooth.soc=cherokee \
     vendor.qcom.bluetooth.soc=cherokee \
+    persist.vendor.qcom.bluetooth.soc=cherokee \
     persist.vendor.btstack.avrcp-playstatus.blacklist=true \
     bt.max.hfpclient.connections=1
 
