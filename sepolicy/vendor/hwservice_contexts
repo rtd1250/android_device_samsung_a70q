@@ -18,3 +18,4 @@ vendor.samsung.hardware.radio.sechook::IOemHook                           u:obje
 vendor.samsung.security.sem::ISem                                         u:object_r:hal_sem_hwservice:s0
 vendor.samsung.security.skpm::ISkpm                                       u:object_r:hal_skpm_hwservice:s0
 vendor.samsung.security.wvkprov_server::Iwvkprov_server                   u:object_r:hal_wvkprov_hwservice:s0
+vendor.samsung.hardware.thermal::ISehThermal                              u:object_r:hal_thermal_hwservice:s0
