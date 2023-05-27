@@ -196,7 +196,7 @@ PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
     android.hardware.gatekeeper@1.0-service
 
- # FM
+# FM
 PRODUCT_PACKAGES += \
     FM2 \
     libqcomfm_jni \
@@ -229,10 +229,10 @@ PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
     android.hidl.base@1.0.vendor \
     android.hidl.memory@1.0.vendor \
-	libhidltransport \
-	libhidltransport.vendor \
-	libhwbinder \
-	libhwbinder.vendor
+    libhidltransport \
+    libhidltransport.vendor \
+    libhwbinder \
+    libhwbinder.vendor
 
 # IPACM
 PRODUCT_PACKAGES += \
@@ -273,6 +273,10 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml
+
+PRODUCT_PACKAGES += \
+    libavservices_minijail \
+    libavservices_minijail.vendor
 
 # MSM IRQ
 PRODUCT_COPY_FILES += \
@@ -368,17 +372,16 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    android.hardware.radio@1.3-radio-service.samsung \
-    vendor.samsung.hardware.radio@2.1.vendor \
     android.hardware.radio@1.4.vendor \
     android.hardware.radio.config@1.2.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
     libjson \
     librmnetctl \
     libxml2 \
+    secril_config_svc \
     libprotobuf-cpp-full \
     libtrafficcontrol-spoofer \
-	libcutils_shim
+    libcutils_shim
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
