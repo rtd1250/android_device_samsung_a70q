@@ -90,7 +90,8 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     libqcompostprocbundle \
     libvolumelistener \
-    tinymix
+    tinymix \
+    SamsungDAP
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/configs/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
