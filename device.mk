@@ -72,15 +72,13 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl \
-    android.hardware.audio@2.0-service \
-    android.hardware.audio@5.0 \
-    android.hardware.audio.common@4.0 \
-    android.hardware.audio.common@4.0-util \
-    android.hardware.audio@5.0-impl.a70q \
-    android.hardware.audio.effect@5.0 \
-    android.hardware.audio.effect@5.0-impl \
+    android.hardware.audio.service \
+    android.hardware.audio@6.0 \
+    android.hardware.audio@6.0-impl.a70q \
+    android.hardware.audio.effect@6.0 \
+    android.hardware.audio.effect@6.0-impl \
     android.hardware.bluetooth.audio@2.0-impl \
-    android.hardware.soundtrigger@2.1-impl:32 \
+    android.hardware.soundtrigger@2.2-impl:32 \
     audio.a2dp.default \
     audio.bluetooth.default \
     audio.primary.sm6150 \
@@ -431,7 +429,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
-
+    
 # VNDK-SP
 PRODUCT_PACKAGES += \
     vndk_package
