@@ -15,16 +15,53 @@
  */
 
 #include "core/default/ParametersUtil.h"
-#include "core/default/Conversions.h"
 #include "core/default/Util.h"
 
 #include <system/audio.h>
+#include <tinyalsa/asoundlib.h>
+
+#include <util/CoreUtils.h>
 
 namespace android {
 namespace hardware {
 namespace audio {
 namespace CPP_VERSION {
 namespace implementation {
+
+constexpr int SLOT_POSITIONS_0[] = { 0, 1, 0, 1 };
+constexpr int SLOT_POSITIONS_90[] = { 1, 1, 0, 0 };
+constexpr int SLOT_POSITIONS_180[] = { 1, 0, 1, 0 };
+constexpr int SLOT_POSITIONS_270[] = { 0, 0, 1, 1 };
+
+void setMixerValueByName(mixer *mixer, const char *name, int value) {
+    const auto ctl = mixer_get_ctl_by_name(mixer, name);
+
+    if (ctl == nullptr) {
+        ALOGE("Failed to find mixer ctl for %s", name);
+        return;
+    }
+
+    if (mixer_ctl_set_value(ctl, 0, value) < 0) {
+        ALOGE("Failed to set ctl value %d for %s", value, name);
+        return;
+    }
+}
+
+void setSlotPositions(const int *values) {
+    const auto mixer = mixer_open(0);
+
+    if (mixer == nullptr) {
+        ALOGE("Failed to open mixer");
+        return;
+    }
+
+    setMixerValueByName(mixer, "FL ASPRX1 Slot Position", values[0]);
+    setMixerValueByName(mixer, "FR ASPRX1 Slot Position", values[1]);
+    setMixerValueByName(mixer, "RL ASPRX1 Slot Position", values[2]);
+    setMixerValueByName(mixer, "RR ASPRX1 Slot Position", values[3]);
+
+    mixer_close(mixer);
+};
 
 /** Converts a status_t in Result according to the rules of AudioParameter::get*
  * Note: Static method and not private method to avoid leaking status_t dependency
@@ -145,13 +182,31 @@ Result ParametersUtil::setParametersImpl(const hidl_vec<ParameterValue>& context
         params.add(String8(pair.key.c_str()), String8(pair.value.c_str()));
     }
     for (size_t i = 0; i < parameters.size(); ++i) {
+        if (parameters[i].key == "rotation") {
+            if (parameters[i].value == "0") {
+                setSlotPositions(SLOT_POSITIONS_0);
+            } else if (parameters[i].value == "90") {
+                setSlotPositions(SLOT_POSITIONS_90);
+            } else if (parameters[i].value == "180") {
+                setSlotPositions(SLOT_POSITIONS_180);
+            } else if (parameters[i].value == "270") {
+                setSlotPositions(SLOT_POSITIONS_270);
+            }
+            continue;
+        }
         params.add(String8(parameters[i].key.c_str()), String8(parameters[i].value.c_str()));
     }
     return setParams(params);
 }
+
 Result ParametersUtil::setParam(const char* name, const DeviceAddress& address) {
-    AudioParameter params(String8(deviceAddressToHal(address).c_str()));
-    params.addInt(String8(name), int(address.device));
+    audio_devices_t halDeviceType;
+    char halDeviceAddress[AUDIO_DEVICE_MAX_ADDRESS_LEN];
+    if (CoreUtils::deviceAddressToHal(address, &halDeviceType, halDeviceAddress) != NO_ERROR) {
+        return Result::INVALID_ARGUMENTS;
+    }
+    AudioParameter params{String8(halDeviceAddress)};
+    params.addInt(String8(name), halDeviceType);
     return setParams(params);
 }
 

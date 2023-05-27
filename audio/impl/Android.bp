@@ -1,10 +1,6 @@
-cc_defaults {
-    name: "android.hardware.audio-impl_a70q",
-    relative_install_path: "hw",
-    proprietary: true,
-    vendor: true,
+filegroup {
+    name: "android.hardware.audio-impl_a70q_srcs",
     srcs: [
-        "Conversions.cpp",
         "Device.cpp",
         "DevicesFactory.cpp",
         "ParametersUtil.cpp",
@@ -13,10 +9,23 @@ cc_defaults {
         "StreamIn.cpp",
         "StreamOut.cpp",
     ],
+}
+
+cc_library_headers {
+    name: "android.hardware.audio-impl_a70q_headers",
+    proprietary: true,
+    vendor: true,
+    export_include_dirs: ["include"],
+}
+
+cc_defaults {
+    name: "android.hardware.audio-impl_a70q",
+    relative_install_path: "hw",
+    proprietary: true,
+    vendor: true,
+    srcs: [":android.hardware.audio-impl_a70q_srcs"],
 
     defaults: ["hidl_defaults"],
-
-    export_include_dirs: ["include"],
 
     static_libs: [
         "libaudiofoundation",
@@ -36,11 +45,18 @@ cc_defaults {
     ],
 
     header_libs: [
+        "android.hardware.audio-impl_a70q_headers",
         "android.hardware.audio.common.util@all-versions",
         "libaudioclient_headers",
+        "libaudioutils_headers",
         "libaudio_system_headers",
         "libhardware_headers",
         "libmedia_headers",
+        "libmediautils_headers",
+    ],
+
+    export_header_lib_headers: [
+        "android.hardware.audio-impl_a70q_headers",
     ],
 }
 
@@ -49,6 +65,7 @@ cc_library_shared {
     defaults: ["android.hardware.audio-impl_a70q"],
     shared_libs: [
         "android.hardware.audio@2.0",
+        "android.hardware.audio@2.0-util",
         "android.hardware.audio.common@2.0",
         "android.hardware.audio.common@2.0-util",
     ],
@@ -65,6 +82,7 @@ cc_library_shared {
 
     shared_libs: [
         "android.hardware.audio@4.0",
+        "android.hardware.audio@4.0-util",
         "android.hardware.audio.common@4.0",
         "android.hardware.audio.common@4.0-util",
     ],
@@ -80,6 +98,7 @@ cc_library_shared {
     defaults: ["android.hardware.audio-impl_a70q"],
     shared_libs: [
         "android.hardware.audio@5.0",
+        "android.hardware.audio@5.0-util",
         "android.hardware.audio.common@5.0",
         "android.hardware.audio.common@5.0-util",
     ],
@@ -95,11 +114,30 @@ cc_library_shared {
     defaults: ["android.hardware.audio-impl_a70q"],
     shared_libs: [
         "android.hardware.audio@6.0",
+        "android.hardware.audio@6.0-util",
         "android.hardware.audio.common@6.0",
         "android.hardware.audio.common@6.0-util",
     ],
     cflags: [
         "-DMAJOR_VERSION=6",
+        "-DMINOR_VERSION=0",
+        "-include common/all-versions/VersionMacro.h",
+    ],
+}
+
+cc_library_shared {
+    name: "android.hardware.audio@7.0-impl.a70q",
+    defaults: ["android.hardware.audio-impl_a70q"],
+    shared_libs: [
+        "android.hardware.audio@7.0",
+        "android.hardware.audio@7.0-util",
+        "android.hardware.audio.common@7.0",
+        "android.hardware.audio.common@7.0-enums",
+        "android.hardware.audio.common@7.0-util",
+        "libbase",
+    ],
+    cflags: [
+        "-DMAJOR_VERSION=7",
         "-DMINOR_VERSION=0",
         "-include common/all-versions/VersionMacro.h",
     ],
