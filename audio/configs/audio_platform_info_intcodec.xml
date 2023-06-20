@@ -114,11 +114,6 @@
         <device name="SND_DEVICE_IN_VOCE_RECOG_USB_HEADSET_HEX_MIC" acdb_id="162"/>
         <device name="SND_DEVICE_IN_HANDSET_GENERIC_QMIC" acdb_id="157"/>
         <device name="SND_DEVICE_IN_VOICE_HEARING_AID" acdb_id="34"/>
-
-        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" acdb_id="15"/>
-        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_2" acdb_id="15"/>
-        <device name="SND_DEVICE_IN_SPEAKER_MIC" acdb_id="58"/>
-        <device name="SND_DEVICE_IN_VOICE_SPEAKER_MIC" acdb_id="58"/>
     </acdb_ids>
     <backend_names>
         <!-- Samsung Hardware Interface Table           -->
@@ -181,8 +176,6 @@
         <device name="SND_DEVICE_OUT_WIFI_CALL_SPEAKER_EX_EVS" backend="speaker" interface="WSA_CDC_DMA_RX_0"/>
         <device name="SND_DEVICE_OUT_WIFI_CALL_DEX_SPEAKER" backend="speaker" interface="WSA_CDC_DMA_RX_0"/>
         <device name="SND_DEVICE_OUT_WIFI_CALL_DEX_SPEAKER_EVS" backend="speaker" interface="WSA_CDC_DMA_RX_0"/>
-        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" backend="voice-speaker" interface="WSA_CDC_DMA_RX_0"/>
-        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_2" backend="voice-speaker-2" interface="WSA_CDC_DMA_RX_0"/>
         <device name="SND_DEVICE_OUT_VOIP_COMM_SPEAKER" backend="speaker" interface="WSA_CDC_DMA_RX_0"/>
         <device name="SND_DEVICE_OUT_VOIP_COMM_DEX_SPEAKER" backend="speaker" interface="WSA_CDC_DMA_RX_0"/>
         <device name="SND_DEVICE_OUT_VOIP_COMM_TV_SPEAKER" backend="speaker" interface="WSA_CDC_DMA_RX_0"/>
