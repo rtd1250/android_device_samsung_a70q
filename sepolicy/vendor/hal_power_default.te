@@ -12,8 +12,8 @@ allow hal_power_default sysfs_touchscreen_writable:file rw_file_perms;
 
 allow hal_power_default sysfs_devices_system_cpu:file rw_file_perms;
 
-allow hal_power_default sysfs_battery:dir r_dir_perms;
-allow hal_power_default sysfs_battery:file rw_file_perms;
+allow hal_power_default sysfs_batteryinfo:dir r_dir_perms;
+allow hal_power_default sysfs_batteryinfo:file rw_file_perms;
 
 allow hal_power_default { sysfs_sensors vendor_sysfs_sensors }:dir search;
 allow hal_power_default sysfs_sensors:file { open write };

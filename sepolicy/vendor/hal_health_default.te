@@ -9,8 +9,8 @@ allow hal_health_default battery_efs_file:file { rw_file_perms setattr };
 allow hal_health_default efs_file:dir search;
 allow hal_health_default sec_poc_file:dir search;
 
-allow hal_health_default sysfs_battery:file r_file_perms;
-allow hal_health_default sysfs_battery:dir search;
+allow hal_health_default sysfs_batteryinfo:file r_file_perms;
+allow hal_health_default sysfs_batteryinfo:dir search;
 
 allow hal_health_default hal_thermal_samsung_hwservice:hwservice_manager find;
 binder_call(hal_health_default, hal_thermal_default)

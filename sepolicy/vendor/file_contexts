@@ -205,13 +205,13 @@
 /sys/class/cirrus/cirrus_cal(/.*)?                              u:object_r:vendor_sysfs_audio:s0
 /sys/class/cirrus/cirrus_pwr(/.*)?                              u:object_r:vendor_sysfs_audio:s0
 /sys/class/lcd(/.*)?                                        --  u:object_r:sysfs_lcd_writable:s0
-/sys/class/power_supply(/.*)?                               --  u:object_r:sysfs_battery:s0
-/sys/class/power_supply/battery(/.*)?                       --  u:object_r:sysfs_battery:s0
+/sys/class/power_supply(/.*)?                               --  u:object_r:sysfs_batteryinfo:s0
+/sys/class/power_supply/battery(/.*)?                       --  u:object_r:sysfs_batteryinfo:s0
 /sys/class/power_supply/usb(/.*)?                           --  u:object_r:sysfs_usb_supply:s0
 /sys/class/rtc/rtc0(/.*)?                                       u:object_r:sysfs_rtc:s0
 /sys/class/rfkill/rfkill[0-9]+/state                        --  u:object_r:sysfs_bluetooth_writable:s0
 /sys/class/rfkill/rfkill[0-9]+/type                         --  u:object_r:sysfs_bluetooth_writable:s0
-/sys/devices/platform/soc/soc:battery/power_supply(/.*)?    --  u:object_r:sysfs_battery:s0
+/sys/devices/platform/soc/soc:battery/power_supply(/.*)?    --  u:object_r:sysfs_batteryinfo:s0
 /sys/devices/virtual/audio/earjack/state                        u:object_r:sysfs_audio_writable:s0
 /sys/devices/virtual/camera/flash(/.*)?                         u:object_r:sysfs_camera_writable:s0
 /sys/devices/virtual/camera/rear(/.*)?                          u:object_r:sysfs_camera_writable:s0
