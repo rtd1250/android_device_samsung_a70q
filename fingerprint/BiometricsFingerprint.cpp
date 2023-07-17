@@ -28,6 +28,7 @@
 #include <inttypes.h>
 #include <unistd.h>
 #include <cutils/properties.h>
+#include <string.h>
 
 #ifdef HAS_FINGERPRINT_GESTURES
 #include <fcntl.h>
@@ -35,6 +36,7 @@
 
 #define TSP_CMD_PATH "/sys/class/sec/tsp/cmd"
 #define HBM_PATH "/sys/class/lcd/panel/mask_brightness"
+#define MASK_BRIGHTNESS_PATH "/sys/class/lcd/panel/actual_mask_brightness"
 
 namespace android {
 namespace hardware {
@@ -51,6 +53,14 @@ template <typename T>
 static void set(const std::string& path, const T& value) {
     std::ofstream file(path);
     file << value;
+}
+
+template <typename T>
+static T get(const std::string& path, const T& def) {
+    std::ifstream file(path);
+    T result;
+    file >> result;
+    return file.fail() ? def : result;
 }
 
 BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr) {
@@ -129,9 +139,11 @@ Return<void> BiometricsFingerprint::onFingerDown(uint32_t, uint32_t, float, floa
 }
 
 Return<void> BiometricsFingerprint::onFingerUp() {
-    request(SEM_REQUEST_TOUCH_EVENT, FINGERPRINT_REQUEST_RESUME);
+    if (strcmp(get<std::string>(MASK_BRIGHTNESS_PATH, "0").c_str(), "0") != 0) {
+        request(SEM_REQUEST_TOUCH_EVENT, FINGERPRINT_REQUEST_RESUME);
 
-    set(HBM_PATH, "0");
+        set(HBM_PATH, "0");
+    }
 
     return Void();
 }
