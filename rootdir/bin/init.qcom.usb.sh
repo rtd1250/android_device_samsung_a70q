@@ -43,10 +43,6 @@ esoc_name=`cat /sys/bus/esoc/devices/esoc0/esoc_name 2> /dev/null`
 
 target=`getprop ro.board.platform`
 
-if [ -f /sys/class/android_usb/f_mass_storage/lun/nofua ]; then
-	echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
-fi
-
 #
 # Override USB default composition
 #
@@ -147,30 +143,6 @@ case "$usb_config" in
   * )
   ;; #USB persist config exists, do nothing
 esac
-
-# set rndis transport to BAM2BAM_IPA for 8920 and 8940
-if [ "$target" == "msm8937" ]; then
-	if [ ! -d /config/usb_gadget ]; then
-	   case "$soc_id" in
-		"313" | "320")
-		   echo BAM2BAM_IPA > /sys/class/android_usb/android0/f_rndis_qc/rndis_transports
-		;;
-		*)
-		;;
-	   esac
-	else
-	   case "$soc_id" in
-		"313" | "320")
-		   setprop vendor.usb.rndis.func.name "rndis_bam"
-		   setprop vendor.usb.rmnet.func.name "rmnet_bam"
-		   setprop vendor.usb.rmnet.inst.name "rmnet"
-		   setprop vendor.usb.dpl.inst.name "dpl"
-		;;
-		*)
-		;;
-	   esac
-	fi
-fi
 
 if [ "$target" == "msm8996" ]; then
        if [ -d /config/usb_gadget ]; then
