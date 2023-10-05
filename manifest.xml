@@ -492,16 +492,6 @@
         <fqname>@2.2::IPerf/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>vendor.qti.hardware.qdutils_disp</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IQdutilsDisp</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::IQdutilsDisp/default</fqname>
-    </hal>
-    <hal format="hidl">
         <name>vendor.qti.hardware.qseecom</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -646,16 +636,6 @@
         <transport>hwbinder</transport>
     </hal>
     <hal format="hidl">
-        <name>vendor.samsung.hardware.security.securestorage</name>
-        <transport>hwbinder</transport>
-        <version>3.0</version>
-        <interface>
-            <name>ISehSecureStorage</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@3.0::ISehSecureStorage/default</fqname>
-    </hal>
-    <hal format="hidl">
         <name>vendor.samsung.hardware.bluetooth</name>
         <transport>hwbinder</transport>
         <version>2.0</version>
@@ -795,56 +775,6 @@
         </interface>
         <fqname>@2.0::ISehSupplicant/default</fqname>
     </hal>
-    <hal format="hidl" override="true">
-        <name>vendor.samsung.hardware.security.drk</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>ISehDrk</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.0::ISehDrk/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.security.proca</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>ISehProca</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.0::ISehProca/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.security.sem</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISem</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::ISem/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.security.skpm</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISkpm</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::ISkpm/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.security.vaultkeeper</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>ISehVaultKeeper</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.0::ISehVaultKeeper/default</fqname>
-    </hal>
     <hal format="hidl">
         <name>vendor.samsung.hardware.security.widevine.keyprov</name>
         <transport>hwbinder</transport>
@@ -854,16 +784,6 @@
             <instance>default</instance>
         </interface>
         <fqname>@1.0::ISehWidevineKeyProvisioning/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.samsung.hardware.security.wsm</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISehWsm</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::ISehWsm/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.samsung.security.wvkprov_server</name>
