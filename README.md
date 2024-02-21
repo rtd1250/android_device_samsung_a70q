@@ -1,5 +1,8 @@
+* I suggest taking a look at the new trees @ a70q-lineage as that's where most development is currently happening:\
+  https://github.com/a70q-lineage
+
 The Samsung Galaxy A70 (codenamed "a70q") is a mid-range smartphone from Samsung released in May 2019.\
-This repository provides LineageOS 20 device configuration for Dual SIM and Single SIM variants of the A70.\
+This repository provides LineageOS 21 device configuration for Dual SIM and Single SIM variants of the A70.\
 It is tested to work with the following kernel: https://github.com/rtd1250/android_kernel_samsung_sm6150
 
 ## Device specifications
