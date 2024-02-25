@@ -1,3 +1,5 @@
+type vendor_adsprpcd, domain;
+
 allow vendor_adsprpcd mnt_vendor_file:dir create_dir_perms;
 allow vendor_adsprpcd mnt_vendor_file:file create_file_perms;
 
